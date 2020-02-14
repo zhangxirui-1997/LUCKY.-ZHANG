@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">LuckZhang</string>
+    <string name="app_name">体态检测</string>
+    <string name="welcome_word">美好生活 健康体态</string>
 </resources>
