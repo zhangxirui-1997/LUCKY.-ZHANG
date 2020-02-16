@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import LoginAndRegister.LoginActivity;
+import LoginAndRegister.RegisterActivity;
 
 /*欢迎界面
 * 这是用户看到的第一个界面
@@ -128,7 +129,7 @@ public class Welcome_Activity extends AppCompatActivity {
         judge=false;
         //在这里判断是否登录，未登录直接送到login界面
         Intent intent=new Intent();
-        intent.setClass(Welcome_Activity.this, LoginActivity.class);
+        intent.setClass(Welcome_Activity.this, RegisterActivity.class);
         startActivity(intent);
         this.finish();
     }
