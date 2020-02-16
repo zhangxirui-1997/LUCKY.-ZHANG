@@ -31,7 +31,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/button_circle_shape"
+                android:background="@drawable/button_welcome_circle_shape"
                 android:text="跳过(3s)"
                 android:textColor="@color/color_Text"
                 android:textSize="10sp" />

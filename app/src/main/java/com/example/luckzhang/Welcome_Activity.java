@@ -128,7 +128,7 @@ public class Welcome_Activity extends AppCompatActivity {
         judge=false;
         //在这里判断是否登录，未登录直接送到login界面
         Intent intent=new Intent();
-        intent.setClass(Welcome_Activity.this, MainActivity.class);
+        intent.setClass(Welcome_Activity.this, LoginActivity.class);
         startActivity(intent);
         this.finish();
     }

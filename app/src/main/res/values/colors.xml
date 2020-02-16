@@ -2,7 +2,10 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#E07746</color>
     <color name="color_White">#FFFFFF</color>
     <color name="color_Text">#000000</color>
+    <color name="color_healthy_backcolor">#32896C</color>
+    <color name="color_donotrememberPassword">#2D79FA</color>
+    <color name="color_gray">#F1F0F0</color>
 </resources>
