@@ -8,5 +8,9 @@
     <string name="do_not_remerberpassword">忘记密码</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
+    <string name="have_number">已有账号</string>
+    <string name="do_check">获取验证码</string>
+    <string name="how_do_check">点击左侧按钮获取验证码</string>
+    <string name="again_input_password">再次输入密码</string>
 
 </resources>
