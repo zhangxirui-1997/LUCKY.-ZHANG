@@ -96,34 +96,6 @@ public class Welcome_Activity extends AppCompatActivity {
                 message.what=i;
                 handler.sendMessage(message);
             }
-
-
-            /*try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            Message message=new Message();
-            message.what=2;
-            handler.sendMessage(message);
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            Message message1=new Message();
-            message1.what=1;
-            handler.sendMessage(message1);
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            Message message2=new Message();
-            message2.what=0;
-            handler.sendMessage(message2);*/
         }
     }
 

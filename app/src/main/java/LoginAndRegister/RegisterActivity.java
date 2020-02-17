@@ -1,8 +1,12 @@
 package LoginAndRegister;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.luckzhang.R;
+
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
+
+import static java.lang.Thread.sleep;
 
 
 /**
@@ -30,11 +39,77 @@ public class RegisterActivity extends AppCompatActivity {
     private String string_passwordagain;
     private String string_check;
 
+    private boolean judge60s=true;
+    private boolean judgeCheckisright=false;
+    private RegisterActivity.ThisThread myThread;
+
+    private EventHandler eh=new EventHandler(){
+        @Override
+        public void afterEvent(int event, int result, Object data) {
+            if (result == SMSSDK.RESULT_COMPLETE) {
+                //回调完成
+                if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
+                    judgeCheckisright=true;
+                    //提交验证码成功
+                }else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
+                    //获取验证码成功
+                }else if (event ==SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES){
+                    //返回支持发送验证码的国家列表
+                }
+            }else{
+                ((Throwable)data).printStackTrace();
+            }
+        }
+    };
+
+    //子线程60s倒数
+    //3秒倒数子线程
+    class ThisThread implements Runnable{
+        @Override
+        public void run() {
+            for(int i=60;i>=0;i--){
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Message message=new Message();
+                message.what=i;
+                handler1.sendMessage(message);
+            }
+        }
+    }
+    private Handler handler1=new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            button_check.setText("等待"+msg.what+"s");
+            if(msg.what==0){
+                judge60s=true;
+                button_check.setText("获取验证码");
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         initialize();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d("Activity_process_report","注册短信验证已经注册");
+        SMSSDK.registerEventHandler(eh); //注册短信回调
+        judgeCheckisright=false;
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        SMSSDK.unregisterEventHandler(eh);
+        Log.d("Activity_process_report","注册短信验证已经销毁");
+        super.onStop();
     }
 
     private void initialize(){
@@ -46,20 +121,34 @@ public class RegisterActivity extends AppCompatActivity {
         button_check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//获取验证码
-
+                if(editText_phone.getText().toString()==null||editText_phone.getText().toString().equals("")){
+                    Toast.makeText(RegisterActivity.this, "输入手机号", Toast.LENGTH_SHORT).show();
+                }else{
+                    if(judge60s){
+                        //先发验证码，1毫秒都不耽误
+                        SMSSDK.getVerificationCode("86",editText_phone.getText().toString());
+                        Toast.makeText(RegisterActivity.this, "验证码已发送", Toast.LENGTH_LONG).show();
+                        judge60s=false;
+                        myThread=new ThisThread();
+                        new Thread(myThread).start();
+                    }else{
+                        Toast.makeText(RegisterActivity.this, "请您耐心等待验证码", Toast.LENGTH_LONG).show();
+                    }
+                }
             }
         });
         button_register=findViewById(R.id.button2);
         button_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//点击注册按钮
-                if(judge()==1){//正常情况
-
-                }else if(judge()==2){//有空
+                int i=judge();
+                if(i==1){//正常情况
+                    Toast.makeText(RegisterActivity.this, "一切正常", Toast.LENGTH_LONG).show();
+                }else if(i==2){//有空
                     Toast.makeText(RegisterActivity.this, "输入框不能为空", Toast.LENGTH_LONG).show();
-                }else if(judge()==3){//验证码不正确
-                    Toast.makeText(RegisterActivity.this, "验证码不正确，请重新获取", Toast.LENGTH_LONG).show();
-                }else if(judge()==4){//两次密码不一致
+                }else if(i==3){//验证码不正确
+                    Toast.makeText(RegisterActivity.this, "验证码错误或网络差 请重试", Toast.LENGTH_LONG).show();
+                }else if(i==4){//两次密码不一致
                     Toast.makeText(RegisterActivity.this, "两次输入密码不一致", Toast.LENGTH_LONG).show();
                 }
             }
@@ -73,8 +162,11 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     }
-
+    //判断是否正确
     private int judge(){
+        Log.d("RegisterActivity","1111111111111111111");
+        SMSSDK.submitVerificationCode("86", editText_phone.getText().toString(),editText_check.getText().toString());
+        Log.d("RegisterActivity","1111111111111111111");
         string_phone=editText_phone.getText().toString();
         string_check=editText_check.getText().toString();
         string_password=editText_password.getText().toString();
@@ -83,14 +175,25 @@ public class RegisterActivity extends AppCompatActivity {
         string_password==null||string_password.equals("")||string_passwordagain==null||string_passwordagain.equals("")){
             return 2;
         }
+        //这里必须睡1s，不然子线程跑不过主线程
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         /**
          *此处添加验证码验证环节，如有异常return 3；
          */
+        if(!judgeCheckisright){
+            return 3;
+        }
         if(!string_password.equals(string_passwordagain)){
-            //两次验证码不正确
+            //两次密码不一致
             return 4;
         }
         return 1;
     }
+
+
 
 }

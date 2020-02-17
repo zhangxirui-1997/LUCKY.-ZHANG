@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
     //获取权限，下面是回调
     private void getPermissions(){
         String[] permissions={Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.ACCESS_FINE_LOCATION};
-        for(int i=0;i<=2;i++){
+                Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.READ_PHONE_STATE};
+        for(int i=0;i<=3;i++){
             if(ContextCompat.checkSelfPermission(MainActivity.this,permissions[i])
                     != PackageManager.PERMISSION_GRANTED){
                 Log.d(TAG,"11111111111111:"+permissions[i]);
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull final String[] permissions, @NonNull int[] grantResults) {
         if(requestCode==1){
-            for(int ii=0;ii<=2;ii++){
+            for(int ii=0;ii<=3;ii++){
                 if(grantResults.length>0&&grantResults[ii]!=PackageManager.PERMISSION_GRANTED){
                     AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
                     builder.setTitle("提示");
@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
                         case 2:
                             builder.setMessage("如果不授予定位权限，我们将无法进行数据统计");
                             break;
+                        case 3:
+                            builder.setMessage("如果不授予访问手机状态权限，我们将无法向您发送验证码");
+
                     }
                     final int finalIi = ii;
                     builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {

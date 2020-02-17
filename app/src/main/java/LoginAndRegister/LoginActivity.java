@@ -28,7 +28,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         initialize();
-
     }
 
     //各参数初始化
