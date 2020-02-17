@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="LoginAndRegister.RegisterActivity"></activity>
+        <activity android:name="LoginAndRegister.RenewPasswordActivity"></activity>
+        <activity android:name="LoginAndRegister.RegisterActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name="LoginAndRegister.LoginActivity" />
         <activity android:name=".Welcome_Activity">

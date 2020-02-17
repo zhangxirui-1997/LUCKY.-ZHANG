@@ -16,6 +16,15 @@ public class User_Info extends LitePalSupport {
     private String User_Reallyname="尚未实名";
     private int User_age=0;
     private Date User_birthday=null;
+    private Date User_UseDay=null;
+
+    public Date getUser_UseDay() {
+        return User_UseDay;
+    }
+
+    public void setUser_UseDay(Date user_UseDay) {
+        User_UseDay = user_UseDay;
+    }
 
     public String getUser_phonenumber() {
         return User_phonenumber;
