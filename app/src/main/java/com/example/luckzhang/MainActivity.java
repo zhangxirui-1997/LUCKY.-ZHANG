@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                                     new String[]{permissions[finalIi]},2);
                         }
                     });
+                    builder.setCancelable(false);
                     builder.create().show();
                 }
             }

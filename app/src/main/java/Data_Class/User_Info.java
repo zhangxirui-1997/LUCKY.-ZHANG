@@ -12,10 +12,10 @@ import java.util.Date;
 public class User_Info extends LitePalSupport {
     private String User_phonenumber;
     private String User_Fakename;
-    private String User_sex;
-    private String User_Reallyname;
-    private String User_age;
-    private Date User_birthday;
+    private String User_sex="男";
+    private String User_Reallyname="尚未实名";
+    private int User_age=0;
+    private Date User_birthday=null;
 
     public String getUser_phonenumber() {
         return User_phonenumber;
@@ -49,11 +49,11 @@ public class User_Info extends LitePalSupport {
         User_Reallyname = user_Reallyname;
     }
 
-    public String getUser_age() {
+    public int getUser_age() {
         return User_age;
     }
 
-    public void setUser_age(String user_age) {
+    public void setUser_age(int user_age) {
         User_age = user_age;
     }
 

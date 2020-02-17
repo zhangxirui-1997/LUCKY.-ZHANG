@@ -2,15 +2,11 @@ package com.example.luckzhang;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,8 +14,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
+import org.litepal.LitePal;
+
+import Data_Class.User_Info;
 import LoginAndRegister.LoginActivity;
 import LoginAndRegister.RegisterActivity;
 
@@ -45,11 +43,12 @@ public class Welcome_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        initThis();
+        Log.d("Activity_process_report","welcome activity is work");
+        initialize();
 
     }
 
-    private void initThis(){
+    private void initialize(){
         button=findViewById(R.id.button);
         imageView1=findViewById(R.id.imageView);
         imageView2=findViewById(R.id.imageView2);
@@ -59,6 +58,8 @@ public class Welcome_Activity extends AppCompatActivity {
                 leaveThis();
             }
         });
+
+        Log.d("Activity_process_report","welcome activity initialize normally");
 
         myThread=new MyThread();
         new Thread(myThread).start();
@@ -85,7 +86,19 @@ public class Welcome_Activity extends AppCompatActivity {
     class MyThread implements Runnable{
         @Override
         public void run() {
-            try {
+            for(int i=3;i>=0;i--){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Message message=new Message();
+                message.what=i;
+                handler.sendMessage(message);
+            }
+
+
+            /*try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -110,7 +123,7 @@ public class Welcome_Activity extends AppCompatActivity {
             }
             Message message2=new Message();
             message2.what=0;
-            handler.sendMessage(message2);
+            handler.sendMessage(message2);*/
         }
     }
 
@@ -120,7 +133,9 @@ public class Welcome_Activity extends AppCompatActivity {
     class AdvertisementDownLoad implements Runnable{
         @Override
         public void run() {
+            Log.d("Activity_process_report","welcome activity download begin");
 
+            Log.d("Activity_process_report","welcome activity download finally");
         }
     }
 
@@ -128,11 +143,38 @@ public class Welcome_Activity extends AppCompatActivity {
     private void leaveThis(){
         judge=false;
         //在这里判断是否登录，未登录直接送到login界面
-        Intent intent=new Intent();
-        intent.setClass(Welcome_Activity.this, RegisterActivity.class);
-        startActivity(intent);
+        int user_info= LitePal.count(User_Info.class);
+        Log.d("Activity_process_report","welcome activity is ready to INTENT");
+        final Intent intent=new Intent();
+        if(user_info==0){//尚未登录
+            Log.d("Activity_process_report","welcome activity CHECK: user don't login ,ready to INTENT (LoginActivity)");
+            AlertDialog.Builder builder=new AlertDialog.Builder(Welcome_Activity.this);
+            builder.setTitle("欢迎进入");
+            builder.setMessage("请您先登录账号");
+            builder.setCancelable(false);
+            builder.setPositiveButton("好的", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    intent.setClass(Welcome_Activity.this, LoginActivity.class);
+                    startActivity(intent);
+                    dolittle();
+                }
+            });
+            builder.create().show();
+        }else if(user_info==1){//已经登录
+            Log.d("Activity_process_report","welcome activity CHECK: user login ,ready to INTENT (MainActivity)");
+            intent.setClass(Welcome_Activity.this, Welcome_Activity.class);
+            startActivity(intent);
+            this.finish();
+        }else{//数据异常
+            Log.d("Activity_process_report","welcome activity CHECK: ERROR Welcome_Activity line:153");
+            return;
+        }
+    }
+    private void dolittle(){
         this.finish();
     }
+
 
 
 }
