@@ -3,6 +3,7 @@ package LoginAndRegister;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,10 +14,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.luckzhang.MainActivity;
 import com.example.luckzhang.R;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import Data_Class.User_Info;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 import static java.lang.Thread.sleep;
 
@@ -82,11 +96,22 @@ public class RegisterActivity extends AppCompatActivity {
     private Handler handler1=new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
-            button_check.setText("等待"+msg.what+"s");
-            if(msg.what==0){
-                judge60s=true;
-                button_check.setText("获取验证码");
+            if(msg.what<=60){
+                button_check.setText("等待"+msg.what+"s");
+                if(msg.what==0){
+                    judge60s=true;
+                    button_check.setText("获取验证码");
+                }
+            }else if(msg.what==100){//注册成功
+                Toast.makeText(RegisterActivity.this, "注册成功,返回登录", Toast.LENGTH_SHORT).show();
+                finish();
+            }else if(msg.what==101){//手机号已经被注册
+                Toast.makeText(RegisterActivity.this, "手机号已注册", Toast.LENGTH_SHORT).show();
+
+            }else if(msg.what==102){//网络连接失败
+                Toast.makeText(RegisterActivity.this, "网络连接失败", Toast.LENGTH_SHORT).show();
             }
+
         }
     };
 
@@ -200,6 +225,54 @@ public class RegisterActivity extends AppCompatActivity {
     //进行网络注册
     private void RegisterUpData(){
 
+        OkHttpClient client = new OkHttpClient();
+        FormBody body = new FormBody.Builder()
+                .add("User_phonenumber",editText_phone.getText().toString())
+                .add("User_password",editText_password.getText().toString())
+                .build();
+        Request request = new Request.Builder()
+                .url("http://192.168.43.96:8085/TheBestServe/RegisterServlet")
+                .post(body)
+                .build();
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                //...
+                Message message2=new Message();
+                message2.what=102;
+                handler1.sendMessage(message2);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if(response.isSuccessful()){
+                    String result = response.body().string();
+                    if(result.equals("no")){
+                        Message message1=new Message();
+                        message1.what=101;
+                        handler1.sendMessage(message1);
+                    }else{
+                        Message message0=new Message();
+                        message0.what=100;
+                        handler1.sendMessage(message0);
+
+                        /*
+                         * 此处需要从json数据中获取信息填充到本地的数据库，先放一放，晚点写
+                         * 因为一旦这里写了，调试起来可能就不那么容易了
+                         *
+                         *
+                         *new:
+                         * 这里只是负责云端注册，不负责本地数据库的填写，这里接触了直接返回登录界面
+                         * */
+
+
+
+                    }
+                    //处理UI需要切换到UI线程处理
+                }
+            }
+        });
     }
 
 }

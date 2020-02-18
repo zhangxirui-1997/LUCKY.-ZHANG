@@ -17,8 +17,16 @@ import android.widget.Toast;
 import com.example.luckzhang.MainActivity;
 import com.example.luckzhang.R;
 
-import java.io.IOException;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.litepal.LitePal;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import Data_Class.User_Info;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -145,17 +153,27 @@ public class LoginActivity extends AppCompatActivity {
                         * 此处需要从json数据中获取信息填充到本地的数据库，先放一放，晚点写
                         * 因为一旦这里写了，调试起来可能就不那么容易了
                         * */
-
-
-
                         Message message2=new Message();
                         message2.what=1;
                         LoginHandler.sendMessage(message2);
 
-
-
-
-
+                        //string转json,再转到本地数据库中
+                        JSONObject re= null;
+                        LitePal.deleteAll(User_Info.class);
+                        try {
+                            re = new JSONObject(result);
+                            User_Info user_info=new User_Info();
+                            user_info.setUser_phonenumber((String) re.get("User_phonenumber"));
+                            user_info.setUser_fakename((String) re.get("User_fakename"));
+                            user_info.setUser_sex((String) re.get("User_sex"));
+                            user_info.setUser_Reallyname((String) re.get("User_reallyname"));
+                            user_info.setUser_age(Integer.parseInt((String) re.get("User_age")));
+                            user_info.setUser_birthday((String) re.get("User_birthday"));
+                            user_info.setUser_useDay((String) re.get("User_useday"));
+                            user_info.save();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                     //处理UI需要切换到UI线程处理
                 }

@@ -11,6 +11,13 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
+
+import com.mob.wrappers.UMSSDKWrapper;
+
+import org.litepal.LitePal;
+
+import Data_Class.User_Info;
 
 /*在本界面进行权限获取
 * 以及界面的初始化
@@ -18,12 +25,16 @@ import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
     private String TAG="MainActivity.this";
-
+    private TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getPermissions();
+        textView=findViewById(R.id.test);
+        User_Info user_info= LitePal.findFirst(User_Info.class);
+        textView.setText(user_info.getUser_fakename());
+
     }
 
     //获取权限，下面是回调

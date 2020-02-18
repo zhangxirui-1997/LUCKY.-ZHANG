@@ -135,7 +135,7 @@ public class Welcome_Activity extends AppCompatActivity {
             builder.create().show();
         }else if(user_info==1){//已经登录
             Log.d("Activity_process_report","welcome activity CHECK: user login ,ready to INTENT (MainActivity)");
-            intent.setClass(Welcome_Activity.this, Welcome_Activity.class);
+            intent.setClass(Welcome_Activity.this, MainActivity.class);
             startActivity(intent);
             this.finish();
         }else{//数据异常

@@ -1,8 +1,6 @@
 package Data_Class;
 
 import org.litepal.crud.LitePalSupport;
-
-import java.util.Date;
 /*
 * 大致构思：登录界面可以进行查询和子线程中增操作
 * 注册界面可以进行查询和增操作
@@ -15,14 +13,14 @@ public class User_Info extends LitePalSupport {
     private String User_sex="男";
     private String User_reallyname="尚未实名";
     private int User_age=0;
-    private Date User_birthday=null;
-    private Date User_useDay =null;
+    private String User_birthday=null;
+    private String  User_useDay =null;
 
-    public Date getUser_useDay() {
+    public String getUser_useDay() {
         return User_useDay;
     }
 
-    public void setUser_useDay(Date user_useDay) {
+    public void setUser_useDay(String user_useDay) {
         User_useDay = user_useDay;
     }
 
@@ -66,11 +64,11 @@ public class User_Info extends LitePalSupport {
         User_age = user_age;
     }
 
-    public Date getUser_birthday() {
+    public String getUser_birthday() {
         return User_birthday;
     }
 
-    public void setUser_birthday(Date user_birthday) {
+    public void setUser_birthday(String user_birthday) {
         User_birthday = user_birthday;
     }
 }
