@@ -16,8 +16,16 @@ import android.widget.Toast;
 
 import com.example.luckzhang.R;
 
+import java.io.IOException;
+
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 import static java.lang.Thread.sleep;
 
@@ -79,13 +87,24 @@ public class RenewPasswordActivity extends AppCompatActivity {
             }
         }
     }
+
     private Handler handler1=new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
-            button_check.setText("等待"+msg.what+"s");
-            if(msg.what==0){
-                judge60s=true;
-                button_check.setText("获取验证码");
+            if(msg.what<=60){
+                button_check.setText("等待"+msg.what+"s");
+                if(msg.what==0){
+                    judge60s=true;
+                    button_check.setText("获取验证码");
+                }
+            }else if(msg.what==100){//注册成功
+                Toast.makeText(RenewPasswordActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+                finish();
+            }else if(msg.what==101){//手机号已经被注册
+                Toast.makeText(RenewPasswordActivity.this, "未修改成功", Toast.LENGTH_SHORT).show();
+
+            }else if(msg.what==102){//网络连接失败
+                Toast.makeText(RenewPasswordActivity.this, "网络连接失败", Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -131,12 +150,12 @@ public class RenewPasswordActivity extends AppCompatActivity {
                     Toast.makeText(RenewPasswordActivity.this, "输入手机号", Toast.LENGTH_SHORT).show();
                 }else{
                     if(judge60s){
-                        //先发验证码，1毫秒都不耽误
-                        SMSSDK.getVerificationCode("86",editText_phone.getText().toString());
-                        Toast.makeText(RenewPasswordActivity.this, "验证码已发送", Toast.LENGTH_LONG).show();
                         judge60s=false;
                         myThread=new RenewPasswordActivity.RepalacePasswordThread();
                         new Thread(myThread).start();
+                        //先发验证码，1毫秒都不耽误
+                        SMSSDK.getVerificationCode("86",editText_phone.getText().toString());
+                        Toast.makeText(RenewPasswordActivity.this, "验证码已发送", Toast.LENGTH_LONG).show();
                     }else{
                         Toast.makeText(RenewPasswordActivity.this, "请您耐心等待验证码", Toast.LENGTH_LONG).show();
                     }
@@ -178,15 +197,54 @@ public class RenewPasswordActivity extends AppCompatActivity {
                     }else if(!editText_password.getText().toString().equals(editText_passwordagain.getText().toString())){
                         Toast.makeText(RenewPasswordActivity.this, "两次输入密码不一致", Toast.LENGTH_SHORT).show();
                     }else{
-                        Toast.makeText(RenewPasswordActivity.this, "一切正常", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RenewPasswordActivity.this, "正在修改", Toast.LENGTH_SHORT).show();
                         /**
                          *此处添加网络连接
                          */
+                        RePassword();
 
                     }
                 }
             }
         });
 
+    }
+    private void RePassword(){
+        OkHttpClient client = new OkHttpClient();
+        FormBody body = new FormBody.Builder()
+                .add("User_phonenumber",editText_phone.getText().toString())
+                .add("User_password",editText_password.getText().toString())
+                .build();
+        Request request = new Request.Builder()
+                .url("http://192.168.43.96:8085/TheBestServe/ReplacePasswordServlet")
+                .post(body)
+                .build();
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                //...
+                Message message2=new Message();
+                message2.what=102;
+                handler1.sendMessage(message2);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if(response.isSuccessful()){
+                    String result = response.body().string();
+                    if(result.equals("no")){
+                        Message message1=new Message();
+                        message1.what=101;
+                        handler1.sendMessage(message1);
+                    }else{
+                        Message message0=new Message();
+                        message0.what=100;
+                        handler1.sendMessage(message0);
+
+                    }
+                }
+            }
+        });
     }
 }

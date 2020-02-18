@@ -14,15 +14,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.luckzhang.MainActivity;
 import com.example.luckzhang.R;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
-import Data_Class.User_Info;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import okhttp3.Call;
@@ -93,6 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
     }
+
     private Handler handler1=new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
