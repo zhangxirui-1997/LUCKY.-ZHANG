@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(judge()){//如果此处判断合法，则开始进行上传数据
-
+                    updata();
                 }else{
                     Toast.makeText(LoginActivity.this, "输入框不能为空", Toast.LENGTH_LONG).show();
                 }

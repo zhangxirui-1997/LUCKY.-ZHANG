@@ -11,19 +11,19 @@ import java.util.Date;
 
 public class User_Info extends LitePalSupport {
     private String User_phonenumber;
-    private String User_Fakename;
+    private String User_fakename;
     private String User_sex="男";
-    private String User_Reallyname="尚未实名";
+    private String User_reallyname="尚未实名";
     private int User_age=0;
     private Date User_birthday=null;
-    private Date User_UseDay=null;
+    private Date User_useDay =null;
 
-    public Date getUser_UseDay() {
-        return User_UseDay;
+    public Date getUser_useDay() {
+        return User_useDay;
     }
 
-    public void setUser_UseDay(Date user_UseDay) {
-        User_UseDay = user_UseDay;
+    public void setUser_useDay(Date user_useDay) {
+        User_useDay = user_useDay;
     }
 
     public String getUser_phonenumber() {
@@ -34,12 +34,12 @@ public class User_Info extends LitePalSupport {
         User_phonenumber = user_phonenumber;
     }
 
-    public String getUser_Fakename() {
-        return User_Fakename;
+    public String getUser_fakename() {
+        return User_fakename;
     }
 
-    public void setUser_Fakename(String user_Fakename) {
-        User_Fakename = user_Fakename;
+    public void setUser_fakename(String user_fakename) {
+        User_fakename = user_fakename;
     }
 
     public String getUser_sex() {
@@ -51,11 +51,11 @@ public class User_Info extends LitePalSupport {
     }
 
     public String getUser_Reallyname() {
-        return User_Reallyname;
+        return User_reallyname;
     }
 
     public void setUser_Reallyname(String user_Reallyname) {
-        User_Reallyname = user_Reallyname;
+        User_reallyname = user_Reallyname;
     }
 
     public int getUser_age() {
