@@ -1,16 +1,30 @@
 package LoginAndRegister;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.luckzhang.MainActivity;
 import com.example.luckzhang.R;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -21,6 +35,21 @@ public class LoginActivity extends AppCompatActivity {
     private TextView textView_forgetpassword;
     private Button button_login;
     private Button button_register;
+
+    private Handler LoginHandler=new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            if(msg.what==-1){//登录失败
+                Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
+            }else if(msg.what==1){//登录成功
+                Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                Intent intenttoMain=new Intent();
+                intenttoMain.setClass(LoginActivity.this, MainActivity.class);
+                startActivity(intenttoMain);
+                finish();
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +93,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     //判断输入是否合法（是否为空）
@@ -80,7 +108,58 @@ public class LoginActivity extends AppCompatActivity {
 
     //上传数据并获取回执
     private void updata(){
+        /*loginThread=new LoginThread();
+        new Thread(loginThread).start();*/
+        Log.d("LoginActivity","111111111111111111");
+        OkHttpClient client = new OkHttpClient();
+        Log.d("LoginActivity","111111111111122222");
+        FormBody body = new FormBody.Builder()
+                .add("User_phonenumber",editText_phone.getText().toString())
+                .add("User_password",editText_password.getText().toString())
+                .build();
+        Log.d("LoginActivity","1111111111111333333");
+        Request request = new Request.Builder()
+                .url("http://192.168.43.96:8085/TheBestServe/LoginServlet")
+                .post(body)
+                .build();
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                //...
+                Message message=new Message();
+                message.what=-1;
+                LoginHandler.sendMessage(message);
+            }
 
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if(response.isSuccessful()){
+                    String result = response.body().string();
+                    if(result.equals("no")){
+                        Message message=new Message();
+                        message.what=-1;
+                        LoginHandler.sendMessage(message);
+                    }else{
+                        /*
+                        * 此处需要从json数据中获取信息填充到本地的数据库，先放一放，晚点写
+                        * 因为一旦这里写了，调试起来可能就不那么容易了
+                        * */
+
+
+
+                        Message message2=new Message();
+                        message2.what=1;
+                        LoginHandler.sendMessage(message2);
+
+
+
+
+
+                    }
+                    //处理UI需要切换到UI线程处理
+                }
+            }
+        });
     }
-
 }
