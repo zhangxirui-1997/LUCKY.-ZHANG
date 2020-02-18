@@ -22,7 +22,7 @@ import static java.lang.Thread.sleep;
 
 
 /**
- * 注意：有三个位置没有写：其中两个是短信验证码的，另一个是网络上传接口
+ * 注意：有三个位置没有写：短信的写完了，还差一个是网络上传接口
  */
 
 public class RegisterActivity extends AppCompatActivity {
@@ -143,7 +143,10 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {//点击注册按钮
                 int i=judge();
                 if(i==1){//正常情况
-                    Toast.makeText(RegisterActivity.this, "一切正常", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "注册中", Toast.LENGTH_LONG).show();
+                    //此处进行网络验证
+                    RegisterUpData();
+
                 }else if(i==2){//有空
                     Toast.makeText(RegisterActivity.this, "输入框不能为空", Toast.LENGTH_LONG).show();
                 }else if(i==3){//验证码不正确
@@ -194,6 +197,9 @@ public class RegisterActivity extends AppCompatActivity {
         return 1;
     }
 
+    //进行网络注册
+    private void RegisterUpData(){
 
+    }
 
 }

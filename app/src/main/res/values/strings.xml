@@ -12,6 +12,7 @@
     <string name="do_check">获取验证码</string>
     <string name="how_do_check">点击左侧按钮获取验证码</string>
     <string name="again_input_password">再次输入密码</string>
+    <string name="check_phone">验证手机号</string>
 
     <!--欢迎界面注册的-->
 
