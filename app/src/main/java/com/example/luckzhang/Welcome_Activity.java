@@ -7,7 +7,10 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -17,6 +20,9 @@ import android.widget.ImageView;
 
 import org.litepal.LitePal;
 
+import java.io.File;
+
+import AllService.OnlyService;
 import Data_Class.User_Info;
 import LoginAndRegister.LoginActivity;
 import LoginAndRegister.RegisterActivity;
@@ -26,6 +32,8 @@ import LoginAndRegister.RegisterActivity;
 * 可以放一些图片或者其他的什么的东西，预计3秒中
 * 如果已经登录，送到MainActivty，
 * 未登录送到login
+*
+* renew：写完了，把欢迎界面图片的下载放到了服务中的一个子线程里
 * */
 
 public class Welcome_Activity extends AppCompatActivity {
@@ -34,10 +42,8 @@ public class Welcome_Activity extends AppCompatActivity {
     ImageView imageView1,imageView2;
     private static final int UPDATE_BUTTON_TEXT=1;
     private MyThread myThread;
-    private AdvertisementDownLoad advertisementDownLoad;
     private boolean judge=true;
     final private String TAG="Welcome_Activity";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +51,6 @@ public class Welcome_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
         Log.d("Activity_process_report","welcome activity is work");
         initialize();
-
     }
 
     private void initialize(){
@@ -59,19 +64,43 @@ public class Welcome_Activity extends AppCompatActivity {
             }
         });
 
+        //欢迎界面的图片
+        fileIsExists();
+
         Log.d("Activity_process_report","welcome activity initialize normally");
 
+        //开子线程的位置
         myThread=new MyThread();
         new Thread(myThread).start();
+        /*advertisementDownLoad=new AdvertisementDownLoad();
+        new Thread(advertisementDownLoad).start();*/
+    }
 
-        advertisementDownLoad=new AdvertisementDownLoad();
-        new Thread(advertisementDownLoad).start();
+    //判断文件是否存在,如果存在把欢迎界面的图片也换了
+    private void fileIsExists() {
+        String welcome_img_path=Environment.getExternalStorageDirectory().getAbsolutePath() + "/aphysique/data/resources/WelcomeImg.png";
+        boolean judgefile=true;
+        try {
+            File f = new File(welcome_img_path);
+            if(!f.exists()) {
+                Log.d("Welcome_Activity","11111111没有初始化照片");
+                judgefile= false;
+            }
+        }
+        catch (Exception e) {
+            Log.d("Welcome_Activity","11111111没有初始化照片!!!!!!!!");
+            judgefile= false;
+        }
+        if(judgefile){
+            Log.d("Welcome_Activity","11111111有初始化照片");
+            Bitmap bitmap= BitmapFactory.decodeFile(welcome_img_path);
+            imageView1.setImageBitmap(bitmap);
+        }
     }
 
     private Handler handler=new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
-
             if(msg.what==1){
                 button.setText("跳过(1s)");
             }else if(msg.what==2){
@@ -96,18 +125,6 @@ public class Welcome_Activity extends AppCompatActivity {
                 message.what=i;
                 handler.sendMessage(message);
             }
-        }
-    }
-
-
-    //广告界面下载主线程，此页面用于下次打开时使用
-    //跳转后子线程也会继续运行
-    class AdvertisementDownLoad implements Runnable{
-        @Override
-        public void run() {
-            Log.d("Activity_process_report","welcome activity download begin");
-
-            Log.d("Activity_process_report","welcome activity download finally");
         }
     }
 
@@ -146,7 +163,5 @@ public class Welcome_Activity extends AppCompatActivity {
     private void dolittle(){
         this.finish();
     }
-
-
 
 }

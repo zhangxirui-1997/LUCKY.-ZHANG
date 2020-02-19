@@ -19,7 +19,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="LoginAndRegister.RenewPasswordActivity"></activity>
+        <service
+            android:name="AllService.OnlyService"
+            android:enabled="true"
+            android:exported="true"/>
+
+        <activity android:name="LoginAndRegister.RenewPasswordActivity" />
         <activity android:name="LoginAndRegister.RegisterActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name="LoginAndRegister.LoginActivity" />

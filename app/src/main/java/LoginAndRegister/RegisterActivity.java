@@ -32,6 +32,7 @@ import static java.lang.Thread.sleep;
 
 /**
  * 注意：有三个位置没有写：短信的写完了，还差一个是网络上传接口
+ * renew：都写完了
  */
 
 public class RegisterActivity extends AppCompatActivity {
@@ -164,7 +165,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {//点击注册按钮
                 int i=judge();
                 if(i==1){//正常情况
-                    Toast.makeText(RegisterActivity.this, "注册中", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "注册中", Toast.LENGTH_SHORT).show();
                     //此处进行网络验证
                     RegisterUpData();
 
@@ -252,18 +253,13 @@ public class RegisterActivity extends AppCompatActivity {
                         Message message0=new Message();
                         message0.what=100;
                         handler1.sendMessage(message0);
-
                         /*
                          * 此处需要从json数据中获取信息填充到本地的数据库，先放一放，晚点写
                          * 因为一旦这里写了，调试起来可能就不那么容易了
                          *
-                         *
                          *new:
                          * 这里只是负责云端注册，不负责本地数据库的填写，这里接触了直接返回登录界面
                          * */
-
-
-
                     }
                     //处理UI需要切换到UI线程处理
                 }
