@@ -25,12 +25,15 @@ public class OnlyService extends Service {
 
     @Override
     public void onCreate() {
-        super.onCreate();
+        CreatDicument();
         try {
             DownloadWelcomeImg();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        super.onCreate();
+
     }
 
     @Override
@@ -41,6 +44,23 @@ public class OnlyService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+
+    //创建文件夹目录
+    /*这个是存储地址的开头Environment.getExternalStorageDirectory().getAbsolutePath()
+    * -aphysique
+    * --data
+    * ---resources*/
+
+    private void CreatDicument(){
+        String path=Environment.getExternalStorageDirectory().getAbsolutePath()+"/aphysique/data/resources";
+        if(new File(path).mkdirs()){
+            Log.d("OnlyService","1111111111创建目录成功");
+
+        }else{
+            Log.d("OnlyService","111111111创建目录失败");
+        }
     }
 
     //下载欢迎界面图片的后台服务中的子线程
@@ -57,13 +77,6 @@ public class OnlyService extends Service {
                     response = okHttpClient.newCall(request).execute();
                     byte[] bytes = new byte[0];
                     bytes = response.body().bytes();
-                    String path=Environment.getExternalStorageDirectory().getAbsolutePath()+"/aphysique/data/resources";
-                    if(new File(path).mkdirs()){
-                        Log.d("OnlyService","1111111111创建目录成功");
-
-                    }else{
-                        Log.d("OnlyService","111111111创建目录失败");
-                    }
                     File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/aphysique/data/resources/WelcomeImg.png");
                     Log.d("OnlyService.class","1111111"+bytes+"\n"+Environment.getExternalStorageDirectory().getAbsolutePath());
                     FileOutputStream fos = null;

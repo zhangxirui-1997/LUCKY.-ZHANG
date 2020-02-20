@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#32896C</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#E07746</color>
     <color name="color_White">#FFFFFF</color>
@@ -8,4 +8,5 @@
     <color name="color_healthy_backcolor">#32896C</color>
     <color name="color_donotrememberPassword">#2D79FA</color>
     <color name="color_gray">#F1F0F0</color>
+    <color name="color_menu_backcolor">#A9E7D4</color>
 </resources>

@@ -2,8 +2,10 @@ package com.example.luckzhang;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -12,14 +14,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
-
-import com.mob.wrappers.UMSSDKWrapper;
-
-import org.litepal.LitePal;
+import android.view.View;
+import android.widget.Button;
 
 import AllService.OnlyService;
-import Data_Class.User_Info;
+import My_ViewPager.DemoPageAdapter;
 
 /*在本界面进行权限获取
 * 以及界面的初始化
@@ -27,29 +26,94 @@ import Data_Class.User_Info;
 
 public class MainActivity extends AppCompatActivity {
     private String TAG="MainActivity.this";
-    private TextView textView;
+    private Toolbar toolbar;
+    private ViewPager viewPager;
+    private Button button_left;
+    private Button button_right;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //申请权限模块
         getPermissions();
-
-        //开启服务
+        //先开启服务
         Intent startServiceIntent=new Intent(MainActivity.this, OnlyService.class);
         startService(startServiceIntent);
 
-        textView=findViewById(R.id.test);
-        User_Info user_info= LitePal.findFirst(User_Info.class);
-        textView.setText(user_info.getUser_fakename());
-    }
+        //再初始化本地
+        //初始化变量,viewpager也放进去了
+        init_variable();
 
+
+    }
     @Override
     protected void onDestroy() {
         Intent stopServiceIntent=new Intent(MainActivity.this, OnlyService.class);
         stopService(stopServiceIntent);
         super.onDestroy();
     }
+
+    private void init_variable(){
+        toolbar=findViewById(R.id.toolbar);
+        viewPager = findViewById(R.id.viewpager);
+        button_left=findViewById(R.id.button4);
+        button_right=findViewById(R.id.button5);
+        viewpager_initialize();
+        button_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(0);
+            }
+        });
+        button_right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(1);
+            }
+        });
+    }
+
+    private void viewpager_initialize(){
+
+        viewPager.setAdapter(new DemoPageAdapter(this));
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position==0){
+                    button_left.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_1_circle_shape,null));
+                    button_right.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_2_circle_shape,null));
+                }else if(position==1){
+                    button_left.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_2_circle_shape,null));
+                    button_right.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_1_circle_shape,null));                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //获取权限，下面是回调
     private void getPermissions(){

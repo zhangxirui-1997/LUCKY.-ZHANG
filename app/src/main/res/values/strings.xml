@@ -14,6 +14,13 @@
     <string name="again_input_password">再次输入密码</string>
     <string name="check_phone">验证手机号</string>
 
-    <!--欢迎界面注册的-->
+    <!--主界面菜单-->
+    <string name="mainView">首页</string>
+    <string name="item1">用户信息</string>
+    <string name="item_help">帮助</string>
+    <string name="item2">体态排行榜</string>
+    <string name="item3">关于软件</string>
+    <string name="jiancejiemian">检测界面</string>
+    <string name="baogaojiemian">报告界面</string>
 
 </resources>
