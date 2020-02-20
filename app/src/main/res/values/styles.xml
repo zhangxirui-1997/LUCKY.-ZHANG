@@ -15,11 +15,27 @@
         <item name="actionOverflowMenuStyle">@style/OverflowMenu</item>
     </style>
 
+
+    <!--这个没有用到，用了下面的和下面的下面的那个-->
     <style name="OverflowMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
         <item name="overlapAnchor">false</item>  <!--设置不覆盖锚点-->
         <item name="android:dropDownVerticalOffset">4dp</item>
         <item name="android:layout_marginRight">4dp</item>
         <item name="android:popupBackground">@color/color_menu_backcolor</item>
     </style>
+
+    <style name="AppDropDownListViewStyle" parent="Widget.AppCompat.ListView.DropDown">
+        <item name="android:divider">@drawable/spacer_medium</item>
+        <item name="android:showDividers">middle</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+
+    <style name="AppToolbarPopupTheme" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:dropDownListViewStyle">@style/AppDropDownListViewStyle</item>
+    </style>
+
+
+
+
 
 </resources>

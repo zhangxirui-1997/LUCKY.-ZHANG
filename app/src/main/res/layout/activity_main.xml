@@ -17,19 +17,30 @@
         android:layout_alignParentTop="true"
         android:background="@color/colorPrimary"/>
 
+
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/divider"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:theme="@style/AppToolbarPopupTheme"
         app:title="@string/app_name"
         app:titleMarginTop="5dp"
-        app:titleMarginStart="30dp"
-        app:subtitle="@string/mainView"
-        app:menu="@menu/main_menu" />
+        app:titleMarginStart="20dp"
+        app:menu="@menu/main_menu">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:textSize="12dp"
+            android:text="@string/mainView_Title_small" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,7 +59,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="8"
+            android:layout_weight="10"
+            android:background="@color/color_gray"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -58,11 +70,14 @@
 
                 <Button
                     android:id="@+id/button4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_centerInParent="true"
+                    android:background="@drawable/button_mainviewpager_1_circle_shape"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/jiancejiemian"
-                    android:background="@drawable/button_mainviewpager_1_circle_shape"/>
+                    android:textSize="12sp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -72,11 +87,14 @@
 
                 <Button
                     android:id="@+id/button5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_centerInParent="true"
+                    android:background="@drawable/button_mainviewpager_2_circle_shape"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/baogaojiemian"
-                    android:background="@drawable/button_mainviewpager_2_circle_shape"/>
+                    android:textSize="12sp" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
