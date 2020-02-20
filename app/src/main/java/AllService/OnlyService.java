@@ -70,7 +70,7 @@ public class OnlyService extends Service {
             public void run() {
                 OkHttpClient okHttpClient = new OkHttpClient();
                 Request request = new Request.Builder()
-                        .url("http://123.57.235.123:8080/img/WelcomImg.jpg")
+                        .url("http://123.57.235.123:8080/img/WelcomeImg.jpg")
                         .build();
                 Response response = null;
                 try {
