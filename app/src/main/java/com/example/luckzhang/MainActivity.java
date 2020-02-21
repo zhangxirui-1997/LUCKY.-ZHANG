@@ -9,16 +9,26 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import org.litepal.LitePal;
+
+import java.util.List;
 
 import AllService.OnlyService;
-import My_ViewPager.DemoPageAdapter;
+import Data_Class.Report_item;
+import My_ViewPager.MyPageAdapter;
+import SomeTools.MyItemAdapter;
 
 /*在本界面进行权限获取
 * 以及界面的初始化
@@ -30,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private Button button_left;
     private Button button_right;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         //初始化变量,viewpager也放进去了
         init_variable();
 
-
     }
     @Override
     protected void onDestroy() {
@@ -61,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         button_left=findViewById(R.id.button4);
         button_right=findViewById(R.id.button5);
         viewpager_initialize();
+        list_initialize();
         button_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,8 +85,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void viewpager_initialize(){
-
-        viewPager.setAdapter(new DemoPageAdapter(this));
+        viewPager.setAdapter(new MyPageAdapter(this));
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -99,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void list_initialize(){
+
     }
 
 
