@@ -16,6 +16,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -27,8 +28,12 @@ import java.util.List;
 
 import AllService.OnlyService;
 import Data_Class.Report_item;
+import LoginAndRegister.User_detail_Activity;
 import My_ViewPager.MyPageAdapter;
 import SomeTools.MyItemAdapter;
+import Toolar_toNext.About_soft_Activity;
+import Toolar_toNext.Help_Activity;
+import Toolar_toNext.The_Charts_Activity;
 
 /*在本界面进行权限获取
 * 以及界面的初始化
@@ -68,8 +73,10 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewpager);
         button_left=findViewById(R.id.button4);
         button_right=findViewById(R.id.button5);
+
         viewpager_initialize();
-        list_initialize();
+        toolbar_initialize();
+
         button_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,7 +116,29 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void list_initialize(){
+    private void toolbar_initialize(){
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent intentssdf=new Intent();
+                switch (item.getItemId()){
+                    case R.id.menu_item1:
+                        intentssdf.setClass(MainActivity.this, User_detail_Activity.class);
+                        break;
+                    case R.id.menu_item2:
+                        intentssdf.setClass(MainActivity.this, The_Charts_Activity.class);
+                        break;
+                    case R.id.item_help:
+                        intentssdf.setClass(MainActivity.this, Help_Activity.class);
+                        break;
+                    case R.id.menu_item3:
+                        intentssdf.setClass(MainActivity.this, About_soft_Activity.class);
+                        break;
+                }
+                startActivity(intentssdf);
+                return false;
+            }
+        });
 
     }
 

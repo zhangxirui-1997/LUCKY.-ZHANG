@@ -42,4 +42,9 @@
     <string name="run_house">本界面下划可刷新！数据传送需要时间，请您耐心等候！
         如需帮助，点击屏幕右上角菜单（三个点）中的“使用帮助”！</string>
 
+    <!--关于检查流程中的字符串-->
+    <string name="zhengmianzhao">正面全身照</string>
+    <string name="cemianzhao">侧面全身照</string>
+    <string name="check_submit">提交</string>
+
 </resources>

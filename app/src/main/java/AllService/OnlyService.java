@@ -51,15 +51,25 @@ public class OnlyService extends Service {
     /*这个是存储地址的开头Environment.getExternalStorageDirectory().getAbsolutePath()
     * -aphysique
     * --data
-    * ---resources*/
+    * ---resources
+    * ---temppicture//这个是为了放我们暂时存储的图片
+    *
+    * */
 
     private void CreatDicument(){
         String path=Environment.getExternalStorageDirectory().getAbsolutePath()+"/aphysique/data/resources";
         if(new File(path).mkdirs()){
-            Log.d("OnlyService","1111111111创建目录成功");
+            Log.d("OnlyService","1111111111创建欢迎界面照片目录成功");
 
         }else{
-            Log.d("OnlyService","111111111创建目录失败");
+            Log.d("OnlyService","111111111创建欢迎界面照片目录失败");
+        }
+        String path1=Environment.getExternalStorageDirectory().getAbsolutePath()+"/aphysique/data/temppicture";
+        if(new File(path1).mkdirs()){
+            Log.d("OnlyService","1111111111创建暂时界面照片目录成功");
+
+        }else{
+            Log.d("OnlyService","111111111创建暂时界面照片目录失败");
         }
     }
 
