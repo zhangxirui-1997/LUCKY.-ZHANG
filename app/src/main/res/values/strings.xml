@@ -24,6 +24,17 @@
     <string name="baogaojiemian">报告界面</string>
     <string name="mainView_Title_small">永久免费，放心使用</string>
 
+    <!--主页面的左侧界面-->
+    <string name="look_statue">当前状态</string>
+    <string name="di">第</string>
+    <string name="di_back">天使用，准备开始吧!</string>
+    <!--主页面左侧网格布局-->
+    <string name="zonghepingfen">综合评分</string>
+    <string name="tijiancishu">体检次数</string>
+    <string name="zhengchangbuwei">正常部位</string>
+    <string name="yichangbuwei">异常部位</string>
+    <string name="yufangbuwei">预防部位</string>
+
     <!--主界面右侧界面，item中的三个选项和上方跑马灯-->
     <string name="item_title">报告标题：</string>
     <string name="item_name">申请人：</string>

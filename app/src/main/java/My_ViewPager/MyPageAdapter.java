@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.example.luckzhang.Check_Activity;
 import com.example.luckzhang.R;
 import com.example.luckzhang.Record_detail_Activity;
 
@@ -36,7 +38,7 @@ public class MyPageAdapter extends PagerAdapter {
     private ListView listView;
     private Context context;
     private SwipeRefreshLayout swipeRefreshLayout;
-
+    private Button mainImportantButton;
 
     public MyPageAdapter(Context context1) {
         this.context=context1;
@@ -47,13 +49,30 @@ public class MyPageAdapter extends PagerAdapter {
         listView=(ListView) view2.findViewById(R.id.listview);
         swipeRefreshLayout = (SwipeRefreshLayout) view2.findViewById(R.id.refresh);
 
+        init_left_button();
+        init_left_grid();
+
         init_right_listview();
         init_right_refresh();
-
-
     }
 
+    //初始化网格布局下方的按钮
+    private void init_left_button(){
+        mainImportantButton=(Button)view1.findViewById(R.id.button_begin_check);
+        mainImportantButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(context, Check_Activity.class);
+                context.startActivity(intent);
+            }
+        });
+    }
 
+    //初始化网格信息
+    private void init_left_grid(){
+
+    }
 
     //初始化右侧的列表
     private void init_right_listview(){

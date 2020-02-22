@@ -43,6 +43,7 @@ dependencies {
     //OkHttp
     implementation 'com.squareup.okhttp3:okhttp:4.0.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha03'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
 
 
 }
