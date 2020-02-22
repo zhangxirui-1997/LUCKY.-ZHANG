@@ -37,6 +37,7 @@ public class MyPageAdapter extends PagerAdapter {
     private Context context;
     private SwipeRefreshLayout swipeRefreshLayout;
 
+
     public MyPageAdapter(Context context1) {
         this.context=context1;
         view1=View.inflate(context,R.layout.main_left,null);
@@ -45,17 +46,21 @@ public class MyPageAdapter extends PagerAdapter {
         mViewList.add(view2);
         listView=(ListView) view2.findViewById(R.id.listview);
         swipeRefreshLayout = (SwipeRefreshLayout) view2.findViewById(R.id.refresh);
+
         init_right_listview();
         init_right_refresh();
 
+
     }
 
-//初始化右侧的列表
+
+
+    //初始化右侧的列表
     private void init_right_listview(){
-        //LitePal.deleteAll(Report_item.class);
+        LitePal.deleteAll(Report_item.class);
         Report_item report_item=new Report_item();
         report_item.setItem_id(1);
-        report_item.setItem_time("2020-02-20");
+        report_item.setItem_time("2020-02-20 20:18");
         report_item.setItem_title("体态检测报告");
         report_item.setItem_name("卑微小张");
         report_item.setItem_detail_id(1);
@@ -97,7 +102,7 @@ public class MyPageAdapter extends PagerAdapter {
                 swipeRefreshLayout.setEnabled(enable);
             }});
     }
-
+    //初始化右侧的下拉刷新界面
     private void init_right_refresh(){
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
                 android.R.color.holo_red_light,

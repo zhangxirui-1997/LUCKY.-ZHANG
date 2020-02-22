@@ -5,6 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <SomeTools.MyTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_gray"
+        android:ellipsize="marquee"
+        android:padding="3dp"
+        android:singleLine="true"
+        android:text="@string/run_house"
+        android:textColor="@android:color/background_dark"
+        android:textSize="12sp" />
+
+
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh"
         android:layout_width="match_parent"

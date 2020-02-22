@@ -17,7 +17,7 @@
     <!--主界面菜单-->
     <string name="mainView">首页</string>
     <string name="item1">用户信息</string>
-    <string name="item_help">帮助</string>
+    <string name="item_help">使用帮助</string>
     <string name="item2">体态排行榜</string>
     <string name="item3">关于软件</string>
     <string name="jiancejiemian">检测界面</string>
@@ -28,5 +28,7 @@
     <string name="item_title">报告标题：</string>
     <string name="item_name">申请人：</string>
     <string name="item_time">送达时间：</string>
+    <string name="run_house">本界面下划可刷新！数据传送需要时间，请您耐心等候！
+        如需帮助，点击屏幕右上角菜单（三个点）中的“使用帮助”！</string>
 
 </resources>
