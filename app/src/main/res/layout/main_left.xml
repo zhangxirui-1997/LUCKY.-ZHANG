@@ -26,7 +26,7 @@
             android:layout_alignBottom="@+id/textViewl1"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/textViewl1"
-            android:text="1"
+            android:text="-"
             android:textColor="@color/color_Text"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -56,9 +56,19 @@
         android:layout_marginRight="20dp"
         android:layout_weight="1">
 
+        <ImageView
+            android:id="@+id/imageView_left"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            app:srcCompat="@android:drawable/ic_menu_rotate" />
+
         <TextView
             android:id="@+id/sdfaadf"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
@@ -89,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="0"
+                        android:text="-"
                         android:textColor="@color/color_normal"
                         android:textSize="25sp" />
 
@@ -114,7 +124,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="0"
+                        android:text="-"
                         android:textColor="@color/color_normal"
                         android:textSize="25sp" />
 
@@ -147,7 +157,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="0"
+                        android:text="-"
                         android:textColor="@color/color_healthyGreen"
                         android:textSize="25sp" />
 
@@ -172,7 +182,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="0"
+                        android:text="-"
                         android:textColor="@color/color_errorRed"
                         android:textSize="25sp" />
 
@@ -197,7 +207,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="0"
+                        android:text="-"
                         android:textColor="@color/color_warnOrange"
                         android:textSize="25sp" />
 

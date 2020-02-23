@@ -170,6 +170,12 @@ public class LoginActivity extends AppCompatActivity {
                             user_info.setUser_age(Integer.parseInt((String) re.get("User_age")));
                             user_info.setUser_birthday((String) re.get("User_birthday"));
                             user_info.setUser_useDay((String) re.get("User_useday"));
+
+                            user_info.setUser_five_fen((String)re.getString("User_five_fen"));
+                            user_info.setUser_five_ci((String)re.getString("User_five_ci"));
+                            user_info.setUser_five_zheng((String)re.getString("User_five_zheng"));
+                            user_info.setUser_five_yi((String)re.getString("User_five_yi"));
+                            user_info.setUser_five_yu((String)re.getString("User_five_yu"));
                             user_info.save();
                         } catch (JSONException e) {
                             e.printStackTrace();

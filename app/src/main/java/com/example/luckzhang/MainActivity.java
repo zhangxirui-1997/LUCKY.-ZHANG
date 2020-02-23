@@ -27,6 +27,7 @@ import org.litepal.LitePal;
 import java.util.List;
 
 import AllService.OnlyService;
+import AllService.RenewService;
 import Data_Class.Report_item;
 import LoginAndRegister.User_detail_Activity;
 import My_ViewPager.MyPageAdapter;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private Button button_left;
     private Button button_right;
+    private boolean want_refresh=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,16 +57,28 @@ public class MainActivity extends AppCompatActivity {
         //先开启服务
         Intent startServiceIntent=new Intent(MainActivity.this, OnlyService.class);
         startService(startServiceIntent);
-
+        Intent startServiceRenew=new Intent(MainActivity.this, RenewService.class);
+        startService(startServiceRenew);
         //再初始化本地
         //初始化变量,viewpager也放进去了
         init_variable();
-
     }
+
+    @Override
+    protected void onStart() {
+        if(want_refresh){
+            viewpager_initialize();
+            want_refresh=false;
+        }
+        super.onStart();
+    }
+
     @Override
     protected void onDestroy() {
         Intent stopServiceIntent=new Intent(MainActivity.this, OnlyService.class);
         stopService(stopServiceIntent);
+        Intent stopServiceRenew=new Intent(MainActivity.this, RenewService.class);
+        stopService(stopServiceRenew);
         super.onDestroy();
     }
 
@@ -74,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         button_left=findViewById(R.id.button4);
         button_right=findViewById(R.id.button5);
 
-        viewpager_initialize();
+
         toolbar_initialize();
 
         button_left.setOnClickListener(new View.OnClickListener() {
@@ -102,9 +116,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 if(position==0){
+                    want_refresh=true;
                     button_left.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_1_circle_shape,null));
                     button_right.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_2_circle_shape,null));
                 }else if(position==1){
+                    want_refresh=false;
                     button_left.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_2_circle_shape,null));
                     button_right.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_1_circle_shape,null));                }
             }

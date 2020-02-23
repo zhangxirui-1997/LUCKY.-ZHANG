@@ -3,19 +3,29 @@ package Data_Class;
 import org.litepal.crud.LitePalSupport;
 
 public class Report_item extends LitePalSupport {
-    private int item_id;
+    //private int Only_id;
     private String item_title;
     private String item_time;
     private String item_name;
-    private int item_detail_id;
+    private String statue_now;
+//最后一个是状态位，未完成是还没有收到，完成是代表已经收到了
 
-    public int getItem_id() {
-        return item_id;
+    public String getStatue_now() {
+        return statue_now;
+    }
+
+    public void setStatue_now(String statue_now) {
+        this.statue_now = statue_now;
+    }
+
+
+    /*public int getItem_id() {
+        return Only_id;
     }
 
     public void setItem_id(int item_id) {
-        this.item_id = item_id;
-    }
+        this.Only_id = item_id;
+    }*/
 
     public String getItem_title() {
         return item_title;
@@ -41,11 +51,4 @@ public class Report_item extends LitePalSupport {
         this.item_name = item_name;
     }
 
-    public int getItem_detail_id() {
-        return item_detail_id;
-    }
-
-    public void setItem_detail_id(int item_detail_id) {
-        this.item_detail_id = item_detail_id;
-    }
 }

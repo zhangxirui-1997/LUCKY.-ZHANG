@@ -163,5 +163,4 @@ public class Welcome_Activity extends AppCompatActivity {
     private void dolittle(){
         this.finish();
     }
-
 }

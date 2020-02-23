@@ -17,6 +17,7 @@ import Data_Class.Report_item;
 
 public class MyItemAdapter extends ArrayAdapter<Report_item> {
     private int resourceId;
+    private Context context;
     /**
      *context:当前活动上下文
      *textViewResourceId:ListView子项布局的ID
@@ -25,6 +26,7 @@ public class MyItemAdapter extends ArrayAdapter<Report_item> {
     public MyItemAdapter(Context context, int textViewResourceId, List<Report_item> objects) {
         super(context, textViewResourceId, objects);
         //拿取到子项布局ID
+        this.context=context;
         resourceId = textViewResourceId;
     }
 
@@ -42,9 +44,14 @@ public class MyItemAdapter extends ArrayAdapter<Report_item> {
         TextView textView_title=view.findViewById(R.id.textView3);
         TextView textView_name=view.findViewById(R.id.textView5);
         TextView textView_data=view.findViewById(R.id.textView7);
+        TextView textView_statue=view.findViewById(R.id.textViewtete);
         textView_title.setText(report_item.getItem_title());
         textView_name.setText(report_item.getItem_name());
         textView_data.setText(report_item.getItem_time());
+        if(report_item.getStatue_now().equals("未收到")){
+            textView_statue.setTextColor(context.getResources().getColor(R.color.color_errorRed,null));
+        }
+        textView_statue.setText(report_item.getStatue_now());
         return view;
     }
 }

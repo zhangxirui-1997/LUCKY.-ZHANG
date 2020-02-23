@@ -15,6 +15,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import static android.os.SystemClock.sleep;
+
 public class OnlyService extends Service {
 
     @Override
@@ -46,7 +48,6 @@ public class OnlyService extends Service {
         super.onDestroy();
     }
 
-
     //创建文件夹目录
     /*这个是存储地址的开头Environment.getExternalStorageDirectory().getAbsolutePath()
     * -aphysique
@@ -55,7 +56,6 @@ public class OnlyService extends Service {
     * ---temppicture//这个是为了放我们暂时存储的图片
     *
     * */
-
     private void CreatDicument(){
         String path=Environment.getExternalStorageDirectory().getAbsolutePath()+"/aphysique/data/resources";
         if(new File(path).mkdirs()){

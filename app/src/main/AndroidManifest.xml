@@ -19,7 +19,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="Toolar_toNext.The_Charts_Activity"></activity>
+        <service
+            android:name="AllService.RenewService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name="Toolar_toNext.The_Charts_Activity" />
         <activity android:name="Toolar_toNext.Help_Activity" />
         <activity android:name="Toolar_toNext.About_soft_Activity" />
         <activity android:name="LoginAndRegister.User_detail_Activity" />
@@ -29,7 +34,9 @@
             android:name="AllService.OnlyService"
             android:enabled="true"
             android:exported="true" />
-        <activity android:name=".CameraActivity"
+
+        <activity
+            android:name=".CameraActivity"
             android:hardwareAccelerated="true" />
         <activity android:name=".Record_detail_Activity" />
         <activity android:name="LoginAndRegister.RenewPasswordActivity" />

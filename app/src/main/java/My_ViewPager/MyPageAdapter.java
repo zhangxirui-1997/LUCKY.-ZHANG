@@ -2,11 +2,13 @@ package My_ViewPager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,10 +23,15 @@ import com.example.luckzhang.Record_detail_Activity;
 
 import org.litepal.LitePal;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import Data_Class.Report_item;
+import Data_Class.User_Info;
 import SomeTools.MyItemAdapter;
 
 /*
@@ -39,6 +46,7 @@ public class MyPageAdapter extends PagerAdapter {
     private Context context;
     private SwipeRefreshLayout swipeRefreshLayout;
     private Button mainImportantButton;
+    private ImageView imageView;
 
     public MyPageAdapter(Context context1) {
         this.context=context1;
@@ -48,7 +56,13 @@ public class MyPageAdapter extends PagerAdapter {
         mViewList.add(view2);
         listView=(ListView) view2.findViewById(R.id.listview);
         swipeRefreshLayout = (SwipeRefreshLayout) view2.findViewById(R.id.refresh);
-
+        imageView=view1.findViewById(R.id.imageView_left);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                init_left_grid();
+            }
+        });
         init_left_button();
         init_left_grid();
 
@@ -70,35 +84,37 @@ public class MyPageAdapter extends PagerAdapter {
     }
 
     //初始化网格信息
-    private void init_left_grid(){
-
+    private void init_left_grid()  {
+        TextView textView1=view1.findViewById(R.id.tt1);
+        TextView textView2=view1.findViewById(R.id.tt2);
+        TextView textView3=view1.findViewById(R.id.tt3);
+        TextView textView4=view1.findViewById(R.id.tt4);
+        TextView textView5=view1.findViewById(R.id.tt5);
+        TextView textView_day=view1.findViewById(R.id.textViewl2);
+        User_Info user_info=LitePal.findFirst(User_Info.class);
+        if(user_info==null){
+            Log.d("MyPageAdapter","用户账户出错");
+        }else{
+            textView1.setText(user_info.getUser_five_fen());
+            textView2.setText(user_info.getUser_five_ci());
+            textView3.setText(user_info.getUser_five_zheng());
+            textView4.setText(user_info.getUser_five_yi());
+            textView5.setText(user_info.getUser_five_yu());
+            SimpleDateFormat sdf11 = new SimpleDateFormat("yyyy-MM-dd");
+            Date dated= null;
+            try {
+                dated = sdf11.parse(user_info.getUser_useDay());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Date date = new Date(System.currentTimeMillis());
+            int i= (int) ((date.getTime()-dated.getTime())/(60*60*1000*24));
+            textView_day.setText(i+1+"");
+        }
     }
 
     //初始化右侧的列表
     private void init_right_listview(){
-        LitePal.deleteAll(Report_item.class);
-        Report_item report_item=new Report_item();
-        report_item.setItem_id(1);
-        report_item.setItem_time("2020-02-20 20:18");
-        report_item.setItem_title("体态检测报告");
-        report_item.setItem_name("卑微小张");
-        report_item.setItem_detail_id(1);
-        report_item.save();
-        List<Report_item> items= LitePal.findAll(Report_item.class);
-        if(items.size()==0){
-            return;
-        }
-        MyItemAdapter adapter=new MyItemAdapter(context,R.layout.record_item_layout,items);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent();
-                intent.putExtra("id",position+"");
-                intent.setClass(context, Record_detail_Activity.class);
-                context.startActivity(intent);
-            }
-        });
         //下面这个方法是为了让refresh和listview不冲突
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
 
@@ -120,6 +136,23 @@ public class MyPageAdapter extends PagerAdapter {
                 }
                 swipeRefreshLayout.setEnabled(enable);
             }});
+        List<Report_item> items= LitePal.findAll(Report_item.class);
+        /*if(items.size()==0){
+            return;
+        }*/
+        MyItemAdapter adapter=new MyItemAdapter(context,R.layout.record_item_layout,items);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent();
+                intent.putExtra("id",position+"");
+                intent.setClass(context, Record_detail_Activity.class);
+                context.startActivity(intent);
+            }
+        });
+
+
     }
     //初始化右侧的下拉刷新界面
     private void init_right_refresh(){

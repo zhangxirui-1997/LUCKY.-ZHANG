@@ -15,6 +15,59 @@ public class User_Info extends LitePalSupport {
     private int User_age=0;
     private String User_birthday=null;
     private String  User_useDay =null;
+    private String User_five_fen;
+    private String User_five_ci;
+    private String User_five_zheng;
+    private String User_five_yi;
+    private String User_five_yu;
+
+    public String getUser_reallyname() {
+        return User_reallyname;
+    }
+
+    public void setUser_reallyname(String user_reallyname) {
+        User_reallyname = user_reallyname;
+    }
+
+    public String getUser_five_fen() {
+        return User_five_fen;
+    }
+
+    public void setUser_five_fen(String five_fen) {
+        this.User_five_fen = five_fen;
+    }
+
+    public String getUser_five_ci() {
+        return User_five_ci;
+    }
+
+    public void setUser_five_ci(String user_five_ci) {
+        this.User_five_ci = user_five_ci;
+    }
+
+    public String getUser_five_zheng() {
+        return User_five_zheng;
+    }
+
+    public void setUser_five_zheng(String user_five_zheng) {
+        this.User_five_zheng = user_five_zheng;
+    }
+
+    public String getUser_five_yi() {
+        return User_five_yi;
+    }
+
+    public void setUser_five_yi(String user_five_yi) {
+        this.User_five_yi = user_five_yi;
+    }
+
+    public String getUser_five_yu() {
+        return User_five_yu;
+    }
+
+    public void setUser_five_yu(String user_five_yu) {
+        this.User_five_yu = user_five_yu;
+    }
 
     public String getUser_useDay() {
         return User_useDay;
