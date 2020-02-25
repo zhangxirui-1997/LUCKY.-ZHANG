@@ -166,8 +166,8 @@ public class Check_Activity extends AppCompatActivity {
         builder.addFormDataPart("phone",user_info.getUser_phonenumber());
         builder.addFormDataPart("which_number",LitePal.count(Report_item.class)+"");
         builder.addFormDataPart("time",simpleDateFormat.format(date));
-        File zheng_file=new File(path_zheng);
-        File ce_file=new File(path_ce);
+        final File zheng_file=new File(path_zheng);
+        final File ce_file=new File(path_ce);
         RequestBody zheng_fileBody=RequestBody.Companion.create(zheng_file,mediaType);
         RequestBody ce_fileBody=RequestBody.Companion.create(ce_file,mediaType);
         builder.addFormDataPart("zheng",zheng_file.getName(),zheng_fileBody);
@@ -190,6 +190,8 @@ public class Check_Activity extends AppCompatActivity {
                 report_item.setItem_time(simpleDateFormat.format(date));
                 report_item.setItem_name(user_info.getUser_fakename());
                 report_item.setStatue_now("未完成");
+                report_item.setZhengpath(zheng_file.getName());
+                report_item.setCepath(ce_file.getName());
                 report_item.save();
 
             }

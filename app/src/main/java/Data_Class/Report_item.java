@@ -7,8 +7,26 @@ public class Report_item extends LitePalSupport {
     private String item_title;
     private String item_time;
     private String item_name;
+    private String zhengpath;
+    private String cepath;
     private String statue_now;
 //最后一个是状态位，未完成是还没有收到，完成是代表已经收到了
+
+    public String getZhengpath() {
+        return zhengpath;
+    }
+
+    public void setZhengpath(String zhengpath) {
+        this.zhengpath = zhengpath;
+    }
+
+    public String getCepath() {
+        return cepath;
+    }
+
+    public void setCepath(String cepath) {
+        this.cepath = cepath;
+    }
 
     public String getStatue_now() {
         return statue_now;

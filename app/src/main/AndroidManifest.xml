@@ -24,11 +24,21 @@
             android:enabled="true"
             android:exported="true"></service>
 
-        <activity android:name="Toolar_toNext.The_Charts_Activity" />
-        <activity android:name="Toolar_toNext.Help_Activity" />
-        <activity android:name="Toolar_toNext.About_soft_Activity" />
-        <activity android:name="LoginAndRegister.User_detail_Activity" />
-        <activity android:name=".Check_Activity" />
+        <activity
+            android:name="Toolar_toNext.The_Charts_Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="Toolar_toNext.Help_Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="Toolar_toNext.About_soft_Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="LoginAndRegister.User_detail_Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Check_Activity"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name="AllService.OnlyService"
@@ -37,13 +47,24 @@
 
         <activity
             android:name=".CameraActivity"
-            android:hardwareAccelerated="true" />
-        <activity android:name=".Record_detail_Activity" />
-        <activity android:name="LoginAndRegister.RenewPasswordActivity" />
-        <activity android:name="LoginAndRegister.RegisterActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name="LoginAndRegister.LoginActivity" />
-        <activity android:name=".Welcome_Activity">
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Record_detail_Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="LoginAndRegister.RenewPasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="LoginAndRegister.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="LoginAndRegister.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Welcome_Activity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

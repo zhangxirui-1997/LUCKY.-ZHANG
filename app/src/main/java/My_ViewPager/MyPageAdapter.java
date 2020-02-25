@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -145,10 +146,17 @@ public class MyPageAdapter extends PagerAdapter {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent();
-                intent.putExtra("id",position+"");
-                intent.setClass(context, Record_detail_Activity.class);
-                context.startActivity(intent);
+                TextView tev=view.findViewById(R.id.textViewtete);
+                TextView tet=view.findViewById(R.id.textView7);
+                if(tev.getText().equals("完成")){
+                    Intent intent=new Intent();
+                    intent.putExtra("id",tet.getText());
+                    intent.setClass(context, Record_detail_Activity.class);
+                    context.startActivity(intent);
+                }else{
+                    Toast.makeText(context, "请下拉刷新重试", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
