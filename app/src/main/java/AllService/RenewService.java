@@ -89,6 +89,9 @@ public class RenewService extends Service {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        if(response==null){
+            return false;
+        }
         String ks=response.body().string();
         if(ks.equals("no")){
             return false;
@@ -106,8 +109,8 @@ public class RenewService extends Service {
         reportDetail.setZheng_right_eye_y(jsonObject.getString("zheng_right_eye_y"));
         reportDetail.setZheng_left_ear_x(jsonObject.getString("zheng_left_ear_x"));
         reportDetail.setZheng_left_ear_y(jsonObject.getString("zheng_left_ear_y"));
-        reportDetail.setZheng_right_eye_x(jsonObject.getString("zheng_right_ear_x"));
-        reportDetail.setZheng_right_eye_y(jsonObject.getString("zheng_right_ear_y"));
+        reportDetail.setZheng_right_ear_x(jsonObject.getString("zheng_right_ear_x"));
+        reportDetail.setZheng_right_ear_y(jsonObject.getString("zheng_right_ear_y"));
         reportDetail.setZheng_left_shoulder_x(jsonObject.getString("zheng_left_shoulder_x"));
         reportDetail.setZheng_left_shoulder_y(jsonObject.getString("zheng_left_shoulder_y"));
         reportDetail.setZheng_right_shoulder_x(jsonObject.getString("zheng_right_shoulder_x"));
@@ -162,6 +165,12 @@ public class RenewService extends Service {
                         response = okHttpClient.newCall(request).execute();
                     } catch (IOException e) {
                         e.printStackTrace();
+                    }
+                    if(response==null){
+                        continue;
+                    }
+                    if(!response.isSuccessful()){
+                        continue;
                     }
                     try {
                         jsonObject=new JSONObject(response.body().string());

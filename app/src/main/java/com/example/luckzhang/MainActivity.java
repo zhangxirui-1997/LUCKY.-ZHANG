@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         if(want_refresh){
             viewpager_initialize();
-            want_refresh=false;
         }
         super.onStart();
     }

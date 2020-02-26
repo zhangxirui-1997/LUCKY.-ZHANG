@@ -2,17 +2,19 @@ package com.example.luckzhang;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.widget.TextView;
+
+import Data_Class.Report_detail;
 
 public class Record_detail_Activity extends AppCompatActivity {
-    private int fake_idnumber;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_detail);
-        String stringExtra=getIntent().getStringExtra("id");
-        TextView textView=findViewById(R.id.textView8);
-        textView.setText(stringExtra);
+
     }
+
 }

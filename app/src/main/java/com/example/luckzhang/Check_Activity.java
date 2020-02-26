@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
@@ -44,6 +45,7 @@ public class Check_Activity extends AppCompatActivity {
     private String path_zheng;
     private String path_ce;
     private SimpleDateFormat simpleDateFormat;
+    private boolean judge=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +80,6 @@ public class Check_Activity extends AppCompatActivity {
         check_button=findViewById(R.id.CheckButton);
         imageView_zheng.setVisibility(View.VISIBLE);
         imageView_ce.setVisibility(View.GONE);
-
 
         imageView_zheng.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,6 +156,8 @@ public class Check_Activity extends AppCompatActivity {
 
     //上传文件
     private void UpUpGoGoGo(){
+        ProgressBar progressBar=findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");// HH:mm:ss
         //获取当前时间
         final Date date = new Date(System.currentTimeMillis());
@@ -192,20 +195,13 @@ public class Check_Activity extends AppCompatActivity {
                 report_item.setStatue_now("未完成");
                 report_item.setZhengpath(zheng_file.getName());
                 report_item.setCepath(ce_file.getName());
+                Log.d("Check_Activity.class","111111111111111"+report_item.getZhengpath()+report_item.getCepath());
                 report_item.save();
+                judge=true;
 
             }
         });
-        AlertDialog.Builder builder1=new AlertDialog.Builder(Check_Activity.this);
-        builder1.setTitle("完成")
-                .setMessage("您的诊断请求已经提交，请您返回上一页耐心等候")
-                .setCancelable(false)
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                });
-        builder1.create().show();
+
+
     }
 }
