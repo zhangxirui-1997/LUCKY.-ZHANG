@@ -129,6 +129,18 @@ public class RenewService extends Service {
         reportDetail.setZheng_right_ankle_y(jsonObject.getString("zheng_right_ankle_y"));
         reportDetail.setZheng_neck_x(jsonObject.getString("zheng_neck_x"));
         reportDetail.setZheng_neck_y(jsonObject.getString("zheng_neck_y"));
+
+        reportDetail.setZheng_nose_x(jsonObject.getString("zheng_nose_x"));
+        reportDetail.setZheng_nose_y(jsonObject.getString("zheng_nose_y"));
+        reportDetail.setZheng_left_elbow_x(jsonObject.getString("zheng_left_elbow_x"));
+        reportDetail.setZheng_left_elbow_y(jsonObject.getString("zheng_left_elbow_y"));
+        reportDetail.setZheng_right_elbow_x(jsonObject.getString("zheng_right_elbow_x"));
+        reportDetail.setZheng_right_elbow_y(jsonObject.getString("zheng_right_elbow_y"));
+        reportDetail.setZheng_left_wrist_x(jsonObject.getString("zheng_left_wrist_x"));
+        reportDetail.setZheng_left_wrist_y(jsonObject.getString("zheng_left_wrist_y"));
+        reportDetail.setZheng_right_wrist_x(jsonObject.getString("zheng_right_wrist_x"));
+        reportDetail.setZheng_right_wrist_y(jsonObject.getString("zheng_right_wrist_y"));
+
         reportDetail.setCe_right_ear_x(jsonObject.getString("ce_right_ear_x"));
         reportDetail.setCe_right_ear_y(jsonObject.getString("ce_right_ear_y"));
         reportDetail.setCe_right_shoulder_x(jsonObject.getString("ce_right_shoulder_x"));

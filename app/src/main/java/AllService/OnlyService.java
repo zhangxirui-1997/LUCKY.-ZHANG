@@ -248,6 +248,20 @@ public class OnlyService extends Service {
         reportDetail.setZheng_left_ankle_y(jsonObject1.getString("zheng_left_ankle_y"));
         reportDetail.setZheng_right_ankle_x(jsonObject1.getString("zheng_right_ankle_x"));
         reportDetail.setZheng_right_ankle_y(jsonObject1.getString("zheng_right_ankle_y"));
+        reportDetail.setZheng_neck_x(jsonObject1.getString("zheng_neck_x"));
+        reportDetail.setZheng_neck_y(jsonObject1.getString("zheng_neck_y"));
+
+        reportDetail.setZheng_nose_x(jsonObject1.getString("zheng_nose_x"));
+        reportDetail.setZheng_nose_y(jsonObject1.getString("zheng_nose_y"));
+        reportDetail.setZheng_left_elbow_x(jsonObject1.getString("zheng_left_elbow_x"));
+        reportDetail.setZheng_left_elbow_y(jsonObject1.getString("zheng_left_elbow_y"));
+        reportDetail.setZheng_right_elbow_x(jsonObject1.getString("zheng_right_elbow_x"));
+        reportDetail.setZheng_right_elbow_y(jsonObject1.getString("zheng_right_elbow_y"));
+        reportDetail.setZheng_left_wrist_x(jsonObject1.getString("zheng_left_wrist_x"));
+        reportDetail.setZheng_left_wrist_y(jsonObject1.getString("zheng_left_wrist_y"));
+        reportDetail.setZheng_right_wrist_x(jsonObject1.getString("zheng_right_wrist_x"));
+        reportDetail.setZheng_right_wrist_y(jsonObject1.getString("zheng_right_wrist_y"));
+
         reportDetail.setCe_right_ear_x(jsonObject1.getString("ce_right_ear_x"));
         reportDetail.setCe_right_ear_y(jsonObject1.getString("ce_right_ear_y"));
         reportDetail.setCe_right_shoulder_x(jsonObject1.getString("ce_right_shoulder_x"));
@@ -258,8 +272,6 @@ public class OnlyService extends Service {
         reportDetail.setCe_right_knee_y(jsonObject1.getString("ce_right_knee_y"));
         reportDetail.setCe_right_ankle_x(jsonObject1.getString("ce_right_ankle_x"));
         reportDetail.setCe_right_ankle_y(jsonObject1.getString("ce_right_ankle_y"));
-        reportDetail.setZheng_neck_x(jsonObject1.getString("zheng_neck_x"));
-        reportDetail.setZheng_neck_y(jsonObject1.getString("zheng_neck_y"));
         reportDetail.setCe_neck_x(jsonObject1.getString("ce_neck_x"));
         reportDetail.setCe_neck_y(jsonObject1.getString("ce_neck_y"));
         reportDetail.save();

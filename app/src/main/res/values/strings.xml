@@ -47,4 +47,8 @@
     <string name="cemianzhao">侧面全身照</string>
     <string name="check_submit">提交</string>
 
+    <!--订单的详细界面-->
+    <string name="xiaoxibaogao">详细报告</string>
+    <string name="fanhui">返回</string>
+
 </resources>

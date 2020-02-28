@@ -33,6 +33,18 @@ public class Report_detail extends LitePalSupport {
     private String zheng_right_ankle_y;
     private String zheng_neck_x;
     private String zheng_neck_y;
+
+    private String zheng_nose_x ;
+    private String zheng_nose_y ;
+    private String zheng_left_elbow_x ;
+    private String zheng_left_elbow_y ;
+    private String zheng_right_elbow_x ;
+    private String zheng_right_elbow_y ;
+    private String zheng_left_wrist_x ;
+    private String zheng_left_wrist_y ;
+    private String zheng_right_wrist_x ;
+    private String zheng_right_wrist_y ;
+
     private String ce_right_ear_x;
     private String ce_right_ear_y;
     private String ce_right_shoulder_x;
@@ -45,6 +57,86 @@ public class Report_detail extends LitePalSupport {
     private String ce_right_ankle_y;
     private String ce_neck_x;
     private String ce_neck_y;
+
+    public String getZheng_nose_x() {
+        return zheng_nose_x;
+    }
+
+    public void setZheng_nose_x(String zheng_nose_x) {
+        this.zheng_nose_x = zheng_nose_x;
+    }
+
+    public String getZheng_nose_y() {
+        return zheng_nose_y;
+    }
+
+    public void setZheng_nose_y(String zheng_nose_y) {
+        this.zheng_nose_y = zheng_nose_y;
+    }
+
+    public String getZheng_left_elbow_x() {
+        return zheng_left_elbow_x;
+    }
+
+    public void setZheng_left_elbow_x(String zheng_left_elbow_x) {
+        this.zheng_left_elbow_x = zheng_left_elbow_x;
+    }
+
+    public String getZheng_left_elbow_y() {
+        return zheng_left_elbow_y;
+    }
+
+    public void setZheng_left_elbow_y(String zheng_left_elbow_y) {
+        this.zheng_left_elbow_y = zheng_left_elbow_y;
+    }
+
+    public String getZheng_right_elbow_x() {
+        return zheng_right_elbow_x;
+    }
+
+    public void setZheng_right_elbow_x(String zheng_right_elbow_x) {
+        this.zheng_right_elbow_x = zheng_right_elbow_x;
+    }
+
+    public String getZheng_right_elbow_y() {
+        return zheng_right_elbow_y;
+    }
+
+    public void setZheng_right_elbow_y(String zheng_right_elbow_y) {
+        this.zheng_right_elbow_y = zheng_right_elbow_y;
+    }
+
+    public String getZheng_left_wrist_x() {
+        return zheng_left_wrist_x;
+    }
+
+    public void setZheng_left_wrist_x(String zheng_left_wrist_x) {
+        this.zheng_left_wrist_x = zheng_left_wrist_x;
+    }
+
+    public String getZheng_left_wrist_y() {
+        return zheng_left_wrist_y;
+    }
+
+    public void setZheng_left_wrist_y(String zheng_left_wrist_y) {
+        this.zheng_left_wrist_y = zheng_left_wrist_y;
+    }
+
+    public String getZheng_right_wrist_x() {
+        return zheng_right_wrist_x;
+    }
+
+    public void setZheng_right_wrist_x(String zheng_right_wrist_x) {
+        this.zheng_right_wrist_x = zheng_right_wrist_x;
+    }
+
+    public String getZheng_right_wrist_y() {
+        return zheng_right_wrist_y;
+    }
+
+    public void setZheng_right_wrist_y(String zheng_right_wrist_y) {
+        this.zheng_right_wrist_y = zheng_right_wrist_y;
+    }
 
     public String getZheng_neck_x() {
         return zheng_neck_x;
