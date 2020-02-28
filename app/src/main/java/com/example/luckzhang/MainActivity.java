@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -55,10 +56,20 @@ public class MainActivity extends AppCompatActivity {
         //申请权限模块
         getPermissions();
         //先开启服务
+        int version= Build.VERSION.SDK_INT;
+        /*if(version>=28){
+            Intent startServiceIntent=new Intent("AllService.OnlyService");
+            startServiceIntent.setPackage(getPackageName());
+            startService(startServiceIntent);
+            Intent startServiceRenew=new Intent("AllService.RenewService");
+            startServiceIntent.setPackage(getPackageName());
+            startService(startServiceRenew);
+        }else{*/
         Intent startServiceIntent=new Intent(MainActivity.this, OnlyService.class);
         startService(startServiceIntent);
-        Intent startServiceRenew=new Intent(MainActivity.this, RenewService.class);
-        startService(startServiceRenew);
+
+        //}
+
         //再初始化本地
         //初始化变量,viewpager也放进去了
         init_variable();
@@ -76,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         Intent stopServiceIntent=new Intent(MainActivity.this, OnlyService.class);
         stopService(stopServiceIntent);
-        Intent stopServiceRenew=new Intent(MainActivity.this, RenewService.class);
-        stopService(stopServiceRenew);
         super.onDestroy();
     }
 

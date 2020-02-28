@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import Data_Class.Report_item;
 import Data_Class.User_Info;
@@ -36,6 +37,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static android.os.SystemClock.sleep;
+
 public class Check_Activity extends AppCompatActivity {
     private ImageView imageView_zheng;
     private ImageView imageView_ce;
@@ -45,7 +48,8 @@ public class Check_Activity extends AppCompatActivity {
     private String path_zheng;
     private String path_ce;
     private SimpleDateFormat simpleDateFormat;
-    private boolean judge=false;
+    private int judge=0;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +72,7 @@ public class Check_Activity extends AppCompatActivity {
     }
 
     private void initialize(){
+        progressBar=findViewById(R.id.progressBar);
         int i= LitePal.count(Report_item.class);
         path_zheng= Environment.getExternalStorageDirectory().getAbsolutePath()+"/aphysique/data/temppicture/temp_zheng_picture"+i+".jpg";
         path_ce=Environment.getExternalStorageDirectory().getAbsolutePath()+"/aphysique/data/temppicture/temp_ce_picture"+i+".jpg";
@@ -156,19 +161,23 @@ public class Check_Activity extends AppCompatActivity {
 
     //上传文件
     private void UpUpGoGoGo(){
-        ProgressBar progressBar=findViewById(R.id.progressBar);
+
         progressBar.setVisibility(View.VISIBLE);
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");// HH:mm:ss
         //获取当前时间
         final Date date = new Date(System.currentTimeMillis());
-
-        OkHttpClient httpClient=new OkHttpClient();
+        final String dateString=simpleDateFormat.format(date);
+        OkHttpClient httpClient=new OkHttpClient.Builder()
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30,TimeUnit.SECONDS)
+                .writeTimeout(30,TimeUnit.SECONDS)
+                .build();;
         MediaType mediaType=MediaType.parse("multipart/form-data");
         MultipartBody.Builder builder=new MultipartBody.Builder().setType(MultipartBody.FORM);
         final User_Info user_info=LitePal.findFirst(User_Info.class);
         builder.addFormDataPart("phone",user_info.getUser_phonenumber());
         builder.addFormDataPart("which_number",LitePal.count(Report_item.class)+"");
-        builder.addFormDataPart("time",simpleDateFormat.format(date));
+        builder.addFormDataPart("time",dateString);
         final File zheng_file=new File(path_zheng);
         final File ce_file=new File(path_ce);
         RequestBody zheng_fileBody=RequestBody.Companion.create(zheng_file,mediaType);
@@ -183,6 +192,7 @@ public class Check_Activity extends AppCompatActivity {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 Log.d("Check_Activity","图片上传失败");
+                judge=2;
             }
 
             @Override
@@ -190,18 +200,29 @@ public class Check_Activity extends AppCompatActivity {
                 Log.d("Check_Activity","图片上传成功");
                 Report_item report_item=new Report_item();
                 report_item.setItem_title("体态检测");
-                report_item.setItem_time(simpleDateFormat.format(date));
+                report_item.setItem_time(dateString);
                 report_item.setItem_name(user_info.getUser_fakename());
                 report_item.setStatue_now("未完成");
                 report_item.setZhengpath(zheng_file.getName());
                 report_item.setCepath(ce_file.getName());
                 Log.d("Check_Activity.class","111111111111111"+report_item.getZhengpath()+report_item.getCepath());
                 report_item.save();
-                judge=true;
+                judge=1;
 
             }
         });
-
+        for(;;){
+            if(judge==1){
+                Toast.makeText(this, "上传成功", Toast.LENGTH_SHORT).show();
+                finish();
+                break;
+            }else if(judge==2){
+                Toast.makeText(this, "上传失败,请重试", Toast.LENGTH_SHORT).show();
+                break;
+            }else{
+                sleep(2000);
+            }
+        }
 
     }
 }

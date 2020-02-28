@@ -48,7 +48,12 @@ public class MyPageAdapter extends PagerAdapter {
     private SwipeRefreshLayout swipeRefreshLayout;
     private Button mainImportantButton;
     private ImageView imageView;
-
+    private TextView  textView1;
+    private TextView  textView2;
+    private TextView  textView3;
+    private TextView  textView4;
+    private TextView  textView5;
+    private TextView  textView_day;
     public MyPageAdapter(Context context1) {
         this.context=context1;
         view1=View.inflate(context,R.layout.main_left,null);
@@ -58,6 +63,12 @@ public class MyPageAdapter extends PagerAdapter {
         listView=(ListView) view2.findViewById(R.id.listview);
         swipeRefreshLayout = (SwipeRefreshLayout) view2.findViewById(R.id.refresh);
         imageView=view1.findViewById(R.id.imageView_left);
+        textView1=view1.findViewById(R.id.tt1);
+        textView2=view1.findViewById(R.id.tt2);
+        textView3=view1.findViewById(R.id.tt3);
+        textView4=view1.findViewById(R.id.tt4);
+        textView5=view1.findViewById(R.id.tt5);
+        textView_day=view1.findViewById(R.id.textViewl2);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,12 +97,6 @@ public class MyPageAdapter extends PagerAdapter {
 
     //初始化网格信息
     private void init_left_grid()  {
-        TextView textView1=view1.findViewById(R.id.tt1);
-        TextView textView2=view1.findViewById(R.id.tt2);
-        TextView textView3=view1.findViewById(R.id.tt3);
-        TextView textView4=view1.findViewById(R.id.tt4);
-        TextView textView5=view1.findViewById(R.id.tt5);
-        TextView textView_day=view1.findViewById(R.id.textViewl2);
         User_Info user_info=LitePal.findFirst(User_Info.class);
         if(user_info==null){
             Log.d("MyPageAdapter","用户账户出错");

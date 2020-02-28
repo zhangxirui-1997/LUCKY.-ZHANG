@@ -31,6 +31,8 @@ public class Report_detail extends LitePalSupport {
     private String zheng_left_ankle_y ;
     private String zheng_right_ankle_x ;
     private String zheng_right_ankle_y;
+    private String zheng_neck_x;
+    private String zheng_neck_y;
     private String ce_right_ear_x;
     private String ce_right_ear_y;
     private String ce_right_shoulder_x;
@@ -41,7 +43,40 @@ public class Report_detail extends LitePalSupport {
     private String ce_right_knee_y;
     private String ce_right_ankle_x;
     private String ce_right_ankle_y;
+    private String ce_neck_x;
+    private String ce_neck_y;
 
+    public String getZheng_neck_x() {
+        return zheng_neck_x;
+    }
+
+    public void setZheng_neck_x(String zheng_neck_x) {
+        this.zheng_neck_x = zheng_neck_x;
+    }
+
+    public String getZheng_neck_y() {
+        return zheng_neck_y;
+    }
+
+    public void setZheng_neck_y(String zheng_neck_y) {
+        this.zheng_neck_y = zheng_neck_y;
+    }
+
+    public String getCe_neck_x() {
+        return ce_neck_x;
+    }
+
+    public void setCe_neck_x(String ce_neck_x) {
+        this.ce_neck_x = ce_neck_x;
+    }
+
+    public String getCe_neck_y() {
+        return ce_neck_y;
+    }
+
+    public void setCe_neck_y(String ce_neck_y) {
+        this.ce_neck_y = ce_neck_y;
+    }
 
     public String getReport_time() {
         return Report_time;

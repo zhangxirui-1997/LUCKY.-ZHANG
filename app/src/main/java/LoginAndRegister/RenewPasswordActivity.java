@@ -216,7 +216,7 @@ public class RenewPasswordActivity extends AppCompatActivity {
                 .add("User_password",editText_password.getText().toString())
                 .build();
         Request request = new Request.Builder()
-                .url("http://192.168.43.96:8085/TheBestServe/ReplacePasswordServlet")
+                .url("http://123.57.235.123:8080/TheBestServe/ReplacePasswordServlet")
                 .post(body)
                 .build();
         Call call = client.newCall(request);

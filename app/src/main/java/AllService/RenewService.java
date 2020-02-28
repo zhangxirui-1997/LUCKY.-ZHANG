@@ -127,6 +127,8 @@ public class RenewService extends Service {
         reportDetail.setZheng_left_ankle_y(jsonObject.getString("zheng_left_ankle_y"));
         reportDetail.setZheng_right_ankle_x(jsonObject.getString("zheng_right_ankle_x"));
         reportDetail.setZheng_right_ankle_y(jsonObject.getString("zheng_right_ankle_y"));
+        reportDetail.setZheng_neck_x(jsonObject.getString("zheng_neck_x"));
+        reportDetail.setZheng_neck_y(jsonObject.getString("zheng_neck_y"));
         reportDetail.setCe_right_ear_x(jsonObject.getString("ce_right_ear_x"));
         reportDetail.setCe_right_ear_y(jsonObject.getString("ce_right_ear_y"));
         reportDetail.setCe_right_shoulder_x(jsonObject.getString("ce_right_shoulder_x"));
@@ -137,6 +139,8 @@ public class RenewService extends Service {
         reportDetail.setCe_right_knee_y(jsonObject.getString("ce_right_knee_y"));
         reportDetail.setCe_right_ankle_x(jsonObject.getString("ce_right_ankle_x"));
         reportDetail.setCe_right_ankle_y(jsonObject.getString("ce_right_ankle_y"));
+        reportDetail.setCe_neck_x(jsonObject.getString("ce_neck_x"));
+        reportDetail.setCe_neck_y(jsonObject.getString("ce_neck_y"));
         reportDetail.save();
         return true;
     }
@@ -156,7 +160,7 @@ public class RenewService extends Service {
                     FormBody.Builder builder=new FormBody.Builder();
                     builder.add("User_phonenumber",user_info.getUser_phonenumber());
                     Request request = new Request.Builder()
-                            .url("http://192.168.43.96:8085/TheBestServe/RenewMainLeftServlet")
+                            .url("http://123.57.235.123:8080/TheBestServe/RenewMainLeftServlet")
                             .post(builder.build())
                             .build();
                     Response response=null;

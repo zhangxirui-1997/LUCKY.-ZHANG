@@ -127,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
         Log.d("LoginActivity","1111111111111333333");
         Request request = new Request.Builder()
-                .url("http://192.168.43.96:8085/TheBestServe/LoginServlet")
+                .url("http://123.57.235.123:8080/TheBestServe/LoginServlet")
                 .post(body)
                 .build();
         Call call = client.newCall(request);
