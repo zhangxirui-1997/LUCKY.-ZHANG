@@ -10,98 +10,94 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimary"/>
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="25dp"
-                android:src="@drawable/welcome_titaijiance"
-                android:layout_alignBottom="@+id/imageView7"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"/>
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:menu="@menu/report_detail_menu"
+            android:layout_marginTop="20dp"
+            app:titleMarginTop="5dp"
+            app:titleMarginStart="20dp"
+            app:title="@string/app_name"
+            app:subtitle="@string/xiaoxibaogao">
 
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="center"
-                tools:srcCompat="@tools:sample/avatars" />
-
-
-            <Button
-                android:id="@+id/button_xiangxibaogao"
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_above="@+id/button_zheng"
-                android:layout_alignParentRight="true"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/report_detail_button_background_shape"
-                android:text="@string/xiaoxibaogao"
-                android:textSize="10sp" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:textSize="12dp"
+                android:text="@string/mainView_Title_small" />
 
-            <Button
-                android:id="@+id/button_zheng"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_above="@+id/button_ce"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/report_detail_button_background_shape"
-                android:text="@string/zhengmianzhao"
-                android:textSize="10sp" />
+        </androidx.appcompat.widget.Toolbar>
 
-            <Button
-                android:id="@+id/button_ce"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignBottom="@+id/imageView7"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/report_detail_button_background_shape"
-                android:text="@string/cemianzhao"
-                android:textSize="10sp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/relative"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="50dp"
-            android:visibility="visible">
+            android:orientation="vertical"
+            android:layout_below="@+id/toolbar2"
+            tools:layout_editor_absoluteX="10dp"
+            tools:layout_editor_absoluteY="30dp">
 
-            <Button
-                android:id="@+id/button9"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/report_detail_button_background_shape"
-                android:text="@string/fanhui"
-                android:textSize="12sp"/>
-
-            <ListView
-                android:id="@+id/list_detail"
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager_report_item"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
 
-        </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/button_mainviewpager_1_circle_shape"
+                    android:text="@string/titaishuju"/>
+
+                <Button
+                    android:id="@+id/button8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/button_mainviewpager_2_circle_shape"
+                    android:text="@string/fengxianpinggu"
+                    />
+
+                <Button
+                    android:id="@+id/button9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/button_mainviewpager_2_circle_shape"
+                    android:text="@string/baogaojielun" />
+            </LinearLayout>
+        </LinearLayout>
 
 
     </RelativeLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

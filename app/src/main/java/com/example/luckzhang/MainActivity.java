@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
         button_left=findViewById(R.id.button4);
         button_right=findViewById(R.id.button5);
 
-
         toolbar_initialize();
 
         button_left.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
-
             @Override
             public void onPageSelected(int position) {
                 if(position==0){
@@ -132,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
                     button_left.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_2_circle_shape,null));
                     button_right.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_1_circle_shape,null));                }
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
 
@@ -165,20 +162,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     //获取权限，下面是回调
     private void getPermissions(){

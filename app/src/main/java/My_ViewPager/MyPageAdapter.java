@@ -75,9 +75,9 @@ public class MyPageAdapter extends PagerAdapter {
                 init_left_grid();
             }
         });
+
         init_left_button();
         init_left_grid();
-
         init_right_listview();
         init_right_refresh();
     }

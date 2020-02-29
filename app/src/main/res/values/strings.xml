@@ -50,5 +50,10 @@
     <!--订单的详细界面-->
     <string name="xiaoxibaogao">详细报告</string>
     <string name="fanhui">返回</string>
+    <string name="set_now_state">设置为当前状态</string>
+    <string name="titaishuju">体态数据</string>
+    <string name="fengxianpinggu">风险评估</string>
+    <string name="baogaojielun">报告结论</string>
+
 
 </resources>
