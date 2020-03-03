@@ -1,8 +1,10 @@
 package com.example.luckzhang;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import Data_Class.Report_detail;
+import Data_Class.Report_item;
 import My_ViewPager.My_ReportDetail_ViewPagerAdapter;
 
 public class Record_detail_Activity extends AppCompatActivity {
@@ -49,6 +52,26 @@ public class Record_detail_Activity extends AppCompatActivity {
                     //此处进行加星操作
                     my_reportDetail_viewPagerAdapter.save_five();
                     Toast.makeText(Record_detail_Activity.this, "已设置当前为首要", Toast.LENGTH_SHORT).show();
+                }else if(item.getItemId()==R.id.menu_itemR2){
+                    AlertDialog.Builder builder=new AlertDialog.Builder(Record_detail_Activity.this)
+                            .setTitle("注意")
+                            .setMessage("确认删除此报告吗？")
+                            .setPositiveButton("确认",new AlertDialog.OnClickListener(){
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    LitePal.deleteAll(Report_item.class,"item_time=?",strPxtr);
+                                    LitePal.deleteAll(Report_detail.class,"Report_time=?",strPxtr);
+                                    finish();
+                                }
+                            })
+                            .setNegativeButton("取消",new AlertDialog.OnClickListener(){
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                    builder.create().show();
+
                 }
                 return false;
             }

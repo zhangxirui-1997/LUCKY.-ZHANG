@@ -63,6 +63,7 @@ public class Check_Activity extends AppCompatActivity {
             if(msg.what==-1){//上传失败
                 Toast.makeText(Check_Activity.this, "上传失败,请重试", Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
+                check_button.setEnabled(true);
             }else if(msg.what==1){//上传成功
                 Toast.makeText(Check_Activity.this, "上传成功", Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
@@ -186,6 +187,7 @@ public class Check_Activity extends AppCompatActivity {
 
     //上传文件
     private void UpUpGoGoGo(){
+        check_button.setEnabled(false);
         progressBar.setVisibility(View.VISIBLE);
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");// HH:mm:ss
         //获取当前时间

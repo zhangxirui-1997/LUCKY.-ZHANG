@@ -8,4 +8,9 @@
         android:icon="@drawable/user_initial_avatar"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/menu_itemR2"
+        android:title="@string/set_delet"
+        app:showAsAction="never"/>
+
 </menu>

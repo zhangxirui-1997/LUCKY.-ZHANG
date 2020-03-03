@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
@@ -29,6 +33,8 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,7 +51,9 @@ import java.util.Arrays;
 
 import Data_Class.Report_item;
 
-public class CameraActivity extends AppCompatActivity {
+import static java.lang.Thread.sleep;
+
+public class CameraActivity extends AppCompatActivity implements SensorEventListener {
     private Intent intent;
     private int judge=0;
 
@@ -77,11 +85,106 @@ public class CameraActivity extends AppCompatActivity {
     private Button button_ok;
     private Button button_notok;
 
+    private SensorManager sensorManager;
+    private Sensor magnticSensor;
+    private Sensor accelerometerSensor;
+    private SensorEventListener listener;
+    float[] gravity;
+    float[] r;
+    float[] geomagnetic;
+    float[] values;
+    private ImageView imageView;
+    private TextView textView;
+    private void initSensor(){
+        sensorManager=(SensorManager) getApplicationContext().getSystemService(Context.SENSOR_SERVICE);
+        magnticSensor=sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        accelerometerSensor=sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        gravity=new float[3];//用来保存加速度传感器的值
+        r=new float[9];
+        geomagnetic=new float[3];//用来保存地磁传感器的值
+        values=new float[3];//用来保存最终的结果
+        //sensorManager.registerListener((SensorEventListener) this,magnticSensor,SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener((SensorEventListener) this,accelerometerSensor,SensorManager.SENSOR_DELAY_NORMAL);
+        SensorManager.getRotationMatrix(r,null,gravity,geomagnetic);
+        SensorManager.getOrientation(r,values);
+        imageView=findViewById(R.id.imageView10);
+        textView=findViewById(R.id.test);
+    }
+
+    //第四步：必须重写的两个方法：onAccuracyChanged，onSensorChanged
+    /**
+     * 传感器精度发生改变的回调接口
+     */
+    @Override
+    public final void onAccuracyChanged(Sensor sensor, int accuracy) {
+        //TODO 在传感器精度发生改变时做些操作，accuracy为当前传感器精度
+    }
+    /**
+     * 传感器事件值改变时的回调接口：执行此方法的频率与注册传感器时的频率有关
+     */
+    @Override
+    public final void onSensorChanged(SensorEvent event) {
+        // 大部分传感器会返回三个轴方向x,y,x的event值，值的意义因传感器而异
+        float x = event.values[0];
+        float y = event.values[1];
+        float z = event.values[2];
+        int xint=Math.round(x);
+        imageView.setRotation(xint);
+        Log.d("111111","1111111111"+x+" "+y+" "+z);
+        //TODO 利用获得的三个float传感器值做些操作
+    }
+    /**
+     * 第三步：在获得焦点时注册传感器并让本类实现SensorEventListener接口
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        /*
+         *第一个参数：SensorEventListener接口的实例对象
+         *第二个参数：需要注册的传感器实例
+         *第三个参数：传感器获取传感器事件event值频率：
+         *              SensorManager.SENSOR_DELAY_FASTEST = 0：对应0微秒的更新间隔，最快，1微秒 = 1 % 1000000秒
+         *              SensorManager.SENSOR_DELAY_GAME = 1：对应20000微秒的更新间隔，游戏中常用
+         *              SensorManager.SENSOR_DELAY_UI = 2：对应60000微秒的更新间隔
+         *              SensorManager.SENSOR_DELAY_NORMAL = 3：对应200000微秒的更新间隔
+         *              键入自定义的int值x时：对应x微秒的更新间隔
+         *
+         */
+
+    }
+    /**
+     * 第五步：在失去焦点时注销传感器
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(this);
+    }
+
+
+    /**
+     * 获取手机旋转角度
+     */
+    /*public void getOritation() {
+        // r从这里返回
+        SensorManager.getRotationMatrix(r, null, gravity, geomagnetic);
+        //values从这里返回
+        SensorManager.getOrientation(r, values);
+        //提取数据
+        double degreeZ = Math.toDegrees(values[0]);
+        double degreeX = Math.toDegrees(values[1]);
+        double degreeY = Math.toDegrees(values[2]);
+        if(listener != null){
+            listener.onOrientationChange(degreeX, degreeY, degreeZ);
+        }
+    }*/
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-
+        initSensor();
         mTextureView = findViewById(R.id.textureView);
         mBtnPhotograph = findViewById(R.id.button4);
         mBtnPhotograph.setOnClickListener(new View.OnClickListener() {
