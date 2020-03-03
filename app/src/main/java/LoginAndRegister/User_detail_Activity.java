@@ -3,14 +3,44 @@ package LoginAndRegister;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.luckzhang.R;
 
-public class User_detail_Activity extends AppCompatActivity {
+import org.litepal.LitePal;
 
+import Data_Class.User_Info;
+
+public class User_detail_Activity extends AppCompatActivity {
+    private TextView textView;
+    private EditText editText;
+    private Button button;
+    private String string;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_detail_);
+        textView=findViewById(R.id.textView17);
+        editText=findViewById(R.id.editText4);
+
+        button=findViewById(R.id.buttonchange);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                string =editText.getText().toString();
+                if(string==null||string.equals("")){
+                    Toast.makeText(User_detail_Activity.this, "用户名不能为空", Toast.LENGTH_SHORT).show();
+                }else{
+                    User_Info user_info= LitePal.findFirst(User_Info.class);
+                    user_info.setUser_fakename(string);
+                    Toast.makeText(User_detail_Activity.this, "用户名修改成功", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+        });
     }
 }

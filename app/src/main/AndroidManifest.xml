@@ -17,30 +17,29 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:networkSecurityConfig="@xml/network_security_config">
+        android:theme="@style/AppTheme">
+        <activity android:name="LoginAndRegister.User_detail_Activity"></activity>
+
         <service
             android:name="AllService.RenewService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity
             android:name="Toolar_toNext.The_Charts_Activity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name="Toolar_toNext.Help_Activity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name="Toolar_toNext.About_soft_Activity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name="LoginAndRegister.User_detail_Activity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Check_Activity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <service
             android:name="AllService.OnlyService"
@@ -50,20 +49,22 @@
         <activity
             android:name=".CameraActivity"
             android:hardwareAccelerated="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Record_detail_Activity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name="LoginAndRegister.RenewPasswordActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name="LoginAndRegister.RegisterActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="LoginAndRegister.LoginActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="LoginAndRegister.LoginActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Welcome_Activity"
             android:screenOrientation="portrait">

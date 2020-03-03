@@ -6,4 +6,35 @@
     android:layout_height="match_parent"
     tools:context="LoginAndRegister.User_detail_Activity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:text="@string/changename" />
+
+        <EditText
+            android:id="@+id/editText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:layout_below="@+id/textView17"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"/>
+        <Button
+            android:id="@+id/buttonchange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/button_mainviewpager_1_circle_shape"
+            android:text="@string/check_submit"/>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

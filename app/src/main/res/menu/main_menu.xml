@@ -6,7 +6,7 @@
         android:id="@+id/menu_item1"
         android:title="@string/item1"
         android:icon="@drawable/user_initial_avatar"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_item2"

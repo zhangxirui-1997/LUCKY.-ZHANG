@@ -56,16 +56,6 @@
         android:layout_marginRight="20dp"
         android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/imageView_left"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
-            app:srcCompat="@android:drawable/ic_menu_rotate" />
-
         <TextView
             android:id="@+id/sdfaadf"
             android:layout_width="wrap_content"

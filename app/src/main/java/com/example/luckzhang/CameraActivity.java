@@ -149,10 +149,6 @@ public class CameraActivity extends AppCompatActivity {
         });
     }
 
-
-
-
-
     /**
      * 初始化子线程
      */

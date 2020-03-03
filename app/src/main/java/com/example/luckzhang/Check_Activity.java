@@ -1,8 +1,11 @@
 package com.example.luckzhang;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,6 +13,8 @@ import android.graphics.BitmapFactory;
 import android.hardware.camera2.CameraCharacteristics;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +33,7 @@ import java.util.concurrent.TimeUnit;
 
 import Data_Class.Report_item;
 import Data_Class.User_Info;
+import LoginAndRegister.LoginActivity;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -50,6 +56,22 @@ public class Check_Activity extends AppCompatActivity {
     private SimpleDateFormat simpleDateFormat;
     private int judge=0;
     ProgressBar progressBar;
+
+    private Handler LoginHandler=new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            if(msg.what==-1){//上传失败
+                Toast.makeText(Check_Activity.this, "上传失败,请重试", Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
+            }else if(msg.what==1){//上传成功
+                Toast.makeText(Check_Activity.this, "上传成功", Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
+                finish();
+            }
+        }
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +105,8 @@ public class Check_Activity extends AppCompatActivity {
         zheng_button=findViewById(R.id.zheng_Button);
         ce_button=findViewById(R.id.ce_Button);
         check_button=findViewById(R.id.CheckButton);
+        imageView_zheng.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.zheng));
+        imageView_ce.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ce));
         imageView_zheng.setVisibility(View.VISIBLE);
         imageView_ce.setVisibility(View.GONE);
 
@@ -124,6 +148,7 @@ public class Check_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 if(fileIsExists(path_zheng)){
                     if(fileIsExists(path_ce)){
+                        Toast.makeText(Check_Activity.this, "正在上传，请稍后", Toast.LENGTH_SHORT).show();
                         UpUpGoGoGo();
                     }else{
                         Toast.makeText(Check_Activity.this, "请先拍摄侧面照", Toast.LENGTH_LONG).show();
@@ -161,7 +186,6 @@ public class Check_Activity extends AppCompatActivity {
 
     //上传文件
     private void UpUpGoGoGo(){
-
         progressBar.setVisibility(View.VISIBLE);
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");// HH:mm:ss
         //获取当前时间
@@ -185,7 +209,7 @@ public class Check_Activity extends AppCompatActivity {
         builder.addFormDataPart("zheng",zheng_file.getName(),zheng_fileBody);
         builder.addFormDataPart("ce",ce_file.getName(),ce_fileBody);
         Request request=new Request.Builder()
-                .url("http://192.168.43.96:8085/TheBestServe/Receive_pictureServlet")
+                .url("http://123.57.235.123:8080/TheBestServe/Receive_pictureServlet")
                 .post(builder.build())
                 .build();
         httpClient.newCall(request).enqueue(new Callback() {
@@ -193,6 +217,9 @@ public class Check_Activity extends AppCompatActivity {
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 Log.d("Check_Activity","图片上传失败");
                 judge=2;
+                Message message=new Message();
+                message.what=-1;
+                LoginHandler.sendMessage(message);
             }
 
             @Override
@@ -208,21 +235,13 @@ public class Check_Activity extends AppCompatActivity {
                 Log.d("Check_Activity.class","111111111111111"+report_item.getZhengpath()+report_item.getCepath());
                 report_item.save();
                 judge=1;
-
+                Message message=new Message();
+                message.what=1;
+                LoginHandler.sendMessage(message);
             }
         });
-        for(;;){
-            if(judge==1){
-                Toast.makeText(this, "上传成功", Toast.LENGTH_SHORT).show();
-                finish();
-                break;
-            }else if(judge==2){
-                Toast.makeText(this, "上传失败,请重试", Toast.LENGTH_SHORT).show();
-                break;
-            }else{
-                sleep(2000);
-            }
-        }
+
+
 
     }
 }

@@ -47,7 +47,7 @@ public class OnlyService extends Service {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        UpdataUserFive();
+        //UpdataUserFive();
         Log.d("11111111","111111111111111114444444444");
         Find_Finish_Order_Class find_finish_order_class=new Find_Finish_Order_Class();
         new Thread(find_finish_order_class).start();
@@ -198,7 +198,7 @@ public class OnlyService extends Service {
         builder1.add("User_phonenumber",User_phonenumber)
                 .add("time",what_time);
         Request request1=new Request.Builder()
-                .url("http://192.168.43.96:8085/TheBestServe/Renew_Report_DetailServlet")
+                .url("http://123.57.235.123:8080/TheBestServe/Renew_Report_DetailServlet")
                 .post(builder1.build())
                 .build();
         Response response1=null;

@@ -15,11 +15,20 @@ public class User_Info extends LitePalSupport {
     private int User_age=0;
     private String User_birthday=null;
     private String  User_useDay =null;
+    private String User_five_id_time=null;
     private String User_five_fen;
     private String User_five_ci;
     private String User_five_zheng;
     private String User_five_yi;
     private String User_five_yu;
+
+    public String getUser_five_id_time() {
+        return User_five_id_time;
+    }
+
+    public void setUser_five_id_time(String user_five_id_time) {
+        User_five_id_time = user_five_id_time;
+    }
 
     public String getUser_reallyname() {
         return User_reallyname;

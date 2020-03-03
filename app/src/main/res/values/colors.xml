@@ -14,4 +14,8 @@
     <color name="color_healthyGreen">#55A005</color>
     <color name="color_errorRed">#C91D2B</color>
     <color name="color_warnOrange">#C79056</color>
+
+    <color name="color_healthyGreen_qian">#1A1CA005</color>
+    <color name="color_errorRed_qian">#1AC91D2B</color>
+    <color name="color_warnOrange_qian">#1AC79056</color>
 </resources>

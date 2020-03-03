@@ -53,44 +53,54 @@
                 android:id="@+id/viewpager_report_item"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1" >
+
+            </androidx.viewpager.widget.ViewPager>
 
 
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_healthy_backcolor" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="10"
+                android:layout_weight="11"
+                android:background="@color/color_gray"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/button7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/button_mainviewpager_1_circle_shape"
-                    android:text="@string/titaishuju"/>
+                    android:text="@string/titaishuju" />
 
                 <Button
                     android:id="@+id/button8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/button_mainviewpager_2_circle_shape"
-                    android:text="@string/fengxianpinggu"
-                    />
+                    android:text="@string/fengxianpinggu" />
 
                 <Button
                     android:id="@+id/button9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
+                    android:layout_weight="1"
                     android:background="@drawable/button_mainviewpager_2_circle_shape"
                     android:text="@string/baogaojielun" />
             </LinearLayout>

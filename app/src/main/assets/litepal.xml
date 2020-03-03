@@ -8,6 +8,7 @@
         <mapping class="Data_Class.User_Info"/>
         <mapping class="Data_Class.Report_item"/>
         <mapping class="Data_Class.Report_detail"/>
+
     </list>
 
 </litepal>

@@ -13,13 +13,14 @@
     <string name="how_do_check">点击左侧按钮获取验证码</string>
     <string name="again_input_password">再次输入密码</string>
     <string name="check_phone">验证手机号</string>
+    <string name="changename">为保证您的数据隐私\n我们只需要您的用户名</string>
 
     <!--主界面菜单-->
     <string name="mainView">首页</string>
     <string name="item1">用户信息</string>
     <string name="item_help">使用帮助</string>
     <string name="item2">体态排行榜</string>
-    <string name="item3">关于软件</string>
+    <string name="item3">退出登录</string>
     <string name="jiancejiemian">检测界面</string>
     <string name="baogaojiemian">报告界面</string>
     <string name="mainView_Title_small">永久免费，放心使用</string>
@@ -30,7 +31,7 @@
     <string name="di_back">天使用，准备开始吧!</string>
     <!--主页面左侧网格布局-->
     <string name="zonghepingfen">综合评分</string>
-    <string name="tijiancishu">体检次数</string>
+    <string name="tijiancishu">体检状态</string>
     <string name="zhengchangbuwei">正常部位</string>
     <string name="yichangbuwei">异常部位</string>
     <string name="yufangbuwei">预防部位</string>
@@ -54,6 +55,9 @@
     <string name="titaishuju">体态数据</string>
     <string name="fengxianpinggu">风险评估</string>
     <string name="baogaojielun">报告结论</string>
+    <string name="zhengchang">正常</string>
+    <string name="yichang">高风险</string>
+    <string name="chakanxiangqing">详情</string>
 
 
 </resources>

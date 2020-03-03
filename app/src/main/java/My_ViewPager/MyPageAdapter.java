@@ -47,7 +47,6 @@ public class MyPageAdapter extends PagerAdapter {
     private Context context;
     private SwipeRefreshLayout swipeRefreshLayout;
     private Button mainImportantButton;
-    private ImageView imageView;
     private TextView  textView1;
     private TextView  textView2;
     private TextView  textView3;
@@ -62,19 +61,13 @@ public class MyPageAdapter extends PagerAdapter {
         mViewList.add(view2);
         listView=(ListView) view2.findViewById(R.id.listview);
         swipeRefreshLayout = (SwipeRefreshLayout) view2.findViewById(R.id.refresh);
-        imageView=view1.findViewById(R.id.imageView_left);
+
         textView1=view1.findViewById(R.id.tt1);
         textView2=view1.findViewById(R.id.tt2);
         textView3=view1.findViewById(R.id.tt3);
         textView4=view1.findViewById(R.id.tt4);
         textView5=view1.findViewById(R.id.tt5);
         textView_day=view1.findViewById(R.id.textViewl2);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                init_left_grid();
-            }
-        });
 
         init_left_button();
         init_left_grid();

@@ -6,4 +6,15 @@
     android:layout_height="match_parent"
     tools:context="Toolar_toNext.The_Charts_Activity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="排行榜模块正在准备中，\n敬请期待" />
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

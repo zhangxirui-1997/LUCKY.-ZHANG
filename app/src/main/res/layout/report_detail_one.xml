@@ -3,14 +3,43 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_ce"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/report_detail_button_background_shape"
+            android:text="@string/cemianzhao"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/button_zheng"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/report_detail_button_background_shape"
+            android:text="@string/zhengmianzhao"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="1">
+        android:layout_marginBottom="10dp">
 
         <ImageView
             android:layout_width="60dp"
@@ -26,31 +55,7 @@
             android:id="@+id/imageView7"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="center" />
-
-        <Button
-            android:id="@+id/button_ce"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/report_detail_button_background_shape"
-            android:text="@string/cemianzhao"
-            android:textSize="10sp" />
-
-        <Button
-            android:id="@+id/button_zheng"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/button_ce"
-            android:background="@drawable/report_detail_button_background_shape"
-            android:text="@string/zhengmianzhao"
-            android:textSize="10sp" />
+            android:scaleType="centerCrop" />
 
     </RelativeLayout>
 

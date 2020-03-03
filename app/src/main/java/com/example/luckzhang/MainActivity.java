@@ -9,31 +9,25 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import org.litepal.LitePal;
 
-import java.util.List;
-
 import AllService.OnlyService;
-import AllService.RenewService;
+import Data_Class.Report_detail;
 import Data_Class.Report_item;
+import Data_Class.User_Info;
+import LoginAndRegister.LoginActivity;
 import LoginAndRegister.User_detail_Activity;
 import My_ViewPager.MyPageAdapter;
-import SomeTools.MyItemAdapter;
-import Toolar_toNext.About_soft_Activity;
 import Toolar_toNext.Help_Activity;
 import Toolar_toNext.The_Charts_Activity;
 
@@ -47,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private Button button_left;
     private Button button_right;
-    private boolean want_refresh=true;
+    private int want_refresh=0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +72,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        if(want_refresh){
-            viewpager_initialize();
+
+        viewpager_initialize();
+        if(want_refresh==0){
+            viewPager.setCurrentItem(0);
+        }else if(want_refresh==1){
+            viewPager.setCurrentItem(1);
         }
+
+
         super.onStart();
     }
 
@@ -122,11 +123,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 if(position==0){
-                    want_refresh=true;
+                    want_refresh=0;
                     button_left.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_1_circle_shape,null));
                     button_right.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_2_circle_shape,null));
                 }else if(position==1){
-                    want_refresh=false;
+                    want_refresh=1;
                     button_left.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_2_circle_shape,null));
                     button_right.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_1_circle_shape,null));                }
             }
@@ -145,22 +146,44 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.menu_item1:
                         intentssdf.setClass(MainActivity.this, User_detail_Activity.class);
+                        startActivity(intentssdf);
                         break;
                     case R.id.menu_item2:
                         intentssdf.setClass(MainActivity.this, The_Charts_Activity.class);
+                        startActivity(intentssdf);
                         break;
                     case R.id.item_help:
                         intentssdf.setClass(MainActivity.this, Help_Activity.class);
+                        startActivity(intentssdf);
                         break;
                     case R.id.menu_item3:
-                        intentssdf.setClass(MainActivity.this, About_soft_Activity.class);
+                        AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("注意")
+                                .setMessage("确定退出登录并销毁全部记录？")
+                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        LitePal.deleteAll(User_Info.class);
+                                        LitePal.deleteAll(Report_item.class);
+                                        LitePal.deleteAll(Report_detail.class);
+                                        Intent intent=new Intent();
+                                        intent.setClass(MainActivity.this, LoginActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                })
+                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                        builder.create().show();
                         break;
                 }
-                startActivity(intentssdf);
                 return false;
             }
         });
-
     }
 
     //获取权限，下面是回调
