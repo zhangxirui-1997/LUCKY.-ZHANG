@@ -165,9 +165,9 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
         //开始判断
         Report_Some_ills head_sealine=new Report_Some_ills();
         head_sealine.setIlls_name("头部侧倾");
-        head_sealine.setIlls_statue(angle_jiandu(jian_calculate(report_detail.getZheng_left_eye_y(),report_detail.getZheng_right_eye_y()),
-                jian_calculate(report_detail.getZheng_right_eye_x(),report_detail.getZheng_right_eye_x())));
-        head_sealine.setIlls_tips("toubuceqing");
+        head_sealine.setIlls_statue(angle_jiandu(jian_calculate(report_detail.getZheng_left_ear_y(),report_detail.getZheng_right_ear_y()),
+                jian_calculate(report_detail.getZheng_right_ear_x(),report_detail.getZheng_right_ear_x())));
+        head_sealine.setIlls_tips("心脑血管疾病");
         head_sealine.setBitmap(Bitmap.createBitmap(copy_zheng_Bitmap,
                 Math.round(Float.valueOf(report_detail.getZheng_right_eye_x()))-100,
                 Math.round(Float.valueOf(report_detail.getZheng_right_eye_y()))-100,
@@ -180,7 +180,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
         head_line.setIlls_name("头部前倾");
         head_line.setIlls_statue((angle_jiandu(jian_calculate(report_detail.getCe_neck_x(),report_detail.getCe_right_ear_x()),
                 jian_calculate(report_detail.getCe_neck_y(),report_detail.getCe_right_ear_y())))/2);
-        head_line.setIlls_tips("toubuqiangqing");
+        head_line.setIlls_tips("韧带慢性劳损、颈椎病");
         head_line.setBitmap(Bitmap.createBitmap(copy_ce_Bitmap,
                 Math.round(Float.valueOf(report_detail.getCe_neck_x()))-100,
                 Math.round(Float.valueOf(report_detail.getCe_neck_y()))-100,
@@ -195,7 +195,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
         float shoulder_average_y=(Float.valueOf(report_detail.getZheng_left_shoulder_x())+Float.valueOf(report_detail.getZheng_right_shoulder_x()))/2;
         neck_line.setIlls_statue(angle_jiandu(jian_calculate(report_detail.getZheng_neck_x(),Float.toString( shoulder_average_x)),
                 jian_calculate(report_detail.getZheng_neck_y(),Float.toString(shoulder_average_y))));
-        neck_line.setIlls_tips("jizhuiyiwei");
+        neck_line.setIlls_tips("颈椎突出、疼痛");
         neck_line.setBitmap(Bitmap.createBitmap(copy_zheng_Bitmap,
                 Math.round(Float.valueOf(report_detail.getZheng_neck_x()))-200,
                 Math.round(Float.valueOf(report_detail.getZheng_neck_y()))-200,
@@ -207,7 +207,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
         shoulder_sealine.setIlls_name("肩部侧倾");
         shoulder_sealine.setIlls_statue(angle_jiandu(jian_calculate(report_detail.getZheng_left_shoulder_y(),report_detail.getZheng_right_shoulder_y()),
                 jian_calculate(report_detail.getZheng_left_shoulder_x(),report_detail.getZheng_right_shoulder_x())));
-        shoulder_sealine.setIlls_tips("jianbuceqing");
+        shoulder_sealine.setIlls_tips("脊柱疼痛、骨刺");
         shoulder_sealine.setBitmap(Bitmap.createBitmap(copy_zheng_Bitmap,
                 Math.round(Float.valueOf(report_detail.getZheng_right_shoulder_x()))-100,
                 Math.round(Float.valueOf(report_detail.getZheng_right_shoulder_y()))-200,
@@ -222,7 +222,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
         float hip_average_y=(Float.valueOf(report_detail.getZheng_left_hip_y())+Float.valueOf(report_detail.getZheng_right_hip_y()))/2;
         spine_line.setIlls_statue(angle_jiandu(jian_calculate(Float.toString(hip_average_x),Float.toString(shoulder_average_x)),
                 jian_calculate(Float.toString(hip_average_y),Float.toString(shoulder_average_y))));
-        spine_line.setIlls_tips("jizhuyiwei");
+        spine_line.setIlls_tips("腰疼、长短腿");
         spine_line.setBitmap(Bitmap.createBitmap(copy_zheng_Bitmap,
                 Math.round(Float.valueOf(report_detail.getZheng_right_shoulder_x()))-100,
                 Math.round(Float.valueOf(report_detail.getZheng_right_shoulder_y()))-100,
@@ -234,8 +234,8 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
         Report_Some_ills hip_sealine=new Report_Some_ills();
         hip_sealine.setIlls_name("髋部侧倾");
         hip_sealine.setIlls_statue(angle_jiandu(jian_calculate(report_detail.getZheng_left_hip_y(),report_detail.getZheng_right_hip_y()),
-                jian_calculate(report_detail.getZheng_right_hip_x(),report_detail.getZheng_right_hip_x())));
-        hip_sealine.setIlls_tips("kuanbuceqing");
+                jian_calculate(report_detail.getZheng_left_hip_x(),report_detail.getZheng_right_hip_x())));
+        hip_sealine.setIlls_tips("慢性疼痛、腰椎间盘突出");
         hip_sealine.setBitmap(Bitmap.createBitmap(copy_zheng_Bitmap,
                 Math.round(Float.valueOf(report_detail.getZheng_right_hip_x()))-100,
                 Math.round(Float.valueOf(report_detail.getZheng_right_hip_y()))-300,
@@ -264,7 +264,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
             ce_hip_state.setIlls_name("髋部异位");
         }
         ce_hip_state.setIll_max(31);
-        ce_hip_state.setIlls_tips("60");
+        ce_hip_state.setIlls_tips("协调性差、神经受压迫");
         ce_hip_state.setIlls_statue((angle_jiandu(jian_calculate(report_detail.getCe_right_hip_x(),report_detail.getCe_right_knee_x()),
                 jian_calculate(report_detail.getCe_right_hip_y(),report_detail.getCe_right_knee_y()))+
                 angle_jiandu(jian_calculate(report_detail.getCe_right_hip_x(),report_detail.getCe_neck_x()),
@@ -285,14 +285,12 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
                 600));
         if(right_knee_x>right_ankle_x&&right_knee_x>right_hip_x){//x型腿
             legs_line.setIlls_name("X型腿");
-            legs_line.setIlls_tips("");
         }else if(right_ankle_x<right_knee_x&&right_hip_x<right_knee_x){//o型腿
             legs_line.setIlls_name("O型腿");
-            legs_line.setIlls_tips("");
         }else{
             legs_line.setIlls_name("腿部异常");
-            legs_line.setIlls_tips("");
         }
+        legs_line.setIlls_tips("半月板损伤、关节炎");
         legs_line.setIll_max(31);
         legs_line.setIlls_statue((angle_jiandu(jian_calculate(report_detail.getZheng_right_hip_x(),report_detail.getZheng_right_knee_x()),
                 jian_calculate(report_detail.getZheng_right_hip_y(),report_detail.getZheng_right_knee_y()))+
@@ -320,7 +318,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
             ce_knee_state.setIlls_name("膝盖异位");
         }
         ce_knee_state.setIll_max(31);
-        ce_knee_state.setIlls_tips("60");
+        ce_knee_state.setIlls_tips("膝关节畸形、全身平衡受损");
         ce_knee_state.setIlls_statue((angle_jiandu(jian_calculate(report_detail.getCe_right_hip_x(),report_detail.getCe_right_knee_x()),
                 jian_calculate(report_detail.getCe_right_hip_y(),report_detail.getCe_right_knee_y()))+
                 angle_jiandu(jian_calculate(report_detail.getCe_right_knee_x(),report_detail.getCe_right_ankle_x()),

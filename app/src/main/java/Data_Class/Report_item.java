@@ -10,7 +10,17 @@ public class Report_item extends LitePalSupport {
     private String zhengpath;
     private String cepath;
     private String statue_now;
+    private boolean judge;
 //最后一个是状态位，未完成是还没有收到，完成是代表已经收到了
+
+
+    public boolean isJudge() {
+        return judge;
+    }
+
+    public void setJudge(boolean judge) {
+        this.judge = judge;
+    }
 
     public String getZhengpath() {
         return zhengpath;

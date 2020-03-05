@@ -4,7 +4,10 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
+import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -20,8 +23,10 @@ import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
+import android.media.ExifInterface;
 import android.media.Image;
 import android.media.ImageReader;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -38,10 +43,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.litepal.LitePal;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -74,6 +82,8 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
     private SurfaceTexture mSurfaceTexture;
     private String mCurrentCameraId;
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
+    private int mSensorOrientation;
+    private CameraCharacteristics cameraCharacteristics;
 
     static {// /为了使照片竖直显示
         ORIENTATIONS.append(Surface.ROTATION_0, 90);
@@ -161,7 +171,6 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
         sensorManager.unregisterListener(this);
     }
 
-
     /**
      * 获取手机旋转角度
      */
@@ -178,7 +187,6 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
             listener.onOrientationChange(degreeX, degreeY, degreeZ);
         }
     }*/
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -280,7 +288,7 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
         float selectProportion = 0;
         try {
             float viewProportion = (float) mTextureView.getWidth() / (float) mTextureView.getHeight();
-            CameraCharacteristics cameraCharacteristics = mCameraManager.getCameraCharacteristics(mCurrentCameraId);
+            cameraCharacteristics = mCameraManager.getCameraCharacteristics(mCurrentCameraId);
             StreamConfigurationMap streamConfigurationMap = cameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
             Size[] sizes = streamConfigurationMap.getOutputSizes(ImageFormat.JPEG);
             for (int i = 0; i < sizes.length; i++) {
@@ -306,6 +314,7 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
                     }
                 }
             }
+            mSensorOrientation = cameraCharacteristics.get(CameraCharacteristics.SENSOR_ORIENTATION);
 
         } catch (CameraAccessException e) {
             e.printStackTrace();
@@ -376,7 +385,7 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
                     /**
                      * 创建获取会话
                      * 这里会有一个容易忘记的坑,那就是Arrays.asList(surface, mImageReader.getSurface())这个方法
-                     * 这个方法需要你导入后面需要操作功能的所有surface,比如预览/拍照如果你2个都要操作那就要导入2个
+                         * 这个方法需要你导入后面需要操作功能的所有surface,比如预览/拍照如果你2个都要操作那就要导入2个
                      * 否则后续操作没有添加的那个功能就报错surface没有准备好,这也是我为什么先初始化ImageReader的原因,因为在这里就可以拿到ImageReader的surface了
                      */
                     mCameraDevice.createCaptureSession(Arrays.asList(mSurface, mImageReader.getSurface()), mSessionStateCallback, mChildHandler);
@@ -421,7 +430,6 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
      */
     private void initCameraCaptureSessionStateCallback() {
         mSessionStateCallback = new CameraCaptureSession.StateCallback() {
-
 
             //摄像头完成配置，可以处理Capture请求了。
             @Override
@@ -514,8 +522,9 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
      */
     private void initImageReader() {
         //创建图片读取器,参数为分辨率宽度和高度/图片格式/需要缓存几张图片,我这里写的2意思是获取2张照片
-        mImageReader = ImageReader.newInstance(1080, 1920, ImageFormat.JPEG, 2);
+        mImageReader = ImageReader.newInstance(1080, 1920, ImageFormat.JPEG, 1);
         mImageReader.setOnImageAvailableListener(new ImageReader.OnImageAvailableListener() {
+            @RequiresApi(api = Build.VERSION_CODES.Q)
             @Override
             public void onImageAvailable(ImageReader reader) {
 //        image.acquireLatestImage();//从ImageReader的队列中获取最新的image,删除旧的
@@ -547,10 +556,12 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
                     ByteBuffer byteBuffer = image.getPlanes()[0].getBuffer();
                     byte[] bytes = new byte[byteBuffer.remaining()];
                     byteBuffer.get(bytes);
+
                     fileOutputStream.write(bytes);
                     fileOutputStream.flush();
                     fileOutputStream.close();
                     image.close();
+
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -572,7 +583,8 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
 //            int rotation = getWindowManager().getDefaultDisplay().getRotation();
 //            Log.d(TAG, "11111111111takePicture: 手机方向="+rotation);
 //            Log.d(TAG, "1111111111takePicture: 照片方向="+ORIENTATIONS.get(rotation));
-            captureRequestBuilder.set(CaptureRequest.JPEG_ORIENTATION, 90);//项目不需要,直接写死90度 将照片竖立
+            int rotation =CameraActivity.this.getWindowManager().getDefaultDisplay().getRotation();
+            captureRequestBuilder.set(CaptureRequest.JPEG_ORIENTATION, getOrientation(rotation));//项目不需要,直接写死90度 将照片竖立
             Surface surface = mImageReader.getSurface();
             captureRequestBuilder.addTarget(surface);
             CaptureRequest request = captureRequestBuilder.build();
@@ -581,6 +593,15 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
             e.printStackTrace();
         }
     }
+
+    private int getOrientation(int rotation) {
+        // Sensor orientation is 90 for most devices, or 270 for some devices (eg. Nexus 5X)
+        // We have to take that into account and rotate JPEG properly.
+        // For devices with orientation of 90, we simply return our mapping from ORIENTATIONS.
+        // For devices with orientation of 270, we need to rotate the JPEG 180 degrees.
+        return (ORIENTATIONS.get(rotation) + mSensorOrientation + 270) % 360;
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -641,8 +662,6 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
         mStateCallback = null;
 
     }
-
-
 
     private void initjudge(){
         intent=getIntent();

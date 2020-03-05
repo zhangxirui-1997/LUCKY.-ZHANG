@@ -10,7 +10,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.hardware.camera2.CameraCharacteristics;
+import android.media.ExifInterface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -26,11 +28,16 @@ import org.jetbrains.annotations.NotNull;
 import org.litepal.LitePal;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import Data_Class.Report_detail;
 import Data_Class.Report_item;
 import Data_Class.User_Info;
 import LoginAndRegister.LoginActivity;
@@ -187,6 +194,7 @@ public class Check_Activity extends AppCompatActivity {
 
     //上传文件
     private void UpUpGoGoGo(){
+        changepicture(path_zheng,path_ce);
         check_button.setEnabled(false);
         progressBar.setVisibility(View.VISIBLE);
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");// HH:mm:ss
@@ -206,6 +214,9 @@ public class Check_Activity extends AppCompatActivity {
         builder.addFormDataPart("time",dateString);
         final File zheng_file=new File(path_zheng);
         final File ce_file=new File(path_ce);
+
+
+
         RequestBody zheng_fileBody=RequestBody.Companion.create(zheng_file,mediaType);
         RequestBody ce_fileBody=RequestBody.Companion.create(ce_file,mediaType);
         builder.addFormDataPart("zheng",zheng_file.getName(),zheng_fileBody);
@@ -234,16 +245,115 @@ public class Check_Activity extends AppCompatActivity {
                 report_item.setStatue_now("未完成");
                 report_item.setZhengpath(zheng_file.getName());
                 report_item.setCepath(ce_file.getName());
+                report_item.setJudge(true);
                 Log.d("Check_Activity.class","111111111111111"+report_item.getZhengpath()+report_item.getCepath());
+
                 report_item.save();
+
                 judge=1;
                 Message message=new Message();
                 message.what=1;
                 LoginHandler.sendMessage(message);
             }
         });
+    }
+    public void changepicture(String zhengP,String ceP){
+        //第一步
+        Bitmap picture1 = BitmapFactory.decodeFile(zhengP);
+        //判断旋转角度
+        ExifInterface exifInterface = null;
+        try {
+            exifInterface=new ExifInterface(zhengP);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(exifInterface==null){
+            Toast.makeText(this, "图片旋转发生错误，请联系开发人员", Toast.LENGTH_SHORT).show();
+        }
+        String jiaodu = exifInterface.getAttribute(ExifInterface.TAG_ORIENTATION);
+        int degree=0;
+        if(jiaodu.equals("3")){
+            degree=180;
+        }else if(jiaodu.equals("6")){
+            degree=90;
+        }else if(jiaodu.equals("8")){
+            degree=270;
+        }
+        //第二步
+        Bitmap resizePicture1 = rotatePicture(picture1, degree);
+        //第三步
+        saveBmpToPath(resizePicture1, zhengP);
+
+
+        //第一步
+        Bitmap picture2 = BitmapFactory.decodeFile(ceP);
+        //判断旋转角度
+        ExifInterface exifInterface2 = null;
+        try {
+            exifInterface2=new ExifInterface(ceP);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(exifInterface2==null){
+            Toast.makeText(this, "图片旋转发生错误，请联系开发人员", Toast.LENGTH_SHORT).show();
+        }
+        String jiaodu2 = exifInterface2 .getAttribute(ExifInterface.TAG_ORIENTATION);
+        int degree2=0;
+        if(jiaodu2.equals("3")){
+            degree2=180;
+        }else if(jiaodu2.equals("6")){
+            degree2=90;
+        }else if(jiaodu2.equals("8")){
+            degree2=270;
+        }
+        //第二步
+        Bitmap resizePicture2 = rotatePicture(picture2, degree2);
+        //第三步
+        saveBmpToPath(resizePicture2, ceP);
 
 
 
+
+    }
+    /**
+     * @Description 旋转图片一定角度
+     * @param bitmap 要旋转的图片
+     * @param degree 要旋转的角度
+     * @return 旋转后的图片
+     */
+    public Bitmap rotatePicture(final Bitmap bitmap, final int degree) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(degree);
+        Bitmap resizeBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        return resizeBitmap;
+    }
+    /**
+     * @Description 保存图片到指定路径
+     * @param bitmap 要保存的图片
+     * @param filePath 目标路径
+     * @return 是否成功
+     */
+    public boolean saveBmpToPath(final Bitmap bitmap, final String filePath) {
+        if (bitmap == null || filePath == null) {
+            return false;
+        }
+        boolean result = false; //默认结果
+        File file = new File(filePath);
+        OutputStream outputStream = null; //文件输出流
+        try {
+            outputStream = new FileOutputStream(file);
+            result = bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream); //将图片压缩为JPEG格式写到文件输出流，100是最大的质量程度
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (outputStream != null) {
+                try {
+                    outputStream.close(); //关闭输出流
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return result;
     }
 }

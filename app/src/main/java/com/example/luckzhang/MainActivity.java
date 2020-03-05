@@ -21,6 +21,8 @@ import android.widget.Button;
 
 import org.litepal.LitePal;
 
+import java.util.List;
+
 import AllService.OnlyService;
 import Data_Class.Report_detail;
 import Data_Class.Report_item;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button_left;
     private Button button_right;
     private int want_refresh=0;
-
+    private MyPageAdapter myPageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +81,6 @@ public class MainActivity extends AppCompatActivity {
         }else if(want_refresh==1){
             viewPager.setCurrentItem(1);
         }
-
-
         super.onStart();
     }
 
@@ -114,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void viewpager_initialize(){
-        viewPager.setAdapter(new MyPageAdapter(this));
+        myPageAdapter=new MyPageAdapter(this);
+        viewPager.setAdapter(myPageAdapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -179,6 +180,16 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 });
                         builder.create().show();
+                        break;
+                    case R.id.item_cleanorder:
+                        List<Report_item> list=LitePal.findAll(Report_item.class);
+                        for(Report_item report_item:list){
+                            if(report_item.getStatue_now().equals("未完成")){
+                                report_item.setJudge(false);
+                                report_item.save();
+                            }
+                        }
+                        myPageAdapter.init_right_listview();
                         break;
                 }
                 return false;

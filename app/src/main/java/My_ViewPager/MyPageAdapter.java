@@ -1,6 +1,8 @@
 package My_ViewPager;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
@@ -23,12 +25,14 @@ import com.example.luckzhang.R;
 import com.example.luckzhang.Record_detail_Activity;
 
 import org.litepal.LitePal;
+import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import Data_Class.Report_item;
@@ -52,6 +56,7 @@ public class MyPageAdapter extends PagerAdapter {
     private TextView  textView3;
     private TextView  textView4;
     private TextView  textView5;
+    private TextView textView6;
     private TextView  textView_day;
     public MyPageAdapter(Context context1) {
         this.context=context1;
@@ -68,7 +73,7 @@ public class MyPageAdapter extends PagerAdapter {
         textView4=view1.findViewById(R.id.tt4);
         textView5=view1.findViewById(R.id.tt5);
         textView_day=view1.findViewById(R.id.textViewl2);
-
+        textView6=view1.findViewById(R.id.sdfaadf);
         init_left_button();
         init_left_grid();
         init_right_listview();
@@ -99,6 +104,7 @@ public class MyPageAdapter extends PagerAdapter {
             textView3.setText(user_info.getUser_five_zheng());
             textView4.setText(user_info.getUser_five_yi());
             textView5.setText(user_info.getUser_five_yu());
+            textView6.setText("检测时间："+user_info.getUser_five_id_time());
             SimpleDateFormat sdf11 = new SimpleDateFormat("yyyy-MM-dd");
             Date dated= null;
             try {
@@ -113,7 +119,7 @@ public class MyPageAdapter extends PagerAdapter {
     }
 
     //初始化右侧的列表
-    private void init_right_listview(){
+    public void init_right_listview(){
         //下面这个方法是为了让refresh和listview不冲突
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
 
@@ -135,7 +141,16 @@ public class MyPageAdapter extends PagerAdapter {
                 }
                 swipeRefreshLayout.setEnabled(enable);
             }});
-        List<Report_item> items= LitePal.findAll(Report_item.class);
+
+        List<Report_item> items=LitePal.findAll(Report_item.class);
+
+        Iterator<Report_item> iterator=items.iterator();
+        while (iterator.hasNext()){
+            Report_item re=iterator.next();
+            if(!re.isJudge()){
+                iterator.remove();
+            }
+        }
         /*if(items.size()==0){
             return;
         }*/
@@ -157,6 +172,36 @@ public class MyPageAdapter extends PagerAdapter {
 
             }
         });
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(final AdapterView<?> parent, View view, int position, long id) {
+                final TextView time=view.findViewById(R.id.textView7);
+                AlertDialog.Builder builder=new AlertDialog.Builder(context)
+                        .setTitle("注意")
+                        .setMessage("确定要删除"+time.getText().toString()+"的记录吗？")
+                        .setPositiveButton("确定",new AlertDialog.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                List<Report_item> report_itemList=LitePal.findAll(Report_item.class);
+                                for(Report_item s:report_itemList){
+                                    if(s.getItem_time().equals(time.getText().toString())){
+                                        s.setJudge(false);
+                                        s.save();
+                                        init_right_listview();
+                                    }
+                                }
+                            }
+                        })
+                        .setNegativeButton("取消",new AlertDialog.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                builder.create().show();
+                return true;
+            }
+        });
 
 
     }
@@ -165,7 +210,7 @@ public class MyPageAdapter extends PagerAdapter {
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
                 android.R.color.holo_red_light,
                  android.R.color.holo_orange_light);
-        swipeRefreshLayout.setDistanceToTriggerSync(500);
+        swipeRefreshLayout.setDistanceToTriggerSync(400);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
              @Override
              public void onRefresh() {
