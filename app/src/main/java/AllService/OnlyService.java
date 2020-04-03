@@ -38,20 +38,16 @@ public class OnlyService extends Service {
 
     @Override
     public void onCreate() {
-        Log.d("11111111","11111111111111111");
+
         CreatDicument();
-        Log.d("11111111","1111111111111111122222222");
         try {
             DownloadWelcomeImg();
-            Log.d("11111111","11111111111111111333333333");
         } catch (IOException e) {
             e.printStackTrace();
         }
         //UpdataUserFive();
-        Log.d("11111111","111111111111111114444444444");
         Find_Finish_Order_Class find_finish_order_class=new Find_Finish_Order_Class();
         new Thread(find_finish_order_class).start();
-        Log.d("11111111","111111111111111115555555555");
 
         super.onCreate();
 
@@ -188,7 +184,6 @@ public class OnlyService extends Service {
     }*/
     //查找数据是否已经完成
     private boolean find_report(String User_phonenumber,String what_time,String zhengpath,String cepath) throws IOException, JSONException {
-        Log.d("11111111","111111111111111115555555555查找数据开始");
         OkHttpClient okHttpClient1=new OkHttpClient.Builder()
                 .connectTimeout(30,TimeUnit.SECONDS)
                 .readTimeout(30,TimeUnit.SECONDS)
@@ -209,11 +204,9 @@ public class OnlyService extends Service {
             e.printStackTrace();
         }
         if(response1==null){
-            Log.d("1111111111","11111111response为空");
             return false;
         }
         String ks=response1.body().string();
-        Log.d("11111111","111111111111111115555555555"+ks);
         if(ks.equals("no")){
             return false;
         }
@@ -289,7 +282,6 @@ public class OnlyService extends Service {
                         user_info= LitePal.findFirst(User_Info.class);
                         sleep(5000);
                     }
-                    Log.d("11111111","111111111111111115555555555更新信息表");
                     OkHttpClient okHttpClient = new OkHttpClient();
                     FormBody.Builder builder=new FormBody.Builder();
                     builder.add("User_phonenumber",user_info.getUser_phonenumber());
@@ -312,7 +304,6 @@ public class OnlyService extends Service {
                     }
                     try {
                         jsonObject=new JSONObject(response.body().string());
-                        Log.d("11111111","111111111111111115555555555"+jsonObject.toString());
                         user_info.setUser_five_fen(jsonObject.getString("User_five_fen"));
                         user_info.setUser_five_ci(jsonObject.getString("User_five_ci"));
                         user_info.setUser_five_zheng(jsonObject.getString("User_five_zheng"));
@@ -324,7 +315,6 @@ public class OnlyService extends Service {
                         e.printStackTrace();
                     }
                     user_info.save();
-                    Log.d("11111111","111111111111111115555555555"+user_info.getUser_five_zheng());
                     sleep(5000);
                 }
 

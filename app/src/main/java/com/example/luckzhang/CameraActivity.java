@@ -94,7 +94,7 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
 
     private Button button_ok;
     private Button button_notok;
-
+    private ImageView imageView_luokuo;
     private SensorManager sensorManager;
     private Sensor magnticSensor;
     private Sensor accelerometerSensor;
@@ -140,6 +140,11 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
         float z = event.values[2];
         int xint=Math.round(x);
         imageView.setRotation(xint);
+        if(xint!=0){
+            textView.setText("手机倾斜！请保持水平！");
+        }else{
+            textView.setText("当前保持水平状态");
+        }
         Log.d("111111","1111111111"+x+" "+y+" "+z);
         //TODO 利用获得的三个float传感器值做些操作
     }
@@ -195,6 +200,7 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
         initSensor();
         mTextureView = findViewById(R.id.textureView);
         mBtnPhotograph = findViewById(R.id.button4);
+        imageView_luokuo=findViewById(R.id.imageView11);
         mBtnPhotograph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -667,7 +673,11 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
         intent=getIntent();
         judge=Integer.parseInt(intent.getStringExtra("judge"));
         Log.d(TAG,"1111111111judge:"+judge);
-
+        if(judge==0){
+            imageView_luokuo.setImageDrawable(getDrawable(R.drawable.zhengluokuo));
+        }else if(judge==1){
+            imageView_luokuo.setImageDrawable(getDrawable(R.drawable.celuokuo));
+        }
         button_ok=findViewById(R.id.button6);
         button_notok=findViewById(R.id.button5);
         button_ok.setVisibility(View.GONE);

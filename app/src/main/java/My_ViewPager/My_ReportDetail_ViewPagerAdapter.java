@@ -1,6 +1,7 @@
 package My_ViewPager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -14,11 +15,13 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.luckzhang.R;
+import com.example.luckzhang.WebActivity;
 import com.mob.wrappers.UMSSDKWrapper;
 
 import org.litepal.LitePal;
@@ -156,7 +159,14 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Intent intent=new Intent();
+                String[] tem=new String []{
+                        "toubuceqing","toubuqianqing","jingzhuiyiwei","jianbuceqing","jizhuyiwei",
+                        "kuanbuceqing","kuanbuyiwei","tuibuyichang","xigaiyichang"
+                };
+                intent.setClass(context, WebActivity.class);
+                intent.putExtra("key",tem[position]);
+                context.startActivity(intent);
             }
         });
     }
