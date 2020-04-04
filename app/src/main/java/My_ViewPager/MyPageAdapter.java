@@ -38,6 +38,7 @@ import java.util.List;
 import Data_Class.Report_item;
 import Data_Class.User_Info;
 import SomeTools.MyItemAdapter;
+import Toolar_toNext.Help_Activity;
 
 /*
 * viewpager页的初始化
@@ -58,7 +59,8 @@ public class MyPageAdapter extends PagerAdapter {
     private TextView  textView5;
     private TextView textView6;
     private TextView  textView_day;
-    public MyPageAdapter(Context context1) {
+    private TextView textView15;
+    public MyPageAdapter(final Context context1) {
         this.context=context1;
         view1=View.inflate(context,R.layout.main_left,null);
         view2=View.inflate(context,R.layout.main_right,null);
@@ -74,6 +76,14 @@ public class MyPageAdapter extends PagerAdapter {
         textView5=view1.findViewById(R.id.tt5);
         textView_day=view1.findViewById(R.id.textViewl2);
         textView6=view1.findViewById(R.id.sdfaadf);
+        textView15=view1.findViewById(R.id.textView15);
+        textView15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentasfs=new Intent(context, Help_Activity.class);
+                context.startActivity(intentasfs);
+            }
+        });
         init_left_button();
         init_left_grid();
         init_right_listview();

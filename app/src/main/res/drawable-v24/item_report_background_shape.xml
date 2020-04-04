@@ -29,6 +29,6 @@
         />-->
 
     <!--边界-->
-    <stroke android:width="2dp" android:color="#44B891" />
+    <stroke android:width="2dp" android:color="@color/colorPrimary" />
 
 </shape>

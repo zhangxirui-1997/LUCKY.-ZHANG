@@ -674,9 +674,9 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
         judge=Integer.parseInt(intent.getStringExtra("judge"));
         Log.d(TAG,"1111111111judge:"+judge);
         if(judge==0){
-            imageView_luokuo.setImageDrawable(getDrawable(R.drawable.zhengluokuo));
+            imageView_luokuo.setImageDrawable(getDrawable(R.mipmap.zheng1));
         }else if(judge==1){
-            imageView_luokuo.setImageDrawable(getDrawable(R.drawable.celuokuo));
+            imageView_luokuo.setImageDrawable(getDrawable(R.mipmap.ce1));
         }
         button_ok=findViewById(R.id.button6);
         button_notok=findViewById(R.id.button5);

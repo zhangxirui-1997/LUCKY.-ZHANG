@@ -9,6 +9,24 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimary"/>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider1"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/AppToolbarPopupTheme"
+            app:title="@string/item2"
+            app:titleMarginTop="5dp"
+            app:titleMarginStart="20dp" />
 
         <TextView
             android:id="@+id/textView18"

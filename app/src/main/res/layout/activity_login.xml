@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_healthy_backcolor"
+        android:background="@color/color_White"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="125dp"
         tools:layout_editor_absoluteY="131dp">
@@ -48,8 +48,8 @@
                 android:ems="10"
                 android:hint="@string/telephone"
                 android:inputType="phone"
-                android:textColor="@color/color_Text"
-                android:letterSpacing="0.1"/>
+                android:letterSpacing="0.1"
+                android:textColor="@color/color_Text" />
 
         </RelativeLayout>
 
@@ -73,8 +73,8 @@
                 android:ems="10"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:textColor="@color/color_Text"
-                android:letterSpacing="0.2"/>
+                android:letterSpacing="0.2"
+                android:textColor="@color/color_Text" />
 
         </RelativeLayout>
 
@@ -102,30 +102,31 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp">
-
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_login_circle_shape"
-                    android:text="@string/register"
-                    android:textColor="@color/color_Text"
-                    android:textSize="18sp" />
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/button3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/button_login_circle_shape"
                     android:text="@string/login"
-                    android:textColor="@color/color_Text"
+                    android:textColor="@color/color_White"
                     android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_login_circle_shape"
+                    android:text="@string/register"
+                    android:textColor="@color/color_White"
+                    android:textSize="18sp" />
+
+
             </LinearLayout>
 
 

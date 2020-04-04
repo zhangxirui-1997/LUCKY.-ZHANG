@@ -24,7 +24,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginBottom="70dp"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/zheng" />
 
             <ImageView
                 android:id="@+id/imageView6"
@@ -34,7 +35,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginBottom="70dp"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ce" />
 
 
             <LinearLayout

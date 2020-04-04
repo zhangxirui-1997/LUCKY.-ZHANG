@@ -14,6 +14,7 @@
     <string name="again_input_password">再次输入密码</string>
     <string name="check_phone">验证手机号</string>
     <string name="changename">为保证您的数据隐私\n我们只需要您的用户名</string>
+    <string name="tishi">必读！如何提高准确率？</string>
 
     <!--主界面菜单-->
     <string name="mainView">首页</string>

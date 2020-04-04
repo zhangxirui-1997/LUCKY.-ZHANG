@@ -9,31 +9,56 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimary"/>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider1"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/AppToolbarPopupTheme"
+            app:title="@string/item1"
+            app:titleMarginTop="5dp"
+            app:titleMarginStart="20dp" />
 
         <TextView
             android:id="@+id/textView17"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_below="@+id/toolbar22"
             android:layout_marginTop="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:text="@string/changename" />
 
         <EditText
             android:id="@+id/editText4"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
             android:layout_below="@+id/textView17"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp"/>
         <Button
             android:id="@+id/buttonchange"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editText4"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:background="@drawable/button_mainviewpager_1_circle_shape"
             android:text="@string/check_submit"/>
     </RelativeLayout>

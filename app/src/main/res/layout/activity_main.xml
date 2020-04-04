@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="10"
-            android:background="@color/color_gray"
+            android:background="@color/color_White"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -73,9 +73,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/button_mainviewpager_1_circle_shape"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:background="@drawable/button_mainviewpager_1_circle_shape"
                     android:text="@string/jiancejiemian"
                     android:textSize="12sp" />
             </RelativeLayout>
@@ -90,9 +90,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/button_mainviewpager_2_circle_shape"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:background="@drawable/button_mainviewpager_2_circle_shape"
                     android:text="@string/baogaojiemian"
                     android:textSize="12sp" />
             </RelativeLayout>

@@ -26,19 +26,17 @@
                 android:id="@+id/imageView11"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="50dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/zhengluokuo" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="40dp"
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/imagesealine"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
                 android:layout_marginBottom="30dp"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/sealine" />
@@ -47,21 +45,18 @@
                 android:id="@+id/test"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView10"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="20dp"
-                android:text="@string/sealine" />
+                android:text="@string/sealine"
+                android:textColor="@color/color_errorRed" />
 
             <ImageView
                 android:id="@+id/imageView10"
                 android:layout_width="300dp"
                 android:layout_height="30dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="30dp"
+
+                android:layout_centerInParent="true"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/sealine" />
 

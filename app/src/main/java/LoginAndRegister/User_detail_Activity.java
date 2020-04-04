@@ -1,8 +1,10 @@
 package LoginAndRegister;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +18,7 @@ import org.litepal.LitePal;
 import Data_Class.User_Info;
 
 public class User_detail_Activity extends AppCompatActivity {
+    private Toolbar toolbar;
     private TextView textView;
     private EditText editText;
     private Button button;
@@ -25,6 +28,10 @@ public class User_detail_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_detail_);
+        toolbar=findViewById(R.id.toolbar22);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         textView=findViewById(R.id.textView17);
         editText=findViewById(R.id.editText4);
         user_info= LitePal.findFirst(User_Info.class);
@@ -45,5 +52,14 @@ public class User_detail_Activity extends AppCompatActivity {
                 }
             }
         });
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

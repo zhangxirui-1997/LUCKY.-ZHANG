@@ -176,7 +176,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
         Report_Some_ills head_sealine=new Report_Some_ills();
         head_sealine.setIlls_name("头部侧倾");
         head_sealine.setIlls_statue(angle_jiandu(jian_calculate(report_detail.getZheng_left_ear_y(),report_detail.getZheng_right_ear_y()),
-                jian_calculate(report_detail.getZheng_right_ear_x(),report_detail.getZheng_right_ear_x())));
+                jian_calculate(report_detail.getZheng_left_ear_x(),report_detail.getZheng_right_ear_x())));
         head_sealine.setIlls_tips("心脑血管疾病");
         head_sealine.setBitmap(Bitmap.createBitmap(copy_zheng_Bitmap,
                 Math.round(Float.valueOf(report_detail.getZheng_right_eye_x()))-100,

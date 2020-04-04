@@ -41,6 +41,7 @@ import Data_Class.Report_detail;
 import Data_Class.Report_item;
 import Data_Class.User_Info;
 import LoginAndRegister.LoginActivity;
+import Toolar_toNext.Help_Activity;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -85,6 +86,24 @@ public class Check_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_);
         initialize();
+        AlertDialog.Builder builder=new AlertDialog.Builder(Check_Activity.this)
+                .setTitle("使用须知")
+                .setMessage("是否已经认真阅读使用帮助？")
+                .setPositiveButton("已经阅读",new AlertDialog.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setNegativeButton("尚未阅读",new AlertDialog.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent =new Intent(Check_Activity.this, Help_Activity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+        builder.create().show();
 
     }
 

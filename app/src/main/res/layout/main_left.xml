@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -44,8 +45,10 @@
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="2dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/color_menu_backcolor"/>
+            android:background="@color/colorPrimary" />
 
     </RelativeLayout>
 
@@ -61,19 +64,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:text="@string/look_statue"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/sdfaadf"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
 
             <LinearLayout
+                android:id="@+id/sljlaskd"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -91,7 +96,7 @@
                         android:layout_centerInParent="true"
                         android:text="-"
                         android:textColor="@color/color_normal"
-                        android:textSize="25sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -100,7 +105,7 @@
                         android:layout_centerInParent="true"
                         android:text="@string/zonghepingfen"
                         android:textColor="@color/color_normal"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -116,7 +121,7 @@
                         android:layout_centerInParent="true"
                         android:text="-"
                         android:textColor="@color/color_normal"
-                        android:textSize="25sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -125,7 +130,7 @@
                         android:layout_centerInParent="true"
                         android:text="@string/tijiancishu"
                         android:textColor="@color/color_normal"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -149,7 +154,7 @@
                         android:layout_centerInParent="true"
                         android:text="-"
                         android:textColor="@color/color_healthyGreen"
-                        android:textSize="25sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -158,7 +163,7 @@
                         android:layout_centerInParent="true"
                         android:text="@string/zhengchangbuwei"
                         android:textColor="@color/color_healthyGreen"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -174,7 +179,7 @@
                         android:layout_centerInParent="true"
                         android:text="-"
                         android:textColor="@color/color_errorRed"
-                        android:textSize="25sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -183,7 +188,7 @@
                         android:layout_centerInParent="true"
                         android:text="@string/yichangbuwei"
                         android:textColor="@color/color_errorRed"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -199,7 +204,7 @@
                         android:layout_centerInParent="true"
                         android:text="-"
                         android:textColor="@color/color_warnOrange"
-                        android:textSize="25sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -208,7 +213,7 @@
                         android:layout_centerInParent="true"
                         android:text="@string/yufangbuwei"
                         android:textColor="@color/color_warnOrange"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -224,6 +229,30 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/button_begin_check"
+            android:layout_alignLeft="@+id/button_begin_check"
+            android:layout_marginTop="15dp"
+            app:srcCompat="@android:drawable/ic_menu_help" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_begin_check"
+            android:layout_alignBottom="@+id/imageView12"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/imageView12"
+            android:fontFamily="cursive"
+            android:gravity="center"
+            android:text="@string/tishi"
+            android:textSize="12sp"
+            android:typeface="normal" />
+
         <Button
             android:id="@+id/button_begin_check"
             android:layout_width="match_parent"
@@ -233,7 +262,7 @@
             android:layout_marginRight="40dp"
             android:background="@drawable/item_report_background_shape"
             android:text="@string/app_name"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
 
     </RelativeLayout>

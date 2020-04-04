@@ -5,10 +5,10 @@
     <color name="colorAccent">#E07746</color>
     <color name="color_White">#FFFFFF</color>
     <color name="color_Text">#000000</color>
-    <color name="color_healthy_backcolor">#32896C</color>
+    <color name="color_healthy_backcolor">#009688</color>
     <color name="color_donotrememberPassword">#2D79FA</color>
     <color name="color_gray">#F1F0F0</color>
-    <color name="color_menu_backcolor">#A9E7D4</color>
+    <color name="color_menu_backcolor">#FFFFFF</color>
 
     <color name="color_normal">#1F6FB5</color>
     <color name="color_healthyGreen">#55A005</color>

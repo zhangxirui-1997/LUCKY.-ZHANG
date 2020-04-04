@@ -9,10 +9,10 @@
     <!-- android:radius 弧形的半径 -->
     <!-- 设置按钮的四个角为弧形 -->
     <corners
-        android:topRightRadius="10dp"
-        android:bottomRightRadius="10dp"
-        android:bottomLeftRadius="10dp"
-        android:topLeftRadius="10dp"/>
+        android:topRightRadius="13dp"
+        android:bottomRightRadius="13dp"
+        android:bottomLeftRadius="13dp"
+        android:topLeftRadius="13dp"/>
 
     <!--也可单独设置-->
     <!-- <corners -->
