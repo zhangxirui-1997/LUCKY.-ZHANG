@@ -143,7 +143,7 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
         if(xint!=0){
             textView.setText("手机倾斜！请保持水平！");
         }else{
-            textView.setText("当前保持水平状态");
+            textView.setText("手机水平，可以拍照！");
         }
         Log.d("111111","1111111111"+x+" "+y+" "+z);
         //TODO 利用获得的三个float传感器值做些操作
