@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import org.litepal.LitePal;
 
@@ -190,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                         myPageAdapter.init_right_listview();
+                        Toast.makeText(MainActivity.this, "清理成功！", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 return false;

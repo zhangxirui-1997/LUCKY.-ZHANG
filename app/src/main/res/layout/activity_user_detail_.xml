@@ -35,8 +35,8 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/toolbar22"
             android:layout_marginTop="50dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:text="@string/changename" />
 
         <EditText
@@ -48,8 +48,8 @@
             android:layout_below="@+id/textView17"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="60dp"
-            android:layout_marginLeft="60dp"/>
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"/>
         <Button
             android:id="@+id/buttonchange"
             android:layout_width="match_parent"
@@ -57,8 +57,8 @@
             android:layout_below="@+id/editText4"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:background="@drawable/button_mainviewpager_1_circle_shape"
             android:text="@string/check_submit"/>
     </RelativeLayout>

@@ -28,13 +28,16 @@
         app:titleMarginTop="5dp"
         app:titleMarginStart="20dp" />
 
+    <WebView
+        android:id="@+id/webviewhelp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar21"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"/>
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="目前正在小范围测试\n请联系开发人员"/>
 
 </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
