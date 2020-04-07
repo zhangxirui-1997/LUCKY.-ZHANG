@@ -52,8 +52,8 @@ public class MyReportDetailListAdapter extends ArrayAdapter<Report_Some_ills> {
         //为子项动态加载布局
         View view = LayoutInflater.from(getContext()).inflate(resourceId, null);
 
-        SeekBar progressBar=view.findViewById(R.id.progressBar2);
-        progressBar.setEnabled(false);
+        MyProgreeBar progressBar=view.findViewById(R.id.progressBar2);
+        progressBar.letuspaint(Math.round(report_some_ills.getIlls_statue()));
         TextView textView=view.findViewById(R.id.textView9);
         ImageView imageView=view.findViewById(R.id.imageView8);
         TextView textView1=view.findViewById(R.id.textView13);
@@ -61,9 +61,9 @@ public class MyReportDetailListAdapter extends ArrayAdapter<Report_Some_ills> {
         TextView textViewzhengchang=view.findViewById(R.id.textView10);
         TextView textViewgaofengxian=view.findViewById(R.id.textView11);
         RelativeLayout linearLayout=view.findViewById(R.id.r1);
-        progressBar.setProgress(Math.round(report_some_ills.getIlls_statue())+1);
+        //progressBar.setProgress(Math.round(report_some_ills.getIlls_statue())+1);
         Log.d( "My","1111111111"+Math.round(report_some_ills.getIlls_statue()));
-        progressBar.setMax(report_some_ills.getIll_max());
+        //progressBar.setMax(report_some_ills.getIll_max());
         textView.setText(report_some_ills.getIlls_name());
          textView1.setText(report_some_ills.getIlls_tips());
         imageView.setImageBitmap(report_some_ills.getBitmap());
