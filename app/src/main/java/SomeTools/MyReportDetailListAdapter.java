@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.luckzhang.R;
@@ -51,7 +52,8 @@ public class MyReportDetailListAdapter extends ArrayAdapter<Report_Some_ills> {
         //为子项动态加载布局
         View view = LayoutInflater.from(getContext()).inflate(resourceId, null);
 
-        ProgressBar progressBar=view.findViewById(R.id.progressBar2);
+        SeekBar progressBar=view.findViewById(R.id.progressBar2);
+        progressBar.setEnabled(false);
         TextView textView=view.findViewById(R.id.textView9);
         ImageView imageView=view.findViewById(R.id.imageView8);
         TextView textView1=view.findViewById(R.id.textView13);
@@ -65,10 +67,10 @@ public class MyReportDetailListAdapter extends ArrayAdapter<Report_Some_ills> {
         textView.setText(report_some_ills.getIlls_name());
          textView1.setText(report_some_ills.getIlls_tips());
         imageView.setImageBitmap(report_some_ills.getBitmap());
-        textView2.setText("危险系数："+report_some_ills.getIlls_statue()+"");
-        textViewzhengchang.setText("0(正常)");
+        textView2.setText("风险系数："+report_some_ills.getIlls_statue()+"");
+        textViewzhengchang.setText("0(低风险)");
         textViewgaofengxian.setText("(高风险)"+(report_some_ills.getIll_max()-1));
-        if(report_some_ills.getIlls_statue()<report_some_ills.getIll_max()*0.3){
+        if(report_some_ills.getIlls_statue()<report_some_ills.getIll_max()*0.2){
             linearLayout.setBackgroundColor(context.getResources().getColor(R.color.color_healthyGreen_qian,null));
         }else if(report_some_ills.getIlls_statue()<report_some_ills.getIll_max()*0.6){
             linearLayout.setBackgroundColor(context.getResources().getColor(R.color.color_warnOrange_qian,null));

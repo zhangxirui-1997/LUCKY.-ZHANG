@@ -73,16 +73,21 @@
                 android:text="1111111"
                 android:textSize="10sp" />
 
-            <ProgressBar
+
+
+
+            <SeekBar
                 android:id="@+id/progressBar2"
-                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/textView9"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="30dp"
-                android:background="@drawable/progressbar_bg"
+                android:progressDrawable="@drawable/seekbar_bg"
                 android:max="90" />
+
+
+
 
             <ImageView
                 android:id="@+id/imageView9"

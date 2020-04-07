@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!--  设置背景色  -->
     <item android:id="@android:id/background"
-        android:drawable="@color/color_White">
+        android:drawable="@color/air">
     </item>
 
     <!--  设置进度条颜色  -->
@@ -12,7 +12,7 @@
 
                 <gradient
 
-                    android:startColor="@color/color_errorRed" />
+                    android:startColor="@color/air" />
             </shape>
         </clip>
     </item>

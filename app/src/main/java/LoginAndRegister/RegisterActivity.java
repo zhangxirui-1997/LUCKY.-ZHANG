@@ -1,8 +1,10 @@
 package LoginAndRegister;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.luckzhang.R;
+import com.mob.MobSDK;
 
 import java.io.IOException;
 
@@ -117,6 +120,27 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         initialize();
+
+        initMob();
+    }
+
+    protected void initMob(){
+        AlertDialog.Builder builder=new AlertDialog.Builder(RegisterActivity.this)
+                .setTitle("注意")
+                .setMessage("为了实现App的相关功能，我们使用了MobTech的相关产品，此产品的隐私策略条款可以参考:http://www.mob.com/about/policy")
+                .setPositiveButton("接受",new AlertDialog.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MobSDK.submitPolicyGrantResult(true,null);
+                    }
+                })
+                .setNegativeButton("拒绝",new AlertDialog.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MobSDK.submitPolicyGrantResult(true,null);
+                    }
+                });
+        builder.create().show();
     }
 
     @Override

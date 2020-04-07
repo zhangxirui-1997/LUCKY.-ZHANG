@@ -9,6 +9,7 @@
     <color name="color_donotrememberPassword">#2D79FA</color>
     <color name="color_gray">#DDDDDD</color>
     <color name="color_menu_backcolor">#FFFFFF</color>
+    <color name="air">#00000000</color>
 
     <color name="color_normal">#1F6FB5</color>
     <color name="color_healthyGreen">#55A005</color>
