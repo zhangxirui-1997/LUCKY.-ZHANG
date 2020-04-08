@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.luckzhang.R;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import Data_Class.Report_Some_ills;
@@ -67,7 +68,12 @@ public class MyReportDetailListAdapter extends ArrayAdapter<Report_Some_ills> {
         textView.setText(report_some_ills.getIlls_name());
          textView1.setText(report_some_ills.getIlls_tips());
         imageView.setImageBitmap(report_some_ills.getBitmap());
-        textView2.setText("风险系数："+report_some_ills.getIlls_statue()+"");
+
+        Double d= Double.valueOf(report_some_ills.getIlls_statue());
+        DecimalFormat decimalFormat=new DecimalFormat("0.00");
+        String fen=decimalFormat.format(d);
+
+        textView2.setText("风险系数："+fen+"");
         textViewzhengchang.setText("0(低风险)");
         textViewgaofengxian.setText("(高风险)"+(report_some_ills.getIll_max()-1));
         if(report_some_ills.getIlls_statue()<report_some_ills.getIll_max()*0.2){

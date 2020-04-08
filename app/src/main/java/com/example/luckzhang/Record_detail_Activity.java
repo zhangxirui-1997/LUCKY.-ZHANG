@@ -51,7 +51,7 @@ public class Record_detail_Activity extends AppCompatActivity {
                 if(item.getItemId()==R.id.menu_itemR1){
                     //此处进行加星操作
                     my_reportDetail_viewPagerAdapter.save_five();
-                    Toast.makeText(Record_detail_Activity.this, "已设置当前为首要", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Record_detail_Activity.this, "已设置该报告为当前状态", Toast.LENGTH_SHORT).show();
                 }else if(item.getItemId()==R.id.menu_itemR2){
                     AlertDialog.Builder builder=new AlertDialog.Builder(Record_detail_Activity.this)
                             .setTitle("注意")

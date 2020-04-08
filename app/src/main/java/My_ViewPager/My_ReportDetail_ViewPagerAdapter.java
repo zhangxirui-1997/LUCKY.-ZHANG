@@ -28,6 +28,7 @@ import org.litepal.LitePal;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,7 +126,12 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
 
         TextView t6=view3.findViewById(R.id.textView16);
 
-        t1.setText(fenshu+"");
+
+        Double d= Double.valueOf(fenshu);
+        DecimalFormat decimalFormat=new DecimalFormat("0.00");
+        String fen=decimalFormat.format(d);
+
+        t1.setText(fen);
         if(fenshu>95){
             zhaungtai="完美";
             t2.setText("完美");

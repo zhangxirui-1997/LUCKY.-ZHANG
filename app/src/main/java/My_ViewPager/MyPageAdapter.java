@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import com.example.luckzhang.Record_detail_Activity;
 import org.litepal.LitePal;
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -109,7 +111,10 @@ public class MyPageAdapter extends PagerAdapter {
         if(user_info==null){
             Log.d("MyPageAdapter","用户账户出错");
         }else{
-            textView1.setText(user_info.getUser_five_fen());
+            Double d= Double.valueOf(user_info.getUser_five_fen());
+            DecimalFormat decimalFormat=new DecimalFormat("0.00");
+            String fen=decimalFormat.format(d);
+            textView1.setText(fen);
             textView2.setText(user_info.getUser_five_ci());
             textView3.setText(user_info.getUser_five_zheng());
             textView4.setText(user_info.getUser_five_yi());
