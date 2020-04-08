@@ -43,7 +43,8 @@
     <string name="item_title">报告标题：</string>
     <string name="item_name">申请人：</string>
     <string name="item_time">送达时间：</string>
-    <string name="run_house">本界面下划可刷新！数据传送需要时间，请您耐心等候！
+    <string name="run_house">本界面下划可刷新！数据传送需要时间，请您耐心等候！超过5分钟未完成，
+        说明您上传的照片不合格，请您长按删除，重新检测
         如需帮助，点击屏幕右上角菜单（三个点）中的“使用帮助”！</string>
 
     <!--关于检查流程中的字符串-->
