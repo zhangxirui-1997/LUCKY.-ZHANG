@@ -144,6 +144,4 @@ public class Record_detail_Activity extends AppCompatActivity {
         toolbar_initialize();
     }
 
-
-
 }

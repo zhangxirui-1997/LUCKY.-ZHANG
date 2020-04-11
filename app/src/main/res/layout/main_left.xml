@@ -85,10 +85,9 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
                     <TextView
                         android:id="@+id/tt1"
                         android:layout_width="wrap_content"
@@ -107,7 +106,8 @@
                         android:textColor="@color/color_normal"
                         android:textSize="14sp"
                         android:textStyle="bold" />
-                </RelativeLayout>
+
+                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -129,6 +129,31 @@
                         android:layout_below="@+id/tt2"
                         android:layout_centerInParent="true"
                         android:text="@string/tijiancishu"
+                        android:textColor="@color/color_normal"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tt6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="-"
+                        android:textColor="@color/color_normal"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tt6"
+                        android:layout_centerInParent="true"
+                        android:text="@string/jibairenshu"
                         android:textColor="@color/color_normal"
                         android:textSize="14sp"
                         android:textStyle="bold" />

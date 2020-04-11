@@ -3,21 +3,28 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:layout_centerInParent="true"
-            android:text="TextView" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/zongheqingkuang"
+            android:textColor="@color/color_Text"
+            android:textSize="14sp" />
 
-    </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/colorPrimary"/>
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -51,7 +58,7 @@
                         android:layout_centerInParent="true"
                         android:text="-"
                         android:textColor="@color/color_normal"
-                        android:textSize="25sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -60,7 +67,7 @@
                         android:layout_centerInParent="true"
                         android:text="@string/zonghepingfen"
                         android:textColor="@color/color_normal"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -76,7 +83,7 @@
                         android:layout_centerInParent="true"
                         android:text="-"
                         android:textColor="@color/color_normal"
-                        android:textSize="25sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -85,7 +92,7 @@
                         android:layout_centerInParent="true"
                         android:text="@string/tijiancishu"
                         android:textColor="@color/color_normal"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -109,7 +116,7 @@
                         android:layout_centerInParent="true"
                         android:text="-"
                         android:textColor="@color/color_healthyGreen"
-                        android:textSize="25sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -118,7 +125,7 @@
                         android:layout_centerInParent="true"
                         android:text="@string/zhengchangbuwei"
                         android:textColor="@color/color_healthyGreen"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -134,7 +141,7 @@
                         android:layout_centerInParent="true"
                         android:text="-"
                         android:textColor="@color/color_errorRed"
-                        android:textSize="25sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -143,7 +150,7 @@
                         android:layout_centerInParent="true"
                         android:text="@string/yichangbuwei"
                         android:textColor="@color/color_errorRed"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -159,7 +166,7 @@
                         android:layout_centerInParent="true"
                         android:text="-"
                         android:textColor="@color/color_warnOrange"
-                        android:textSize="25sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -168,7 +175,7 @@
                         android:layout_centerInParent="true"
                         android:text="@string/yufangbuwei"
                         android:textColor="@color/color_warnOrange"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -177,6 +184,72 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/paimingqingkuang"
+            android:textColor="@color/color_Text"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/colorPrimary"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="15dp"
+            android:maxLines="4"
+            android:layout_centerInParent="true"
+            android:text="TextView" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/zongheqingkuang"
+            android:textColor="@color/color_Text"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/colorPrimary"/>
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -189,8 +262,10 @@
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:maxLines="2"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="15dp"
+            android:maxLines="4"
             android:text="TextView"
             android:textColor="@color/color_Text" />
     </RelativeLayout>

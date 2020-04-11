@@ -21,6 +21,7 @@ public class User_Info extends LitePalSupport {
     private String User_five_zheng;
     private String User_five_yi;
     private String User_five_yu;
+    private String User_parcent="0";
 
     public String getUser_five_id_time() {
         return User_five_id_time;
@@ -28,6 +29,14 @@ public class User_Info extends LitePalSupport {
 
     public void setUser_five_id_time(String user_five_id_time) {
         User_five_id_time = user_five_id_time;
+    }
+
+    public String getUser_parcent() {
+        return User_parcent;
+    }
+
+    public void setUser_parcent(String user_parcent) {
+        User_parcent = user_parcent;
     }
 
     public String getUser_reallyname() {

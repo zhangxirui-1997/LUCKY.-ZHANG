@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -25,6 +26,7 @@ import com.example.luckzhang.WebActivity;
 import com.mob.wrappers.UMSSDKWrapper;
 
 import org.litepal.LitePal;
+import org.litepal.crud.LitePalSupport;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -32,6 +34,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import Data_Class.AboutRankingList;
 import Data_Class.Report_Some_ills;
 import Data_Class.Report_detail;
 import Data_Class.User_Info;
@@ -69,6 +72,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
     private float fenshu=0f;
     private String zhaungtai="";
     private String idtime="";
+    private String ddd="0";
 
     public My_ReportDetail_ViewPagerAdapter(Context context, String s){
         this.context=context;
@@ -99,9 +103,11 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
         user_info.setUser_five_yu(warn_number+"");
         user_info.setUser_five_yi(error_number+"");
         user_info.setUser_five_id_time(idtime);
+        user_info.setUser_parcent(ddd);
         user_info.save();
     }
 
+    //下面的右侧的初始化
     public void report_right_init(){
 
         for(Report_Some_ills r:items){
@@ -116,7 +122,6 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
         }
 
         TextView textView=view3.findViewById(R.id.textView14);
-        textView.setText("您已经超过全国："+"的人");
 
         TextView t1=view3.findViewById(R.id.tt1);
         TextView t2=view3.findViewById(R.id.tt2);
@@ -126,10 +131,14 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
 
         TextView t6=view3.findViewById(R.id.textView16);
 
-
         Double d= Double.valueOf(fenshu);
         DecimalFormat decimalFormat=new DecimalFormat("0.00");
         String fen=decimalFormat.format(d);
+
+        AboutRankingList aboutRankingList= LitePal.findFirst(AboutRankingList.class);
+        ddd=decimalFormat.format(aboutRankingList.calculate(d));
+        Log.d("this","1111111111"+ddd);
+        textView.setText("您已经超过全国"+decimalFormat.format(aboutRankingList.calculate(d))+"%的人");
 
         t1.setText(fen);
         if(fenshu>95){

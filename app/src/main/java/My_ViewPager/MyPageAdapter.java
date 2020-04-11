@@ -60,6 +60,7 @@ public class MyPageAdapter extends PagerAdapter {
     private TextView  textView4;
     private TextView  textView5;
     private TextView textView6;
+    private TextView textView7;
     private TextView  textView_day;
     private TextView textView15;
     public MyPageAdapter(final Context context1) {
@@ -76,6 +77,8 @@ public class MyPageAdapter extends PagerAdapter {
         textView3=view1.findViewById(R.id.tt3);
         textView4=view1.findViewById(R.id.tt4);
         textView5=view1.findViewById(R.id.tt5);
+        textView7=view1.findViewById(R.id.tt6);
+
         textView_day=view1.findViewById(R.id.textViewl2);
         textView6=view1.findViewById(R.id.sdfaadf);
         textView15=view1.findViewById(R.id.textView15);
@@ -116,6 +119,7 @@ public class MyPageAdapter extends PagerAdapter {
             String fen=decimalFormat.format(d);
             textView1.setText(fen);
             textView2.setText(user_info.getUser_five_ci());
+            textView7.setText(user_info.getUser_parcent()+"%");
             textView3.setText(user_info.getUser_five_zheng());
             textView4.setText(user_info.getUser_five_yi());
             textView5.setText(user_info.getUser_five_yu());

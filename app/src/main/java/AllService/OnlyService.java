@@ -5,22 +5,24 @@ import android.content.Intent;
 import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
-import android.util.TimeUtils;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.litepal.LitePal;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import Data_Class.AboutRankingList;
 import Data_Class.Report_detail;
 import Data_Class.Report_item;
 import Data_Class.User_Info;
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -45,7 +47,8 @@ public class OnlyService extends Service {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //UpdataUserFive();
+        //更新排行榜的信息
+        UpdataRankingList();
         Find_Finish_Order_Class find_finish_order_class=new Find_Finish_Order_Class();
         new Thread(find_finish_order_class).start();
 
@@ -271,54 +274,33 @@ public class OnlyService extends Service {
         return true;
     }
 
-    //此处更新用户信息表
-    private void UpdataUserFive(){
-        new Thread(new Runnable() {
+    //此处更新排行榜的信息
+    private void UpdataRankingList(){
+        OkHttpClient okHttpClient = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url("http://123.57.235.123:8080/TheBestServe/UpdataRankingListServlet")
+                .build();
+        Call call=okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
             @Override
-            public void run() {
-                for(;;){
-                    User_Info user_info=null;
-                    while (user_info==null){
-                        user_info= LitePal.findFirst(User_Info.class);
-                        sleep(5000);
-                    }
-                    OkHttpClient okHttpClient = new OkHttpClient();
-                    FormBody.Builder builder=new FormBody.Builder();
-                    builder.add("User_phonenumber",user_info.getUser_phonenumber());
-                    Request request = new Request.Builder()
-                            .url("http://123.57.235.123:8080/TheBestServe/RenewMainLeftServlet")
-                            .post(builder.build())
-                            .build();
-                    Response response=null;
-                    JSONObject jsonObject=null;
-                    try {
-                        response = okHttpClient.newCall(request).execute();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    if(response==null){
-                        continue;
-                    }
-                    if(!response.isSuccessful()){
-                        continue;
-                    }
-                    try {
-                        jsonObject=new JSONObject(response.body().string());
-                        user_info.setUser_five_fen(jsonObject.getString("User_five_fen"));
-                        user_info.setUser_five_ci(jsonObject.getString("User_five_ci"));
-                        user_info.setUser_five_zheng(jsonObject.getString("User_five_zheng"));
-                        user_info.setUser_five_yi(jsonObject.getString("User_five_yi"));
-                        user_info.setUser_five_yu(jsonObject.getString("User_five_yu"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    user_info.save();
-                    sleep(5000);
-                }
-
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Log.d("This","获取排行榜参数失败");
             }
-        }).start();
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                String data=response.body().string();
+                Log.d("This","获取排行榜参数成功"+data);
+                if(LitePal.count(AboutRankingList.class)==0){
+                    AboutRankingList aboutRankingList=new AboutRankingList();
+                    aboutRankingList.initJSON(data);
+                    aboutRankingList.save();
+                }else{
+                    AboutRankingList aboutRankingList=LitePal.findFirst(AboutRankingList.class);
+                    aboutRankingList.initJSON(data);
+                    aboutRankingList.save();
+                }
+            }
+        });
     }
 }

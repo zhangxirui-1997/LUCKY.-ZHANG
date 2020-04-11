@@ -38,6 +38,11 @@
     <string name="zhengchangbuwei">正常部位</string>
     <string name="yichangbuwei">异常部位</string>
     <string name="yufangbuwei">预防部位</string>
+    <string name="jibairenshu">击败人数</string>
+
+    <string name="zongheqingkuang">综合情况</string>
+    <string name="paimingqingkuang">健康排名</string>
+    <string name="zonghejielun">综合结论</string>
 
     <!--主界面右侧界面，item中的三个选项和上方跑马灯-->
     <string name="item_title">报告标题：</string>
