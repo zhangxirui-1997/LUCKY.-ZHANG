@@ -27,6 +27,10 @@
     <string name="jiancejiemian">检测界面</string>
     <string name="baogaojiemian">报告界面</string>
     <string name="mainView_Title_small">永久免费，放心使用</string>
+    <string name="fenshupaihang">分数排行</string>
+    <string name="jutipaihang">具体排行</string>
+    <string name="ninyijing">您的体态优于全国 </string>
+    <string name="deyonghu"> 的用户</string>
 
     <!--主页面的左侧界面-->
     <string name="look_statue">当前状态</string>

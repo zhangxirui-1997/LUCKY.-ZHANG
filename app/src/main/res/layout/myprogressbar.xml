@@ -41,7 +41,7 @@
             android:id="@+id/dsafknasdl"
             android:layout_width="8dp"
             android:layout_height="8dp"
-            app:srcCompat="@drawable/button_mainviewpager_2_circle_shape" />
+            app:srcCompat="@drawable/smallcircle" />
 
     </RelativeLayout>
 

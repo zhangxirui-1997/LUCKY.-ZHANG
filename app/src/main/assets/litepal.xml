@@ -9,6 +9,7 @@
         <mapping class="Data_Class.Report_item"/>
         <mapping class="Data_Class.Report_detail"/>
         <mapping class="Data_Class.AboutRankingList"/>
+        <mapping class="Data_Class.Now_grade"/>
 
     </list>
 

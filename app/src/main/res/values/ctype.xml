@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ctype">
+        <item>头部侧倾</item>
+        <item>头部前倾</item>
+        <item>颈椎异位</item>
+        <item>肩部侧倾</item>
+        <item>脊柱异位</item>
+        <item>髋部侧倾</item>
+        <item>髋部异位</item>
+        <item>腿部异常</item>
+        <item>膝盖异位</item>
+
+    </string-array>
+</resources>

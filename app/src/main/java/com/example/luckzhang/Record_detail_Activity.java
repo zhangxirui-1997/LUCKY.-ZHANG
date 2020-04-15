@@ -8,7 +8,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
@@ -82,6 +84,7 @@ public class Record_detail_Activity extends AppCompatActivity {
     private void initialize() throws FileNotFoundException {
         strPxtr=getIntent().getStringExtra("id");
         List<Report_detail> report_details= LitePal.findAll(Report_detail.class);
+
         for(Report_detail r:report_details){
             if(r.getReport_time().equals(strPxtr)){
                 report_detail=r;

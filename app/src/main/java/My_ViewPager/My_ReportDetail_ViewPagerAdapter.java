@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Data_Class.AboutRankingList;
+import Data_Class.Now_grade;
 import Data_Class.Report_Some_ills;
 import Data_Class.Report_detail;
 import Data_Class.User_Info;
@@ -74,6 +75,8 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
     private String idtime="";
     private String ddd="0";
 
+    private Now_grade now_grade=new Now_grade();
+
     public My_ReportDetail_ViewPagerAdapter(Context context, String s){
         this.context=context;
         idtime=s;
@@ -105,6 +108,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
         user_info.setUser_five_id_time(idtime);
         user_info.setUser_parcent(ddd);
         user_info.save();
+        now_grade.save();
     }
 
     //下面的右侧的初始化
@@ -138,7 +142,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
         AboutRankingList aboutRankingList= LitePal.findFirst(AboutRankingList.class);
         ddd=decimalFormat.format(aboutRankingList.calculate(d));
         Log.d("this","1111111111"+ddd);
-        textView.setText("您已经超过全国"+decimalFormat.format(aboutRankingList.calculate(d))+"%的人");
+        textView.setText(decimalFormat.format(aboutRankingList.calculate(d))+"%");
 
         t1.setText(fen);
         if(fenshu>95){
@@ -187,6 +191,10 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
     }
 
     public void judge_ills(){
+
+        if(LitePal.count(Now_grade.class)!=0){
+            now_grade=LitePal.findFirst(Now_grade.class);
+        }
         //开始判断
         Report_Some_ills head_sealine=new Report_Some_ills();
         head_sealine.setIlls_name("头部侧倾");
@@ -199,6 +207,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
                 Math.round(jian_calculate(report_detail.getZheng_left_eye_x(),report_detail.getZheng_right_eye_x()))+200,
                 Math.round(jian_calculate(report_detail.getZheng_left_eye_y(),report_detail.getZheng_right_eye_y()))+200));
         head_sealine.setIll_max(31);
+        now_grade.setD0(head_sealine.getIlls_statue());
         items.add(head_sealine);
 
         Report_Some_ills head_line=new Report_Some_ills();
@@ -212,6 +221,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
                 200,
                 200));
         head_line.setIll_max(31);
+        now_grade.setD1(head_line.getIlls_statue());
         items.add(head_line);
 
         Report_Some_ills neck_line=new Report_Some_ills();
@@ -226,6 +236,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
                 Math.round(Float.valueOf(report_detail.getZheng_neck_y()))-200,
                 400, 400));
         neck_line.setIll_max(31);
+        now_grade.setD2(neck_line.getIlls_statue());
         items.add(neck_line);
 
         Report_Some_ills shoulder_sealine=new Report_Some_ills();
@@ -239,6 +250,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
                 Math.round(jian_calculate(report_detail.getZheng_left_shoulder_x(),report_detail.getZheng_right_shoulder_x()))+200,
                 Math.round(jian_calculate(report_detail.getZheng_left_shoulder_y(),report_detail.getZheng_right_shoulder_y()))+400));
         shoulder_sealine.setIll_max(31);
+        now_grade.setD3(shoulder_sealine.getIlls_statue());
         items.add(shoulder_sealine);
 
         Report_Some_ills spine_line=new Report_Some_ills();
@@ -254,6 +266,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
                 Math.round(jian_calculate(report_detail.getZheng_left_shoulder_x(),report_detail.getZheng_right_shoulder_x()))+200,
                 Math.round(jian_calculate(report_detail.getZheng_left_hip_y(),report_detail.getZheng_left_shoulder_y()))+200));
         spine_line.setIll_max(31);
+        now_grade.setD4(spine_line.getIlls_statue());
         items.add(spine_line);
 
         Report_Some_ills hip_sealine=new Report_Some_ills();
@@ -267,6 +280,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
                 Math.round(jian_calculate(report_detail.getZheng_left_hip_x(),report_detail.getZheng_right_hip_x()))+200,
                 Math.round(jian_calculate(report_detail.getZheng_left_hip_y(),report_detail.getZheng_right_hip_y()))+600));
         hip_sealine.setIll_max(31);
+        now_grade.setD5(hip_sealine.getIlls_statue());
         items.add(hip_sealine);
 
         Report_Some_ills ce_hip_state=new Report_Some_ills();
@@ -294,6 +308,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
                 jian_calculate(report_detail.getCe_right_hip_y(),report_detail.getCe_right_knee_y()))+
                 angle_jiandu(jian_calculate(report_detail.getCe_right_hip_x(),report_detail.getCe_neck_x()),
                         jian_calculate(report_detail.getCe_right_hip_y(),report_detail.getCe_neck_y())))/2);
+        now_grade.setD6(ce_hip_state.getIlls_statue());
         items.add(ce_hip_state);
 
         Report_Some_ills legs_line=new Report_Some_ills();
@@ -325,6 +340,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
                         jian_calculate(report_detail.getZheng_left_hip_y(),report_detail.getZheng_left_knee_y()))+
                 angle_jiandu(jian_calculate(report_detail.getZheng_left_ankle_x(),report_detail.getZheng_left_knee_x()),
                         jian_calculate(report_detail.getZheng_left_ankle_y(),report_detail.getZheng_left_knee_y())))/4);
+        now_grade.setD7(legs_line.getIlls_statue());
         items.add(legs_line);
 
         Report_Some_ills ce_knee_state=new Report_Some_ills();
@@ -348,7 +364,10 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
                 jian_calculate(report_detail.getCe_right_hip_y(),report_detail.getCe_right_knee_y()))+
                 angle_jiandu(jian_calculate(report_detail.getCe_right_knee_x(),report_detail.getCe_right_ankle_x()),
                         jian_calculate(report_detail.getCe_right_knee_y(),report_detail.getCe_right_ankle_y())))/2);
+        now_grade.setD8(ce_knee_state.getIlls_statue());
         items.add(ce_knee_state);
+
+        now_grade.save();
     }
 
 
