@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,24 +21,25 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.luckzhang.Check_Activity;
+import com.example.luckzhang.ExerciseActivity;
 import com.example.luckzhang.R;
 import com.example.luckzhang.Record_detail_Activity;
 
 import org.litepal.LitePal;
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import Data_Class.Report_item;
+import Data_Class.Ten_Items;
 import Data_Class.User_Info;
 import SomeTools.MyItemAdapter;
+import SomeTools.ThirdItemAdapter;
 import Toolar_toNext.Help_Activity;
 
 /*
@@ -47,9 +47,11 @@ import Toolar_toNext.Help_Activity;
 * 包括了右侧的list列表的刷新
 * */
 public class MyPageAdapter extends PagerAdapter {
+    private User_Info user_info;
     private List<View> mViewList = new ArrayList<>();
     private View view1;
     private View view2;
+    private View view3;
     private ListView listView;
     private Context context;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -63,12 +65,20 @@ public class MyPageAdapter extends PagerAdapter {
     private TextView textView7;
     private TextView  textView_day;
     private TextView textView15;
+    private ImageView imageView13;
+
+    private ListView third_list;
+
     public MyPageAdapter(final Context context1) {
+        user_info=LitePal.findFirst(User_Info.class);
         this.context=context1;
         view1=View.inflate(context,R.layout.main_left,null);
         view2=View.inflate(context,R.layout.main_right,null);
+        view3=View.inflate(context,R.layout.main_third,null);
+
         mViewList.add(view1);
         mViewList.add(view2);
+        mViewList.add(view3);
         listView=(ListView) view2.findViewById(R.id.listview);
         swipeRefreshLayout = (SwipeRefreshLayout) view2.findViewById(R.id.refresh);
 
@@ -89,14 +99,34 @@ public class MyPageAdapter extends PagerAdapter {
                 context.startActivity(intentasfs);
             }
         });
+        third_list=view3.findViewById(R.id.third_list);
+
         init_left_button();
         init_left_grid();
         init_right_listview();
         init_right_refresh();
+        init_third_data();
+        init_third();
     }
 
     //初始化网格布局下方的按钮
     private void init_left_button(){
+        imageView13=view1.findViewById(R.id.imageView13);
+        imageView13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(user_info.getEye()==0){//可见
+                    user_info.setEye(1);
+                    user_info.save();
+                    Toast.makeText(context, "已隐藏数据", Toast.LENGTH_SHORT).show();
+                }else if(user_info.getEye()==1){//不可见
+                    user_info.setEye(0);
+                    user_info.save();
+                    Toast.makeText(context, "已显示数据", Toast.LENGTH_SHORT).show();
+                }
+                init_left_grid();
+            }
+        });
         mainImportantButton=(Button)view1.findViewById(R.id.button_begin_check);
         mainImportantButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,20 +140,29 @@ public class MyPageAdapter extends PagerAdapter {
 
     //初始化网格信息
     private void init_left_grid()  {
-        User_Info user_info=LitePal.findFirst(User_Info.class);
         if(user_info==null){
             Log.d("MyPageAdapter","用户账户出错");
         }else{
-            Double d= Double.valueOf(user_info.getUser_five_fen());
-            DecimalFormat decimalFormat=new DecimalFormat("0.00");
-            String fen=decimalFormat.format(d);
-            textView1.setText(fen);
-            textView2.setText(user_info.getUser_five_ci());
-            textView7.setText(user_info.getUser_parcent()+"%");
-            textView3.setText(user_info.getUser_five_zheng());
-            textView4.setText(user_info.getUser_five_yi());
-            textView5.setText(user_info.getUser_five_yu());
-            textView6.setText("检测时间："+user_info.getUser_five_id_time());
+            if(user_info.getEye()==0){
+                Double d= Double.valueOf(user_info.getUser_five_fen());
+                DecimalFormat decimalFormat=new DecimalFormat("0.00");
+                String fen=decimalFormat.format(d);
+                textView1.setText(fen);
+                textView2.setText(user_info.getUser_five_ci());
+                textView7.setText(user_info.getUser_parcent()+"%");
+                textView3.setText(user_info.getUser_five_zheng());
+                textView4.setText(user_info.getUser_five_yi());
+                textView5.setText(user_info.getUser_five_yu());
+                textView6.setText("检测时间："+user_info.getUser_five_id_time());
+            }else if(user_info.getEye()==1){
+                textView1.setText("**");
+                textView2.setText("**");
+                textView7.setText("**%");
+                textView3.setText("**");
+                textView4.setText("**");
+                textView5.setText("**");
+                textView6.setText("检测时间：****-**-** **:**");
+            }
             SimpleDateFormat sdf11 = new SimpleDateFormat("yyyy-MM-dd");
             Date dated= null;
             try {
@@ -134,6 +173,7 @@ public class MyPageAdapter extends PagerAdapter {
             Date date = new Date(System.currentTimeMillis());
             int i= (int) ((date.getTime()-dated.getTime())/(60*60*1000*24));
             textView_day.setText(i+1+"");
+
         }
     }
 
@@ -242,6 +282,79 @@ public class MyPageAdapter extends PagerAdapter {
              public boolean canChildScrollUp(@NonNull SwipeRefreshLayout parent, @Nullable View child) {
                  return false;
              }
+        });
+    }
+
+    //初始化第三个界面的数据
+    private void init_third_data(){
+        if(LitePal.count(Ten_Items.class)!=10){
+            LitePal.deleteAll(Ten_Items.class);
+            Ten_Items ten_items0=new Ten_Items();
+            ten_items0.setTitle("使用须知");
+            ten_items0.setData("尚无记录");
+            ten_items0.save();
+
+            Ten_Items ten_items1=new Ten_Items();
+            ten_items1.setTitle("头部侧倾");
+            ten_items1.setData("尚无记录");
+            ten_items1.save();
+
+            Ten_Items ten_items2=new Ten_Items();
+            ten_items2.setTitle("头部前倾");
+            ten_items2.setData("尚无记录");
+            ten_items2.save();
+
+            Ten_Items ten_items3=new Ten_Items();
+            ten_items3.setTitle("颈椎异位");
+            ten_items3.setData("尚无记录");
+            ten_items3.save();
+
+            Ten_Items ten_items4=new Ten_Items();
+            ten_items4.setTitle("肩部侧倾");
+            ten_items4.setData("尚无记录");
+            ten_items4.save();
+
+            Ten_Items ten_items5=new Ten_Items();
+            ten_items5.setTitle("脊柱异位");
+            ten_items5.setData("尚无记录");
+            ten_items5.save();
+
+            Ten_Items ten_items6=new Ten_Items();
+            ten_items6.setTitle("髋部侧倾");
+            ten_items6.setData("尚无记录");
+            ten_items6.save();
+
+            Ten_Items ten_items7=new Ten_Items();
+            ten_items7.setTitle("髋部异位");
+            ten_items7.setData("尚无记录");
+            ten_items7.save();
+
+            Ten_Items ten_items8=new Ten_Items();
+            ten_items8.setTitle("腿部异常");
+            ten_items8.setData("尚无记录");
+            ten_items8.save();
+
+            Ten_Items ten_items9=new Ten_Items();
+            ten_items9.setTitle("膝盖异位");
+            ten_items9.setData("尚无记录");
+            ten_items9.save();
+
+
+        }
+    }
+    //初始化第三个界面的列表
+    public void init_third(){
+        List<Ten_Items> item3=LitePal.findAll(Ten_Items.class);
+        ThirdItemAdapter thirdItemAdapter=new ThirdItemAdapter(context,R.layout.third_item_layout,item3);
+        third_list.setAdapter(thirdItemAdapter);
+        third_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intentdfadsf=new Intent();
+                intentdfadsf.putExtra("clicknumber",position+"");
+                intentdfadsf.setClass(context, ExerciseActivity.class);
+                context.startActivity(intentdfadsf);
+            }
         });
     }
 

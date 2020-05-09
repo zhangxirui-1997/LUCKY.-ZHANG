@@ -248,6 +248,14 @@
             android:text="@string/deyonghu"
             android:textColor="@color/color_Text" />
 
+        <SomeTools.MyProgreeBar1
+            android:id="@+id/myprogressbar1"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"/>
+
     </RelativeLayout>
 
     <LinearLayout

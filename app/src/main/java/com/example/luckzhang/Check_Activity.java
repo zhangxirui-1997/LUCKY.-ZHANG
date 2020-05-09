@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
@@ -56,6 +57,7 @@ import static android.os.SystemClock.sleep;
 public class Check_Activity extends AppCompatActivity {
     private ImageView imageView_zheng;
     private ImageView imageView_ce;
+    private TextView textView15;
     private Button zheng_button;
     private Button ce_button;
     private Button check_button;
@@ -121,6 +123,14 @@ public class Check_Activity extends AppCompatActivity {
     }
 
     private void initialize(){
+        textView15=findViewById(R.id.textView15);
+        textView15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentasfs=new Intent(Check_Activity.this, Help_Activity.class);
+                startActivity(intentasfs);
+            }
+        });
         progressBar=findViewById(R.id.progressBar);
         int i= LitePal.count(Report_item.class);
         path_zheng= Environment.getExternalStorageDirectory().getAbsolutePath()+"/aphysique/data/temppicture/temp_zheng_picture"+i+".jpg";

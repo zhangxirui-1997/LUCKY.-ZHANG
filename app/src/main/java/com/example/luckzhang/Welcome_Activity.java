@@ -18,6 +18,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
 import org.litepal.LitePal;
 
 import java.io.File;
@@ -65,7 +67,11 @@ public class Welcome_Activity extends AppCompatActivity {
         });
 
         //欢迎界面的图片
-        fileIsExists();
+        //fileIsExists();
+        String url = "http://123.57.235.123:8080/img/WelcomeImg.jpg";
+        Glide.with(this).load(url).into(imageView1);
+        String url1 = "http://123.57.235.123:8080/img/welcome_titaijiance.png";
+        Glide.with(this).load(url1).into(imageView2);
 
         Log.d("Activity_process_report","welcome activity initialize normally");
 

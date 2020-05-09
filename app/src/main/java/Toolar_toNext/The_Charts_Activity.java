@@ -34,6 +34,7 @@ import java.util.Random;
 import Data_Class.AboutRankingList;
 import Data_Class.Now_grade;
 import Data_Class.User_Info;
+import SomeTools.SemicircleProgressBar;
 
 public class The_Charts_Activity extends AppCompatActivity {
     private Now_grade now_grade;
@@ -48,6 +49,7 @@ public class The_Charts_Activity extends AppCompatActivity {
     private List<BarEntry> list1=new ArrayList<>();
     private AboutRankingList aboutRankingList;
     private Spinner spinner;
+    private SemicircleProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +59,7 @@ public class The_Charts_Activity extends AppCompatActivity {
     }
 
     public void init(){
+        progressBar=findViewById(R.id.progressBar);
         textView18=findViewById(R.id.textView18);
         barChart=findViewById(R.id.mBarChart);
         barChart1=findViewById(R.id.mBarChart1);
@@ -278,6 +281,7 @@ public class The_Charts_Activity extends AppCompatActivity {
             builder.create().show();
         }else{
            textView18.setText("您已经超过全国"+user_info.getUser_parcent()+"%的人");
+            progressBar.setProgress(Double.parseDouble(user_info.getUser_parcent()));
            now_grade=LitePal.findFirst(Now_grade.class);
            initChart();
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

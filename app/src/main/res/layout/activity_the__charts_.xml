@@ -62,6 +62,20 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp" />
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp200">
+
+                    <SomeTools.SemicircleProgressBar
+                        android:id="@+id/progressBar"
+                        android:layout_width="@dimen/dp200"
+                        android:layout_height="@dimen/dp150"
+                        android:layout_centerInParent="true"
+                        android:background="@color/color_White"/>
+
+                </RelativeLayout>
+
+
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="300dp">

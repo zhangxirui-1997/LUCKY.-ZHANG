@@ -64,39 +64,111 @@
             android:orientation="horizontal">
 
             <RelativeLayout
+                android:id="@+id/relativelayout4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_mainviewpager_1_circle_shape">
 
-                <Button
-                    android:id="@+id/button4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/button_mainviewpager_1_circle_shape"
-                    android:text="@string/jiancejiemian"
-                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:id="@+id/imageView14"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@android:drawable/ic_menu_search" />
+
+                    <TextView
+                        android:id="@+id/textView23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imageView14"
+                        android:text="@string/app_name"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/relativelayout5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/button_mainviewpager_2_circle_shape">
 
-                <Button
-                    android:id="@+id/button5"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/button_mainviewpager_2_circle_shape"
-                    android:text="@string/baogaojiemian"
-                    android:textSize="12sp" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:id="@+id/imageView15"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@android:drawable/ic_dialog_email" />
+
+                    <TextView
+                        android:id="@+id/textView24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imageView15"
+                        android:text="@string/baogaojiemian"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+
+
             </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativelayout10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/button_mainviewpager_2_circle_shape">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:id="@+id/imageView16"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@android:drawable/checkbox_on_background" />
+
+                    <TextView
+                        android:id="@+id/textView25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imageView16"
+                        android:text="@string/button_begin_exercise"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
         </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

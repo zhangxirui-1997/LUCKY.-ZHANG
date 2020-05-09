@@ -22,6 +22,15 @@ public class User_Info extends LitePalSupport {
     private String User_five_yi;
     private String User_five_yu;
     private String User_parcent="0";
+    private int eye=0;
+
+    public int getEye() {
+        return eye;
+    }
+
+    public void setEye(int eye) {
+        this.eye = eye;
+    }
 
     public String getUser_five_id_time() {
         return User_five_id_time;

@@ -10,6 +10,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimary"/>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/AppToolbarPopupTheme"
+            app:title="@string/app_name"
+            app:titleMarginTop="5dp"
+            app:titleMarginStart="20dp" />
+
+
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -21,7 +42,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginBottom="70dp"
                 android:scaleType="fitCenter"
@@ -32,9 +52,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginBottom="70dp"
+                android:layout_marginBottom="50dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/ce" />
 
@@ -44,7 +63,6 @@
                 android:layout_height="40dp"
                 android:orientation="horizontal"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp">
 
@@ -84,18 +102,51 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="5">
+            android:layout_weight="3">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/CheckButton"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="30dp">
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_below="@+id/button_begin_check"
+                    android:layout_alignLeft="@+id/button_begin_check"
+
+                    app:srcCompat="@android:drawable/ic_menu_help" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/button_begin_check"
+                    android:layout_alignBottom="@+id/imageView12"
+                    android:layout_marginLeft="1dp"
+                    android:layout_toRightOf="@+id/imageView12"
+                    android:layout_alignTop="@+id/imageView12"
+                    android:fontFamily="cursive"
+                    android:gravity="center"
+                    android:text="@string/tishi"
+                    android:textSize="12sp"
+                    android:typeface="normal" />
+
+            </RelativeLayout>
 
             <Button
                 android:id="@+id/CheckButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
-                android:layout_marginLeft="30dp"
                 android:layout_centerInParent="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:background="@drawable/button_login_circle_shape"
                 android:text="@string/check_submit"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
 
         </RelativeLayout>

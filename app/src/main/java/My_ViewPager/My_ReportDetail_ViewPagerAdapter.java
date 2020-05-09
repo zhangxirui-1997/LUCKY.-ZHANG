@@ -39,6 +39,7 @@ import Data_Class.Now_grade;
 import Data_Class.Report_Some_ills;
 import Data_Class.Report_detail;
 import Data_Class.User_Info;
+import SomeTools.MyProgreeBar1;
 import SomeTools.MyReportDetailListAdapter;
 
 public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
@@ -74,6 +75,8 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
     private String zhaungtai="";
     private String idtime="";
     private String ddd="0";
+
+    private MyProgreeBar1 myprogressbar1;
 
     private Now_grade now_grade=new Now_grade();
 
@@ -138,6 +141,9 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
         Double d= Double.valueOf(fenshu);
         DecimalFormat decimalFormat=new DecimalFormat("0.00");
         String fen=decimalFormat.format(d);
+
+        myprogressbar1=view3.findViewById(R.id.myprogressbar1);
+        myprogressbar1.letuspaint(fenshu);
 
         AboutRankingList aboutRankingList= LitePal.findFirst(AboutRankingList.class);
         ddd=decimalFormat.format(aboutRankingList.calculate(d));
@@ -296,7 +302,7 @@ public class My_ReportDetail_ViewPagerAdapter extends PagerAdapter {
                 400,
                 400));
         if(ce_hip_x>ce_knee_x&&ce_hip_x>ce_shoulder_x){//骨盆前倾
-            ce_hip_state.setIlls_name("髋部前倾");
+            ce_hip_state.setIlls_name("髋部异位");
         }else if(ce_hip_x<ce_knee_x&&ce_hip_x<ce_shoulder_x){//骨盆后错
             ce_hip_state.setIlls_name("髋部后移");
         }else{//骨盆异位

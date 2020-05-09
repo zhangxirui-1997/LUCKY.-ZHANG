@@ -59,6 +59,13 @@
         android:layout_marginRight="20dp"
         android:layout_weight="1">
 
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@android:drawable/ic_menu_view" />
+
         <TextView
             android:id="@+id/sdfaadf"
             android:layout_width="wrap_content"
@@ -254,41 +261,64 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_below="@+id/button_begin_check"
-            android:layout_alignLeft="@+id/button_begin_check"
-            android:layout_marginTop="15dp"
-            app:srcCompat="@android:drawable/ic_menu_help" />
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimary" />
 
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/button_begin_check"
-            android:layout_alignBottom="@+id/imageView12"
-            android:layout_marginLeft="1dp"
-            android:layout_marginTop="15dp"
-            android:layout_toRightOf="@+id/imageView12"
-            android:fontFamily="cursive"
-            android:gravity="center"
-            android:text="@string/tishi"
-            android:textSize="12sp"
-            android:typeface="normal" />
-
-        <Button
-            android:id="@+id/button_begin_check"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:background="@drawable/item_report_background_shape"
-            android:text="@string/app_name"
-            android:textSize="14sp" />
+            android:layout_marginRight="40dp">
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/button_begin_check"
+                android:layout_alignLeft="@+id/button_begin_check"
+                android:layout_marginBottom="15dp">
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:srcCompat="@android:drawable/ic_menu_help" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/imageView12"
+                    android:layout_alignBottom="@+id/imageView12"
+                    android:layout_marginLeft="1dp"
+                    android:layout_toRightOf="@+id/imageView12"
+                    android:fontFamily="cursive"
+                    android:gravity="center"
+                    android:text="@string/tishi"
+                    android:textSize="12sp"
+                    android:typeface="normal" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/button_begin_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/item_report_background_shape"
+                android:text="@string/app_name"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
 
     </RelativeLayout>
 

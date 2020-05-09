@@ -2,7 +2,7 @@
 <litepal>
 
     <dbname value="LuckData"/>
-    <version value="1"/>
+    <version value="3"/>
 
     <list>
         <mapping class="Data_Class.User_Info"/>
@@ -10,6 +10,7 @@
         <mapping class="Data_Class.Report_detail"/>
         <mapping class="Data_Class.AboutRankingList"/>
         <mapping class="Data_Class.Now_grade"/>
+        <mapping class="Data_Class.Ten_Items"/>
 
     </list>
 

@@ -42,11 +42,11 @@ public class OnlyService extends Service {
     public void onCreate() {
 
         CreatDicument();
-        try {
+        /*try {
             DownloadWelcomeImg();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         //更新排行榜的信息
         UpdataRankingList();
         Find_Finish_Order_Class find_finish_order_class=new Find_Finish_Order_Class();

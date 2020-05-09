@@ -19,4 +19,10 @@
     <color name="color_healthyGreen_qian">#1A1CA005</color>
     <color name="color_errorRed_qian">#1AC91D2B</color>
     <color name="color_warnOrange_qian">#1AC79056</color>
+
+
+    <color name="glay3">#2C743B</color>
+    <color name="timeCome2">#C02828</color>
+    <color name="timeCome1">#8D3073</color>
+
 </resources>

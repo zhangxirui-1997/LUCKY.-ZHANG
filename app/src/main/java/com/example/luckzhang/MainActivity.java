@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.litepal.LitePal;
@@ -34,6 +35,7 @@ import My_ViewPager.MyPageAdapter;
 import Toolar_toNext.Help_Activity;
 import Toolar_toNext.The_Charts_Activity;
 
+
 /*在本界面进行权限获取
 * 以及界面的初始化
 * */
@@ -44,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private Button button_left;
     private Button button_right;
+    private Button button_right_right;
+    private RelativeLayout relativelayout_left;
+    private RelativeLayout relativelayout_right;
+    private RelativeLayout relativelayout_right_right;
     private int want_refresh=0;
     private MyPageAdapter myPageAdapter;
 
@@ -65,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         }else{*/
         Intent startServiceIntent=new Intent(MainActivity.this, OnlyService.class);
         startService(startServiceIntent);
-
         //}
 
         //再初始化本地
@@ -81,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
             viewPager.setCurrentItem(0);
         }else if(want_refresh==1){
             viewPager.setCurrentItem(1);
+        }else if(want_refresh==2){
+            viewPager.setCurrentItem(2);
         }
         super.onStart();
     }
@@ -95,21 +102,29 @@ public class MainActivity extends AppCompatActivity {
     private void init_variable(){
         toolbar=findViewById(R.id.toolbar);
         viewPager = findViewById(R.id.viewpager);
-        button_left=findViewById(R.id.button4);
-        button_right=findViewById(R.id.button5);
 
+
+        relativelayout_left=findViewById(R.id.relativelayout4);
+        relativelayout_right=findViewById(R.id.relativelayout5);
+        relativelayout_right_right=findViewById(R.id.relativelayout10);
         toolbar_initialize();
 
-        button_left.setOnClickListener(new View.OnClickListener() {
+        relativelayout_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewPager.setCurrentItem(0);
             }
         });
-        button_right.setOnClickListener(new View.OnClickListener() {
+        relativelayout_right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewPager.setCurrentItem(1);
+            }
+        });
+        relativelayout_right_right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(2);
             }
         });
     }
@@ -126,12 +141,21 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 if(position==0){
                     want_refresh=0;
-                    button_left.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_1_circle_shape,null));
-                    button_right.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_2_circle_shape,null));
+                    relativelayout_left.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_1_circle_shape,null));
+                    relativelayout_right.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_2_circle_shape,null));
+                    relativelayout_right_right.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_2_circle_shape,null));
                 }else if(position==1){
                     want_refresh=1;
-                    button_left.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_2_circle_shape,null));
-                    button_right.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_1_circle_shape,null));                }
+                    relativelayout_left.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_2_circle_shape,null));
+                    relativelayout_right.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_1_circle_shape,null));
+                    relativelayout_right_right.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_2_circle_shape,null));
+                }else if(position==2){
+                    //myPageAdapter.init_third();
+                    want_refresh=2;
+                    relativelayout_left.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_2_circle_shape,null));
+                    relativelayout_right.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_2_circle_shape,null));
+                    relativelayout_right_right.setBackground(getResources().getDrawable(R.drawable.button_mainviewpager_1_circle_shape,null));
+                }
             }
             @Override
             public void onPageScrollStateChanged(int state) {
@@ -182,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
                                 });
                         builder.create().show();
                         break;
-                    case R.id.item_cleanorder:
+                    /*case R.id.item_cleanorder:
                         List<Report_item> list=LitePal.findAll(Report_item.class);
                         for(Report_item report_item:list){
                             if(report_item.getStatue_now().equals("未完成")){
@@ -192,13 +216,19 @@ public class MainActivity extends AppCompatActivity {
                         }
                         myPageAdapter.init_right_listview();
                         Toast.makeText(MainActivity.this, "清理成功！", Toast.LENGTH_SHORT).show();
-                        break;
+                        break;*/
+                    /*case  R.id.item_updataapp:
+                        updataApp();*/
                 }
                 return false;
             }
         });
     }
 
+    /*private void updataApp(){
+        Toast.makeText(this, "目前仅支持从应用商店更新！", Toast.LENGTH_SHORT).show();
+
+    }*/
     //获取权限，下面是回调
     private void getPermissions(){
         String[] permissions={Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE,
